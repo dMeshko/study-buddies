@@ -1,0 +1,22 @@
+{
+  "name": "studybuddies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dMeshko",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.18.0",
+    "css-loader": "^0.25.0",
+    "es6-promise": "^4.0.5",
+    "ng-annotate-loader": "^0.2.0",
+    "oclazyload": "^1.0.9",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.3"
+  }
+}
