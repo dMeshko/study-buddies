@@ -31,6 +31,7 @@ namespace StudyBuddies.Data.Mappings
 
             Map(x => x.Image)
                 .CustomType<NHibernate.Type.BinaryBlobType>()
+                .CustomSqlType("varbinary(MAX)")
                 .Nullable();
 
             HasMany(x => x.CreatedGroups)

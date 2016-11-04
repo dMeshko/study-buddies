@@ -10,7 +10,8 @@ namespace StudyBuddies.Web.ViewModels
     {
         public virtual Guid Id { get; set; }
         public virtual string FullName { get; set; }
-        public virtual string Email { get; set; }
         public virtual string Username { get; set; }
+        public virtual string Image { get; set; }
+        public virtual double Rating { get; set; }
     }
 }

@@ -18,11 +18,6 @@ namespace StudyBuddies.Web
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute(
-                name: "SecondLevelApi",
-                routeTemplate: "api/{controller}/{id}/friends/{actionId}",
-                defaults: new { actionId = RouteParameter.Optional }
-            );
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

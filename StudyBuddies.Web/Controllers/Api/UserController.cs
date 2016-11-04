@@ -5,10 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
 using StudyBuddies.Service.Infrastructure;
+using StudyBuddies.Web.App_Start;
 using StudyBuddies.Web.ViewModels;
+using System.IO;
+using System.Net.Http.Formatting;
+using Newtonsoft.Json.Linq;
 
 namespace StudyBuddies.Web.Controllers.Api
 {
@@ -24,7 +29,7 @@ namespace StudyBuddies.Web.Controllers.Api
         public IHttpActionResult Get()
         {
             var users = _service.GetAllUsers();
-
+    
             var mappedUser = Mapper.Map<IEnumerable<User>, IList<UserViewModel>>(users);
             return Ok(mappedUser);
         }
@@ -37,13 +42,44 @@ namespace StudyBuddies.Web.Controllers.Api
             return Ok(mappedUser);
         }
 
-        public IHttpActionResult GetFriends(Guid id)
+        public async Task<IHttpActionResult> Post()
         {
-            var user = _service.GetUserById(id);
-            var friends = _service.GetFriends(user);
+            // Check if the request contains multipart/form-data.
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
 
-            var mappedUser = Mapper.Map<IEnumerable<User>, IList<UserViewModel>>(friends);
-            return Ok(mappedUser);
+
+            string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
+            var provider = new MultipartFormDataStreamProvider(root);
+
+            var filesReadToProvider = await Request.Content.ReadAsMultipartAsync(provider);
+
+
+            RegisterUserViewModel user = new RegisterUserViewModel
+            {
+                Name = provider.FormData.Get("name"),
+                Surname = provider.FormData.Get("surname"),
+                Email = provider.FormData.Get("email"),
+                Username = provider.FormData.Get("username"),
+                Password = provider.FormData.Get("password")
+            };
+
+            foreach (var file in provider.FileData)
+            {
+                var fileName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+                byte[] documentData;
+
+                documentData = File.ReadAllBytes(file.LocalFileName);
+
+                user.Image = documentData.Select(x => x).ToArray();
+            }
+
+            var mappedUser = Mapper.Map<RegisterUserViewModel, User>(user);
+            _service.Save(mappedUser);
+
+            return Ok();
         }
     }
 }

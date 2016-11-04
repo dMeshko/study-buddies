@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <div class="col-md-3">
+        <img class="img img-responsive" ng-src="data:image/png;base64,{{ user.image }}" />
+    </div>
+    <div class="col-md-6">
+        <h4>{{ user.fullName }}</h4>
+        <p><i class="glyphicon glyphicon-star"></i> Rating: {{ user.rating }}</p>
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-success btn-block">
+            <i class="glyphicon glyphicon-education"></i> Buddy up
+        </button>
+        <button ui-sref="app.profile({id: user.id})" class="btn btn-warning btn-block">
+            <i class="glyphicon glyphicon-eye-open"></i> Preview
+        </button>
+    </div>
+</div>

@@ -1,3 +1,7 @@
 ﻿[ui-view="content"] {
     margin-top: 65px;
 }
+
+#loading-bar .bar {
+  background: white;
+}

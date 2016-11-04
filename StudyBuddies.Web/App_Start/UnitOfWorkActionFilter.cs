@@ -17,7 +17,7 @@ namespace StudyBuddies.Web
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            //  UnitOfWork = actionExecutedContext.Request.GetDependencyScope().GetService(typeof(IUnitOfWork)) as IUnitOfWork;
+            UnitOfWork = actionExecutedContext.Request.GetDependencyScope().GetService(typeof(IUnitOfWork)) as IUnitOfWork;
             if (actionExecutedContext.Exception == null)
             {
                 // commit if no exceptions

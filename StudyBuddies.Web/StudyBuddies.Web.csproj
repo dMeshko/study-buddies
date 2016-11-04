@@ -141,10 +141,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\_directives\featured-user\featured-user-directive.js" />
+    <Content Include="app\components\_directives\featured-user\featured-user.html" />
+    <Content Include="app\components\_directives\file-model-directive.js" />
+    <Content Include="app\components\home\sidebar-controller.js" />
     <Content Include="app\components\home\sidebar.html" />
+    <Content Include="app\components\register-user\register-user-controller.js" />
+    <Content Include="app\components\register-user\register-user.html" />
     <Content Include="app\components\_services\user-service.js" />
     <Content Include="app\components\view-profile\view-profile.html" />
     <Content Include="app\components\view-profile\view-profile.js" />
+    <Content Include="app\config\config.js" />
+    <Content Include="app\config\index.js" />
     <Content Include="app\constants.js" />
     <Content Include="app\common\footer-controller.js" />
     <Content Include="app\common\footer.html" />
@@ -155,7 +163,7 @@
     <Content Include="app\components\home\content.html" />
     <Content Include="app\common\index.js" />
     <Content Include="app\common\style.css" />
-    <Content Include="app\states.js" />
+    <Content Include="app\config\states.js" />
     <Content Include="app\vendor.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -195,6 +203,8 @@
     <Content Include="Content\bootswatch\yeti\bootstrap.css" />
     <Content Include="Content\bootswatch\yeti\bootstrap.min.css" />
     <Content Include="Content\flatly.bootstrap.min.css" />
+    <Content Include="Content\loading-bar.css" />
+    <Content Include="Content\loading-bar.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -979,6 +989,8 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Scripts\loading-bar.js" />
+    <Content Include="Scripts\loading-bar.min.js" />
     <Content Include="webpack.config.js" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\grunt.cmd" />
@@ -1022,6 +1034,7 @@
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ReceivedMessageViewModel.cs" />
+    <Compile Include="ViewModels\RegisterUserViewModel.cs" />
     <Compile Include="ViewModels\SentMessageViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
@@ -1054,7 +1067,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\directives\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

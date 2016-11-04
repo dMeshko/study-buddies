@@ -34,6 +34,7 @@ namespace StudyBuddies.Web.Controllers
                 _unitOfWork.Commit();
         }
 
+
         // GET: Home
         public ActionResult Index()
         {
@@ -55,7 +56,8 @@ namespace StudyBuddies.Web.Controllers
                 new User { Name = "Marko", Surname = "Stefanovski", Email = "markos@gmail.com", Username = "markos", Password = "secret" },
                 new User { Name = "Deni", Surname = "Belevski", Email = "deni_belevski@yahoo.com", Username = "denib", Password = "nerd" },
                 new User { Name = "Martin", Surname = "Mrmachovski", Email = "mr.mach@hotmail.com", Username = "fish", Password = "ferd" },
-                new User { Name = "Angel", Surname = "Miladinov", Email = "trash@hotmail.com", Username = "trashy", Password = "trash123" }
+                new User { Name = "Angel", Surname = "Miladinov", Email = "trash@hotmail.com", Username = "trashy", Password = "trash123" },
+                new User { Name = "Aleksandar", Surname = "Mechkarovski", Email = "sinkata@hotmail.com", Username = "sinkata", Password = "dabe_OH" }
             };
 
             foreach (User u in Users)
@@ -121,11 +123,34 @@ namespace StudyBuddies.Web.Controllers
             _userService.JoinGroup(grp, Users[1]);
             _userService.JoinGroup(grp, Users[2]);
             _userService.JoinGroup(grp, Users[4]);
+            _userService.JoinGroup(grp, Users[3]);
+            _userService.JoinGroup(grp, Users[5]);
 
             _userService.AcceptGroupMember(grp, Users[2]);
+            _userService.AcceptGroupMember(grp, Users[5]);
+            _userService.AcceptGroupMember(grp, Users[3]);
             _userService.AcceptGroupMember(grp, Users[1]);
 
             _userService.RateGroupMember(Users[2], Users[1], grp, 5);
+            _userService.RateGroupMember(Users[5], Users[1], grp, 3);
+            _userService.RateGroupMember(Users[3], Users[1], grp, 4);
+
+            //other grp
+            grp = _userService.GetGroupsByName("VVI").First();
+
+            _userService.JoinGroup(grp, Users[1]);
+            _userService.JoinGroup(grp, Users[2]);
+            _userService.JoinGroup(grp, Users[4]);
+            _userService.JoinGroup(grp, Users[3]);
+
+            _userService.AcceptGroupMember(grp, Users[2]);
+            _userService.AcceptGroupMember(grp, Users[3]);
+            _userService.AcceptGroupMember(grp, Users[1]);
+
+            _userService.RateGroupMember(Users[2], Users[1], grp, 2);
+            _userService.RateGroupMember(Users[3], Users[1], grp, 4);
+            _userService.RateGroupMember(Users[1], Users[2], grp, 3);
+            _userService.RateGroupMember(Users[3], Users[2], grp, 4);
 
             // adding new University
             List<University> Universities = new List<University>

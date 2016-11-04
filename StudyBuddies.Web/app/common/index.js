@@ -3,5 +3,6 @@
 module.exports = function (ngModule) {
     require("./header-controller")(ngModule);
     require("./footer-controller")(ngModule);
+
     require("./style.css");
 };

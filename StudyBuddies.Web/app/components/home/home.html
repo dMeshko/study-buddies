@@ -1,2 +1,3 @@
-﻿<h2>wassup!</h2>
-{{ users | json }}
+﻿<div class="well" ng-repeat="user in users | orderBy: '-rating'">
+    <featured-user user="user" />
+</div>

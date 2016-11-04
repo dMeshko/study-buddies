@@ -12,6 +12,8 @@ namespace StudyBuddies.Web.App_Start
 {
     public class WebApiExceptionFilter : ExceptionFilterAttribute
     {
+        readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
@@ -34,7 +36,10 @@ namespace StudyBuddies.Web.App_Start
                 message = actionExecutedContext.Exception.Message;
                 statusCode = HttpStatusCode.Unauthorized;
             }
-
+            else
+            {
+                logger.Error(actionExecutedContext.Exception);
+            }
 
             actionExecutedContext.Response = new HttpResponseMessage
             {

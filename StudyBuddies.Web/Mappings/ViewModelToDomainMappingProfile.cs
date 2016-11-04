@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using StudyBuddies.Domain.Models;
+using StudyBuddies.Web.ViewModels;
 
 namespace StudyBuddies.Web.Mappings
 {
@@ -16,10 +18,9 @@ namespace StudyBuddies.Web.Mappings
             }
         }
 
-        protected override void Configure()
+        public ViewModelToDomainMappingProfile()
         {
-            //Mapper.CreateMap<Category, CategoryViewModel>();
-            //Mapper.CreateMap<Gadget, GadgetViewModel>();
+            CreateMap<RegisterUserViewModel, User>();
         }
     }
 }

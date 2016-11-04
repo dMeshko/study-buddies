@@ -5,12 +5,13 @@
 }
 
 var app = angular.module("StudyBuddies", [
-    "ui.router"/*,
-    "oc.lazyLoad"*/
+    "ui.router",
+    "angular-loading-bar"
+    //"oc.lazyLoad"
 ]);
 
 require("./constants")(app);
-require("./states")(app);
+require("./config")(app);
 
 require("./common")(app);
 
