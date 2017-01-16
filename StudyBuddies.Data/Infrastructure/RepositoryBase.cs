@@ -11,11 +11,9 @@ namespace StudyBuddies.Data.Infrastructure
     {
         private readonly UnitOfWork _unitOfWork;
 
-        protected ISession Session {
-            get { return _unitOfWork.Session; }
-        }
+        protected ISession Session => _unitOfWork.Session;
 
-        public RepositoryBase(IUnitOfWork unitOfWork)
+        protected RepositoryBase(IUnitOfWork unitOfWork)
         {
             _unitOfWork = (UnitOfWork)unitOfWork;
         }
@@ -50,17 +48,19 @@ namespace StudyBuddies.Data.Infrastructure
 
         public virtual T Get(Expression<Func<T, bool>> where)
         {
-            return Session.Query<T>().Where(where).FirstOrDefault<T>();
+            return Session.Query<T>().Where(where).FirstOrDefault();
         }
 
         public virtual IEnumerable<T> GetAll()
         {
-           return Session.Query<T>().ToList<T>();
+           return Session.Query<T>().ToList();
         }
 
         public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
         {
-           return Session.Query<T>().Where(where).ToList<T>();
+           return Session.Query<T>().Where(where).ToList();
         }
+
+        public virtual bool IsUnique(T entity) => !Session.Query<T>().ToList().Any();
     }
 }

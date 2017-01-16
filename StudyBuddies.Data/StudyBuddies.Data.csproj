@@ -35,11 +35,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.0.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,35 +53,66 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\FluentNHibernateConfig.cs" />
-    <Compile Include="Mappings\AcademyMap.cs" />
-    <Compile Include="Mappings\AreaOfStudyMap.cs" />
-    <Compile Include="Mappings\FacultyMap.cs" />
-    <Compile Include="Mappings\FriendshipMap.cs" />
-    <Compile Include="Mappings\GroupMap.cs" />
-    <Compile Include="Mappings\GroupRatingMap.cs" />
-    <Compile Include="Mappings\InstitutionMap.cs" />
-    <Compile Include="Mappings\LocationMap.cs" />
-    <Compile Include="Mappings\LocationMapComponent.cs" />
-    <Compile Include="Mappings\MessageMap.cs" />
-    <Compile Include="Mappings\UserGroupMap.cs" />
-    <Compile Include="Mappings\UserSubjectMap.cs" />
-    <Compile Include="Mappings\SubjectMap.cs" />
-    <Compile Include="Mappings\UniversityMap.cs" />
-    <Compile Include="Mappings\UserAttendsInstitutionMap.cs" />
-    <Compile Include="Mappings\UserMap.cs" />
+    <Compile Include="Mappings\Groups\AttachmentMap.cs" />
+    <Compile Include="Mappings\Groups\CommentMap.cs" />
+    <Compile Include="Mappings\Groups\GroupMap.cs" />
+    <Compile Include="Mappings\Groups\GroupRatingMap.cs" />
+    <Compile Include="Mappings\Groups\GroupRequestMap.cs" />
+    <Compile Include="Mappings\Groups\PostMap.cs" />
+    <Compile Include="Mappings\Institutions\AcademyMap.cs" />
+    <Compile Include="Mappings\Institutions\EnrolledInstitutionMap.cs" />
+    <Compile Include="Mappings\Institutions\FacultyMap.cs" />
+    <Compile Include="Mappings\Institutions\InstitutionMap.cs" />
+    <Compile Include="Mappings\Institutions\LocationMap.cs" />
+    <Compile Include="Mappings\Institutions\UniversityMap.cs" />
+    <Compile Include="Mappings\Institutions\LocationMapComponent.cs" />
+    <Compile Include="Mappings\Subjects\AreaOfStudyMap.cs" />
+    <Compile Include="Mappings\Subjects\EnrolledSubjectMap.cs" />
+    <Compile Include="Mappings\Subjects\SubjectMap.cs" />
+    <Compile Include="Mappings\Users\BuddyRequestMap.cs" />
+    <Compile Include="Mappings\Users\MessageMap.cs" />
+    <Compile Include="Mappings\Users\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IGroupRepository.cs" />
-    <Compile Include="Repository\IInstitutionRepository.cs" />
-    <Compile Include="Repository\Implementation\GroupRepository.cs" />
-    <Compile Include="Repository\Implementation\InstitutionRepository.cs" />
-    <Compile Include="Repository\Implementation\SubjectRepository.cs" />
-    <Compile Include="Repository\Implementation\UserRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Repository\ISubjectRepository.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
-    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\Groups\IAttachmentRepository.cs" />
+    <Compile Include="Repository\Groups\ICommentRepository.cs" />
+    <Compile Include="Repository\Groups\IGroupRatingRepository.cs" />
+    <Compile Include="Repository\Groups\IGroupRequestRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\AttachmentRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\CommentRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\GroupRatingRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\GroupRequestRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\PostRepository.cs" />
+    <Compile Include="Repository\Groups\IPostRepository.cs" />
+    <Compile Include="Repository\Institutions\IAcademyRepository.cs" />
+    <Compile Include="Repository\Institutions\IEnrolledInstitutionsRepository.cs" />
+    <Compile Include="Repository\Institutions\IFacultyRepository.cs" />
+    <Compile Include="Repository\Institutions\ILocationRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\AcademyRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\EnrolledInstitutionsRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\FacultyRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\LocationRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\UniversityRepository.cs" />
+    <Compile Include="Repository\Institutions\IUniversityRepository.cs" />
+    <Compile Include="Repository\Subjects\IAreaOfStudyRepository.cs" />
+    <Compile Include="Repository\Groups\IGroupRepository.cs" />
+    <Compile Include="Repository\Institutions\IInstitutionRepository.cs" />
+    <Compile Include="Repository\Subjects\IEnrolledSubjectRepository.cs" />
+    <Compile Include="Repository\Subjects\Implementation\AreaOfStudyRepository.cs" />
+    <Compile Include="Repository\Groups\Implementation\GroupRepository.cs" />
+    <Compile Include="Repository\Institutions\Implementation\InstitutionRepository.cs" />
+    <Compile Include="Repository\Subjects\Implementation\EnrolledSubjectRepository.cs" />
+    <Compile Include="Repository\Subjects\Implementation\SubjectRepository.cs" />
+    <Compile Include="Repository\Users\IBuddyRequestRepository.cs" />
+    <Compile Include="Repository\Users\IMessageRepository.cs" />
+    <Compile Include="Repository\Users\Implementation\BuddyRequestRepository.cs" />
+    <Compile Include="Repository\Users\Implementation\MessageRepository.cs" />
+    <Compile Include="Repository\Users\Implementation\UserRepository.cs" />
+    <Compile Include="Repository\Subjects\ISubjectRepository.cs" />
+    <Compile Include="Repository\Users\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StudyBuddies.Model\StudyBuddies.Domain.csproj">
@@ -90,8 +121,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

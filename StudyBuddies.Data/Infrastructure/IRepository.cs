@@ -27,5 +27,8 @@ namespace StudyBuddies.Data.Infrastructure
 
         // Gets entities using delegate
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+
+        // Checks whether an entity is unique
+        bool IsUnique(T entity);
     }
 }

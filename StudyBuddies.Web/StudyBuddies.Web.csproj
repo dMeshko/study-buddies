@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -16,7 +17,7 @@
     <RootNamespace>StudyBuddies.Web</RootNamespace>
     <AssemblyName>StudyBuddies.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,8 +45,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.1.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.1.1\lib\net45\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -55,8 +57,28 @@
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="Castle.ActiveRecord, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Activerecord.3.0.0.1\lib\Net40\Castle.ActiveRecord.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.ActiveRecord.Web, Version=0.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Activerecord.3.0.0.1\lib\Net40\Castle.ActiveRecord.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Castle.Components.Validator, Version=2.5.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Components.Validator.2.5.0\lib\NET40\Castle.Components.Validator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -71,25 +93,110 @@
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.6.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.6\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Server.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Server.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Abstractions.1.1.0\lib\net451\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.1.1.0\lib\net451\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate.Search, Version=0.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Activerecord.3.0.0.1\lib\Net40\NHibernate.Search.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.5.0\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Protractor, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Protractor.0.9.1\lib\net40\Protractor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.4.5.4\lib\net45\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.5.4\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.4.5.4\lib\net45\ServiceStack.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.5.4\lib\net45\ServiceStack.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.3.0\lib\netstandard1.0\System.Text.Encodings.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -106,6 +213,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebDriver, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.0.1\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -140,7 +251,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\admin\config.js" />
+    <Content Include="app\admin\home.html" />
     <Content Include="app\app.js" />
+    <Content Include="app\components\_directives\cover-image\cover-image-directive.js" />
     <Content Include="app\components\_directives\featured-user\featured-user-directive.js" />
     <Content Include="app\components\_directives\featured-user\featured-user.html" />
     <Content Include="app\components\_directives\file-model-directive.js" />
@@ -148,6 +262,8 @@
     <Content Include="app\components\home\sidebar.html" />
     <Content Include="app\components\register-user\register-user-controller.js" />
     <Content Include="app\components\register-user\register-user.html" />
+    <Content Include="app\components\_directives\two-state-button\two-state-button-directive.js" />
+    <Content Include="app\components\_directives\two-state-button\two-state-button.html" />
     <Content Include="app\components\_services\user-service.js" />
     <Content Include="app\components\view-profile\view-profile.html" />
     <Content Include="app\components\view-profile\view-profile.js" />
@@ -203,10 +319,14 @@
     <Content Include="Content\bootswatch\yeti\bootstrap.css" />
     <Content Include="Content\bootswatch\yeti\bootstrap.min.css" />
     <Content Include="Content\flatly.bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\user-default.png" />
     <Content Include="Content\loading-bar.css" />
     <Content Include="Content\loading-bar.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-animate.js" />
@@ -245,10 +365,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dist\bundle.js" />
-    <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
-    <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
-    <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
-    <Content Include="Scripts\i18n\angular-locale_aa.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
     <Content Include="Scripts\i18n\angular-locale_af.js" />
@@ -285,6 +401,7 @@
     <Content Include="Scripts\i18n\angular-locale_ar-sy.js" />
     <Content Include="Scripts\i18n\angular-locale_ar-td.js" />
     <Content Include="Scripts\i18n\angular-locale_ar-tn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ar-xb.js" />
     <Content Include="Scripts\i18n\angular-locale_ar-ye.js" />
     <Content Include="Scripts\i18n\angular-locale_ar.js" />
     <Content Include="Scripts\i18n\angular-locale_as-in.js" />
@@ -308,8 +425,6 @@
     <Content Include="Scripts\i18n\angular-locale_bez.js" />
     <Content Include="Scripts\i18n\angular-locale_bg-bg.js" />
     <Content Include="Scripts\i18n\angular-locale_bg.js" />
-    <Content Include="Scripts\i18n\angular-locale_bm-latn-ml.js" />
-    <Content Include="Scripts\i18n\angular-locale_bm-latn.js" />
     <Content Include="Scripts\i18n\angular-locale_bm-ml.js" />
     <Content Include="Scripts\i18n\angular-locale_bm.js" />
     <Content Include="Scripts\i18n\angular-locale_bn-bd.js" />
@@ -327,14 +442,14 @@
     <Content Include="Scripts\i18n\angular-locale_bs-latn-ba.js" />
     <Content Include="Scripts\i18n\angular-locale_bs-latn.js" />
     <Content Include="Scripts\i18n\angular-locale_bs.js" />
-    <Content Include="Scripts\i18n\angular-locale_byn-er.js" />
-    <Content Include="Scripts\i18n\angular-locale_byn.js" />
     <Content Include="Scripts\i18n\angular-locale_ca-ad.js" />
     <Content Include="Scripts\i18n\angular-locale_ca-es-valencia.js" />
     <Content Include="Scripts\i18n\angular-locale_ca-es.js" />
     <Content Include="Scripts\i18n\angular-locale_ca-fr.js" />
     <Content Include="Scripts\i18n\angular-locale_ca-it.js" />
     <Content Include="Scripts\i18n\angular-locale_ca.js" />
+    <Content Include="Scripts\i18n\angular-locale_ce-ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_ce.js" />
     <Content Include="Scripts\i18n\angular-locale_cgg-ug.js" />
     <Content Include="Scripts\i18n\angular-locale_cgg.js" />
     <Content Include="Scripts\i18n\angular-locale_chr-us.js" />
@@ -349,6 +464,8 @@
     <Content Include="Scripts\i18n\angular-locale_ckb.js" />
     <Content Include="Scripts\i18n\angular-locale_cs-cz.js" />
     <Content Include="Scripts\i18n\angular-locale_cs.js" />
+    <Content Include="Scripts\i18n\angular-locale_cu-ru.js" />
+    <Content Include="Scripts\i18n\angular-locale_cu.js" />
     <Content Include="Scripts\i18n\angular-locale_cy-gb.js" />
     <Content Include="Scripts\i18n\angular-locale_cy.js" />
     <Content Include="Scripts\i18n\angular-locale_da-dk.js" />
@@ -386,21 +503,28 @@
     <Content Include="Scripts\i18n\angular-locale_en-ag.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ai.js" />
     <Content Include="Scripts\i18n\angular-locale_en-as.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-at.js" />
     <Content Include="Scripts\i18n\angular-locale_en-au.js" />
     <Content Include="Scripts\i18n\angular-locale_en-bb.js" />
     <Content Include="Scripts\i18n\angular-locale_en-be.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-bi.js" />
     <Content Include="Scripts\i18n\angular-locale_en-bm.js" />
     <Content Include="Scripts\i18n\angular-locale_en-bs.js" />
     <Content Include="Scripts\i18n\angular-locale_en-bw.js" />
     <Content Include="Scripts\i18n\angular-locale_en-bz.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ca.js" />
     <Content Include="Scripts\i18n\angular-locale_en-cc.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-ch.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ck.js" />
     <Content Include="Scripts\i18n\angular-locale_en-cm.js" />
     <Content Include="Scripts\i18n\angular-locale_en-cx.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-cy.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-de.js" />
     <Content Include="Scripts\i18n\angular-locale_en-dg.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-dk.js" />
     <Content Include="Scripts\i18n\angular-locale_en-dm.js" />
     <Content Include="Scripts\i18n\angular-locale_en-er.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-fi.js" />
     <Content Include="Scripts\i18n\angular-locale_en-fj.js" />
     <Content Include="Scripts\i18n\angular-locale_en-fk.js" />
     <Content Include="Scripts\i18n\angular-locale_en-fm.js" />
@@ -414,6 +538,7 @@
     <Content Include="Scripts\i18n\angular-locale_en-gy.js" />
     <Content Include="Scripts\i18n\angular-locale_en-hk.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ie.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-il.js" />
     <Content Include="Scripts\i18n\angular-locale_en-im.js" />
     <Content Include="Scripts\i18n\angular-locale_en-in.js" />
     <Content Include="Scripts\i18n\angular-locale_en-io.js" />
@@ -439,6 +564,7 @@
     <Content Include="Scripts\i18n\angular-locale_en-na.js" />
     <Content Include="Scripts\i18n\angular-locale_en-nf.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ng.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-nl.js" />
     <Content Include="Scripts\i18n\angular-locale_en-nr.js" />
     <Content Include="Scripts\i18n\angular-locale_en-nu.js" />
     <Content Include="Scripts\i18n\angular-locale_en-nz.js" />
@@ -452,8 +578,10 @@
     <Content Include="Scripts\i18n\angular-locale_en-sb.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sc.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sd.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-se.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sg.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sh.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-si.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sl.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ss.js" />
     <Content Include="Scripts\i18n\angular-locale_en-sx.js" />
@@ -472,6 +600,7 @@
     <Content Include="Scripts\i18n\angular-locale_en-vi.js" />
     <Content Include="Scripts\i18n\angular-locale_en-vu.js" />
     <Content Include="Scripts\i18n\angular-locale_en-ws.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-xa.js" />
     <Content Include="Scripts\i18n\angular-locale_en-za.js" />
     <Content Include="Scripts\i18n\angular-locale_en-zm.js" />
     <Content Include="Scripts\i18n\angular-locale_en-zw.js" />
@@ -481,6 +610,7 @@
     <Content Include="Scripts\i18n\angular-locale_es-419.js" />
     <Content Include="Scripts\i18n\angular-locale_es-ar.js" />
     <Content Include="Scripts\i18n\angular-locale_es-bo.js" />
+    <Content Include="Scripts\i18n\angular-locale_es-br.js" />
     <Content Include="Scripts\i18n\angular-locale_es-cl.js" />
     <Content Include="Scripts\i18n\angular-locale_es-co.js" />
     <Content Include="Scripts\i18n\angular-locale_es-cr.js" />
@@ -523,6 +653,7 @@
     <Content Include="Scripts\i18n\angular-locale_fi.js" />
     <Content Include="Scripts\i18n\angular-locale_fil-ph.js" />
     <Content Include="Scripts\i18n\angular-locale_fil.js" />
+    <Content Include="Scripts\i18n\angular-locale_fo-dk.js" />
     <Content Include="Scripts\i18n\angular-locale_fo-fo.js" />
     <Content Include="Scripts\i18n\angular-locale_fo.js" />
     <Content Include="Scripts\i18n\angular-locale_fr-be.js" />
@@ -592,10 +723,9 @@
     <Content Include="Scripts\i18n\angular-locale_guz.js" />
     <Content Include="Scripts\i18n\angular-locale_gv-im.js" />
     <Content Include="Scripts\i18n\angular-locale_gv.js" />
-    <Content Include="Scripts\i18n\angular-locale_ha-latn-gh.js" />
-    <Content Include="Scripts\i18n\angular-locale_ha-latn-ne.js" />
-    <Content Include="Scripts\i18n\angular-locale_ha-latn-ng.js" />
-    <Content Include="Scripts\i18n\angular-locale_ha-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-gh.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-ne.js" />
+    <Content Include="Scripts\i18n\angular-locale_ha-ng.js" />
     <Content Include="Scripts\i18n\angular-locale_ha.js" />
     <Content Include="Scripts\i18n\angular-locale_haw-us.js" />
     <Content Include="Scripts\i18n\angular-locale_haw.js" />
@@ -612,8 +742,6 @@
     <Content Include="Scripts\i18n\angular-locale_hu.js" />
     <Content Include="Scripts\i18n\angular-locale_hy-am.js" />
     <Content Include="Scripts\i18n\angular-locale_hy.js" />
-    <Content Include="Scripts\i18n\angular-locale_ia-fr.js" />
-    <Content Include="Scripts\i18n\angular-locale_ia.js" />
     <Content Include="Scripts\i18n\angular-locale_id-id.js" />
     <Content Include="Scripts\i18n\angular-locale_id.js" />
     <Content Include="Scripts\i18n\angular-locale_ig-ng.js" />
@@ -648,8 +776,7 @@
     <Content Include="Scripts\i18n\angular-locale_khq.js" />
     <Content Include="Scripts\i18n\angular-locale_ki-ke.js" />
     <Content Include="Scripts\i18n\angular-locale_ki.js" />
-    <Content Include="Scripts\i18n\angular-locale_kk-cyrl-kz.js" />
-    <Content Include="Scripts\i18n\angular-locale_kk-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_kk-kz.js" />
     <Content Include="Scripts\i18n\angular-locale_kk.js" />
     <Content Include="Scripts\i18n\angular-locale_kkj-cm.js" />
     <Content Include="Scripts\i18n\angular-locale_kkj.js" />
@@ -666,8 +793,7 @@
     <Content Include="Scripts\i18n\angular-locale_ko.js" />
     <Content Include="Scripts\i18n\angular-locale_kok-in.js" />
     <Content Include="Scripts\i18n\angular-locale_kok.js" />
-    <Content Include="Scripts\i18n\angular-locale_ks-arab-in.js" />
-    <Content Include="Scripts\i18n\angular-locale_ks-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_ks-in.js" />
     <Content Include="Scripts\i18n\angular-locale_ks.js" />
     <Content Include="Scripts\i18n\angular-locale_ksb-tz.js" />
     <Content Include="Scripts\i18n\angular-locale_ksb.js" />
@@ -677,8 +803,7 @@
     <Content Include="Scripts\i18n\angular-locale_ksh.js" />
     <Content Include="Scripts\i18n\angular-locale_kw-gb.js" />
     <Content Include="Scripts\i18n\angular-locale_kw.js" />
-    <Content Include="Scripts\i18n\angular-locale_ky-cyrl-kg.js" />
-    <Content Include="Scripts\i18n\angular-locale_ky-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_ky-kg.js" />
     <Content Include="Scripts\i18n\angular-locale_ky.js" />
     <Content Include="Scripts\i18n\angular-locale_lag-tz.js" />
     <Content Include="Scripts\i18n\angular-locale_lag.js" />
@@ -695,6 +820,9 @@
     <Content Include="Scripts\i18n\angular-locale_ln.js" />
     <Content Include="Scripts\i18n\angular-locale_lo-la.js" />
     <Content Include="Scripts\i18n\angular-locale_lo.js" />
+    <Content Include="Scripts\i18n\angular-locale_lrc-iq.js" />
+    <Content Include="Scripts\i18n\angular-locale_lrc-ir.js" />
+    <Content Include="Scripts\i18n\angular-locale_lrc.js" />
     <Content Include="Scripts\i18n\angular-locale_lt-lt.js" />
     <Content Include="Scripts\i18n\angular-locale_lt.js" />
     <Content Include="Scripts\i18n\angular-locale_lu-cd.js" />
@@ -722,15 +850,13 @@
     <Content Include="Scripts\i18n\angular-locale_mk.js" />
     <Content Include="Scripts\i18n\angular-locale_ml-in.js" />
     <Content Include="Scripts\i18n\angular-locale_ml.js" />
-    <Content Include="Scripts\i18n\angular-locale_mn-cyrl-mn.js" />
-    <Content Include="Scripts\i18n\angular-locale_mn-cyrl.js" />
+    <Content Include="Scripts\i18n\angular-locale_mn-mn.js" />
     <Content Include="Scripts\i18n\angular-locale_mn.js" />
     <Content Include="Scripts\i18n\angular-locale_mr-in.js" />
     <Content Include="Scripts\i18n\angular-locale_mr.js" />
-    <Content Include="Scripts\i18n\angular-locale_ms-latn-bn.js" />
-    <Content Include="Scripts\i18n\angular-locale_ms-latn-my.js" />
-    <Content Include="Scripts\i18n\angular-locale_ms-latn-sg.js" />
-    <Content Include="Scripts\i18n\angular-locale_ms-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-bn.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-my.js" />
+    <Content Include="Scripts\i18n\angular-locale_ms-sg.js" />
     <Content Include="Scripts\i18n\angular-locale_ms.js" />
     <Content Include="Scripts\i18n\angular-locale_mt-mt.js" />
     <Content Include="Scripts\i18n\angular-locale_mt.js" />
@@ -738,6 +864,8 @@
     <Content Include="Scripts\i18n\angular-locale_mua.js" />
     <Content Include="Scripts\i18n\angular-locale_my-mm.js" />
     <Content Include="Scripts\i18n\angular-locale_my.js" />
+    <Content Include="Scripts\i18n\angular-locale_mzn-ir.js" />
+    <Content Include="Scripts\i18n\angular-locale_mzn.js" />
     <Content Include="Scripts\i18n\angular-locale_naq-na.js" />
     <Content Include="Scripts\i18n\angular-locale_naq.js" />
     <Content Include="Scripts\i18n\angular-locale_nb-no.js" />
@@ -764,11 +892,7 @@
     <Content Include="Scripts\i18n\angular-locale_nnh.js" />
     <Content Include="Scripts\i18n\angular-locale_no-no.js" />
     <Content Include="Scripts\i18n\angular-locale_no.js" />
-    <Content Include="Scripts\i18n\angular-locale_nr-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_nr.js" />
-    <Content Include="Scripts\i18n\angular-locale_nso-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_nso.js" />
-    <Content Include="Scripts\i18n\angular-locale_nus-sd.js" />
+    <Content Include="Scripts\i18n\angular-locale_nus-ss.js" />
     <Content Include="Scripts\i18n\angular-locale_nus.js" />
     <Content Include="Scripts\i18n\angular-locale_nyn-ug.js" />
     <Content Include="Scripts\i18n\angular-locale_nyn.js" />
@@ -787,12 +911,17 @@
     <Content Include="Scripts\i18n\angular-locale_pa.js" />
     <Content Include="Scripts\i18n\angular-locale_pl-pl.js" />
     <Content Include="Scripts\i18n\angular-locale_pl.js" />
+    <Content Include="Scripts\i18n\angular-locale_prg-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_prg.js" />
     <Content Include="Scripts\i18n\angular-locale_ps-af.js" />
     <Content Include="Scripts\i18n\angular-locale_ps.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-ao.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-br.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-ch.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-cv.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-gq.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-gw.js" />
+    <Content Include="Scripts\i18n\angular-locale_pt-lu.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-mo.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-mz.js" />
     <Content Include="Scripts\i18n\angular-locale_pt-pt.js" />
@@ -874,14 +1003,6 @@
     <Content Include="Scripts\i18n\angular-locale_sr-latn-xk.js" />
     <Content Include="Scripts\i18n\angular-locale_sr-latn.js" />
     <Content Include="Scripts\i18n\angular-locale_sr.js" />
-    <Content Include="Scripts\i18n\angular-locale_ss-sz.js" />
-    <Content Include="Scripts\i18n\angular-locale_ss-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_ss.js" />
-    <Content Include="Scripts\i18n\angular-locale_ssy-er.js" />
-    <Content Include="Scripts\i18n\angular-locale_ssy.js" />
-    <Content Include="Scripts\i18n\angular-locale_st-ls.js" />
-    <Content Include="Scripts\i18n\angular-locale_st-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_st.js" />
     <Content Include="Scripts\i18n\angular-locale_sv-ax.js" />
     <Content Include="Scripts\i18n\angular-locale_sv-fi.js" />
     <Content Include="Scripts\i18n\angular-locale_sv-se.js" />
@@ -891,8 +1012,6 @@
     <Content Include="Scripts\i18n\angular-locale_sw-tz.js" />
     <Content Include="Scripts\i18n\angular-locale_sw-ug.js" />
     <Content Include="Scripts\i18n\angular-locale_sw.js" />
-    <Content Include="Scripts\i18n\angular-locale_swc-cd.js" />
-    <Content Include="Scripts\i18n\angular-locale_swc.js" />
     <Content Include="Scripts\i18n\angular-locale_ta-in.js" />
     <Content Include="Scripts\i18n\angular-locale_ta-lk.js" />
     <Content Include="Scripts\i18n\angular-locale_ta-my.js" />
@@ -903,34 +1022,24 @@
     <Content Include="Scripts\i18n\angular-locale_teo-ke.js" />
     <Content Include="Scripts\i18n\angular-locale_teo-ug.js" />
     <Content Include="Scripts\i18n\angular-locale_teo.js" />
-    <Content Include="Scripts\i18n\angular-locale_tg-cyrl-tj.js" />
-    <Content Include="Scripts\i18n\angular-locale_tg-cyrl.js" />
-    <Content Include="Scripts\i18n\angular-locale_tg.js" />
     <Content Include="Scripts\i18n\angular-locale_th-th.js" />
     <Content Include="Scripts\i18n\angular-locale_th.js" />
     <Content Include="Scripts\i18n\angular-locale_ti-er.js" />
     <Content Include="Scripts\i18n\angular-locale_ti-et.js" />
     <Content Include="Scripts\i18n\angular-locale_ti.js" />
-    <Content Include="Scripts\i18n\angular-locale_tig-er.js" />
-    <Content Include="Scripts\i18n\angular-locale_tig.js" />
+    <Content Include="Scripts\i18n\angular-locale_tk-tm.js" />
+    <Content Include="Scripts\i18n\angular-locale_tk.js" />
     <Content Include="Scripts\i18n\angular-locale_tl.js" />
-    <Content Include="Scripts\i18n\angular-locale_tn-bw.js" />
-    <Content Include="Scripts\i18n\angular-locale_tn-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_tn.js" />
     <Content Include="Scripts\i18n\angular-locale_to-to.js" />
     <Content Include="Scripts\i18n\angular-locale_to.js" />
     <Content Include="Scripts\i18n\angular-locale_tr-cy.js" />
     <Content Include="Scripts\i18n\angular-locale_tr-tr.js" />
     <Content Include="Scripts\i18n\angular-locale_tr.js" />
-    <Content Include="Scripts\i18n\angular-locale_ts-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_ts.js" />
     <Content Include="Scripts\i18n\angular-locale_twq-ne.js" />
     <Content Include="Scripts\i18n\angular-locale_twq.js" />
-    <Content Include="Scripts\i18n\angular-locale_tzm-latn-ma.js" />
-    <Content Include="Scripts\i18n\angular-locale_tzm-latn.js" />
+    <Content Include="Scripts\i18n\angular-locale_tzm-ma.js" />
     <Content Include="Scripts\i18n\angular-locale_tzm.js" />
-    <Content Include="Scripts\i18n\angular-locale_ug-arab-cn.js" />
-    <Content Include="Scripts\i18n\angular-locale_ug-arab.js" />
+    <Content Include="Scripts\i18n\angular-locale_ug-cn.js" />
     <Content Include="Scripts\i18n\angular-locale_ug.js" />
     <Content Include="Scripts\i18n\angular-locale_uk-ua.js" />
     <Content Include="Scripts\i18n\angular-locale_uk.js" />
@@ -949,8 +1058,6 @@
     <Content Include="Scripts\i18n\angular-locale_vai-vaii-lr.js" />
     <Content Include="Scripts\i18n\angular-locale_vai-vaii.js" />
     <Content Include="Scripts\i18n\angular-locale_vai.js" />
-    <Content Include="Scripts\i18n\angular-locale_ve-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_ve.js" />
     <Content Include="Scripts\i18n\angular-locale_vi-vn.js" />
     <Content Include="Scripts\i18n\angular-locale_vi.js" />
     <Content Include="Scripts\i18n\angular-locale_vo-001.js" />
@@ -959,10 +1066,6 @@
     <Content Include="Scripts\i18n\angular-locale_vun.js" />
     <Content Include="Scripts\i18n\angular-locale_wae-ch.js" />
     <Content Include="Scripts\i18n\angular-locale_wae.js" />
-    <Content Include="Scripts\i18n\angular-locale_wal-et.js" />
-    <Content Include="Scripts\i18n\angular-locale_wal.js" />
-    <Content Include="Scripts\i18n\angular-locale_xh-za.js" />
-    <Content Include="Scripts\i18n\angular-locale_xh.js" />
     <Content Include="Scripts\i18n\angular-locale_xog-ug.js" />
     <Content Include="Scripts\i18n\angular-locale_xog.js" />
     <Content Include="Scripts\i18n\angular-locale_yav-cm.js" />
@@ -972,6 +1075,8 @@
     <Content Include="Scripts\i18n\angular-locale_yo-bj.js" />
     <Content Include="Scripts\i18n\angular-locale_yo-ng.js" />
     <Content Include="Scripts\i18n\angular-locale_yo.js" />
+    <Content Include="Scripts\i18n\angular-locale_yue-hk.js" />
+    <Content Include="Scripts\i18n\angular-locale_yue.js" />
     <Content Include="Scripts\i18n\angular-locale_zgh-ma.js" />
     <Content Include="Scripts\i18n\angular-locale_zgh.js" />
     <Content Include="Scripts\i18n\angular-locale_zh-cn.js" />
@@ -1005,6 +1110,24 @@
     <None Include=".bin\node.cmd" />
     <None Include=".bin\npm.cmd" />
     <Content Include="package.json" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-parse-ext.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1024,41 +1147,31 @@
     <Compile Include="App_Start\UnitOfWorkActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiExceptionFilter.cs" />
+    <Compile Include="Controllers\Api\AcademyController.cs" />
+    <Compile Include="Controllers\Api\AreaOfStudyController.cs" />
+    <Compile Include="Controllers\Api\FacultyController.cs" />
+    <Compile Include="Controllers\Api\GroupController.cs" />
+    <Compile Include="Controllers\Api\InstitutionController.cs" />
+    <Compile Include="Controllers\Api\LocationController.cs" />
+    <Compile Include="Controllers\Api\SubjectController.cs" />
+    <Compile Include="Controllers\Api\UniversityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Api\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
-    <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
-    <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ReceivedMessageViewModel.cs" />
-    <Compile Include="ViewModels\RegisterUserViewModel.cs" />
-    <Compile Include="ViewModels\SentMessageViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
-    <Content Include="Scripts\version.json" />
-    <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-touch.min.js.map" />
-    <Content Include="Scripts\angular-sanitize.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="Scripts\angular-parse-ext.min.js.map" />
-    <Content Include="Scripts\angular-messages.min.js.map" />
-    <Content Include="Scripts\angular-message-format.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\version.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1067,6 +1180,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\admin\groups\" />
+    <Folder Include="app\admin\institutions\" />
+    <Folder Include="app\admin\subjects\" />
+    <Folder Include="app\admin\users\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -1075,19 +1192,26 @@
       <Name>StudyBuddies.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\StudyBuddies.Model\StudyBuddies.Domain.csproj">
-      <Project>{b4a19554-6cc8-44c1-a50c-24da53433609}</Project>
+      <Project>{B4A19554-6CC8-44C1-A50C-24DA53433609}</Project>
       <Name>StudyBuddies.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StudyBuddies.Service\StudyBuddies.Service.csproj">
+    <ProjectReference Include="..\StudyBuddies.Service\StudyBuddies.Business.csproj">
       <Project>{2ebd1125-158c-4721-a25e-896a7097a938}</Project>
-      <Name>StudyBuddies.Service</Name>
+      <Name>StudyBuddies.Business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
@@ -1098,7 +1222,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6707</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6707/</IISUrl>
+          <IISUrl>http://web.studybuddies.com</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -1113,8 +1237,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.27.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.27.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
+  <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.27.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.27.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

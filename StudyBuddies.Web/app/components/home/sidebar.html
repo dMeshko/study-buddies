@@ -1,8 +1,37 @@
 ﻿<div class="row">
+    <div class="cover" img="data:image/png;base64,{{currentUser.coverImage}}"></div>
+    <div class="row">
+        hello
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-5">
         <img class="img img-responsive" ng-src ="data:image/png;base64,{{currentUser.image}}" />
     </div>
     <div class="col-md-7">
         <h3>{{ currentUser.fullName }}</h3>
     </div>
+</div>
+<div class="row"><div class="col-lg-offset-4 col-md-4"><hr /></div></div>
+<div class="row">
+    <div class="col-md-6">
+        <h5><i class="glyphicon glyphicon-user"></i> {{currentUser.username}}</h5>
+    </div>
+    <div class="col-md-6">
+        <h5><i class="glyphicon glyphicon-baby-formula"></i> {{currentUser.institutions}}</h5>
+    </div>
+</div>
+<div class="row"><div class="col-lg-offset-4 col-md-4"><hr /></div></div>
+<div class="row">
+    <div class="col-md-6">
+        <span uib-rating ng-model="rate"></span>
+    </div>
+    <div class="col-md-6">
+        <p>10 reviews</p>
+    </div>
+</div>
+<hr />
+<div class="row">
+    some other interesting part goes here
 </div>

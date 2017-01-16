@@ -1,12 +1,19 @@
 ﻿<div class="row">
-    <div class="col-md-3">
+    <div class="col-md-2">
         <img class="img img-responsive" ng-src="data:image/png;base64,{{ user.image }}" />
     </div>
-    <div class="col-md-6">
-        <h4>{{ user.fullName }}</h4>
-        <p><i class="glyphicon glyphicon-star"></i> Rating: {{ user.rating }}</p>
+    <div class="col-md-7">
+        <h4>{{ user.fullName }}<small>&nbsp;&nbsp;[{{ user.username }}]</small></h4>
+        <p>
+            <span uib-rating ng-model="user.rating" read-only="true" ng-class="{ 'text-danger': user.rating <= 2, 'text-info': user.rating > 2 && user.rating <= 4, 'text-success': user.rating > 4 }"></span>
+            <span class="separator"></span>
+            <span>some important info</span>
+            <span class="separator"></span>
+            <span>something</span>
+        </p>
     </div>
     <div class="col-md-3">
+        <two-state-button status="true" callback="callback" />
         <button class="btn btn-success btn-block">
             <i class="glyphicon glyphicon-education"></i> Buddy up
         </button>

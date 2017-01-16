@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2EBD1125-158C-4721-A25E-896A7097A938}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StudyBuddies.Service</RootNamespace>
+    <AssemblyName>StudyBuddies.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.WebApi.6.2.1.0\lib\Net45\FluentValidation.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\AutoMapperConfig.cs" />
+    <Compile Include="Infrastructure\Exceptions\BusinessLayerException.cs" />
+    <Compile Include="Infrastructure\Exceptions\GroupException.cs" />
+    <Compile Include="Infrastructure\Exceptions\InstitutionException.cs" />
+    <Compile Include="Infrastructure\Exceptions\NotFoundException.cs" />
+    <Compile Include="Infrastructure\Exceptions\SubjectException.cs" />
+    <Compile Include="Infrastructure\Exceptions\UnauthorizedException.cs" />
+    <Compile Include="Infrastructure\Exceptions\UserException.cs" />
+    <Compile Include="Infrastructure\FluentValidatoinConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IGroupService.cs" />
+    <Compile Include="Services\IInstitutionService.cs" />
+    <Compile Include="Services\Implementation\GroupService.cs" />
+    <Compile Include="Services\Implementation\InstitutionService.cs" />
+    <Compile Include="Services\Implementation\SubjectService.cs" />
+    <Compile Include="Services\Implementation\UserService.cs" />
+    <Compile Include="Services\ISubjectService.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="ViewModels\Groups\CreateGroupViewModel.cs" />
+    <Compile Include="ViewModels\Groups\GroupViewModel.cs" />
+    <Compile Include="ViewModels\IdentityLookupViewModel.cs" />
+    <Compile Include="ViewModels\Institutions\InstitutionViewModel.cs" />
+    <Compile Include="ViewModels\LookupViewModel.cs" />
+    <Compile Include="ViewModels\RelationLookupViewModel.cs" />
+    <Compile Include="ViewModels\Subjects\SubjectViewModel.cs" />
+    <Compile Include="ViewModels\Users\MessageViewModel.cs" />
+    <Compile Include="ViewModels\Users\RegisterUserViewModel.cs" />
+    <Compile Include="ViewModels\Users\UserViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StudyBuddies.Data\StudyBuddies.Data.csproj">
+      <Project>{b1b59478-ad10-4dbe-aed6-cc383316d355}</Project>
+      <Name>StudyBuddies.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StudyBuddies.Model\StudyBuddies.Domain.csproj">
+      <Project>{b4a19554-6cc8-44c1-a50c-24da53433609}</Project>
+      <Name>StudyBuddies.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

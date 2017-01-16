@@ -1,60 +1,43 @@
 ﻿using System;
 using StudyBuddies.Data.Infrastructure;
 using StudyBuddies.Data.Repository;
-using StudyBuddies.Domain.Models;
+using StudyBuddies.Data.Repository.Institutions;
+using StudyBuddies.Domain.Institutions;
 using StudyBuddies.Service.Infrastructure;
 using StudyBuddies.Service.Infrastructure.Exceptions;
+using StudyBuddies.Service.ViewModels.Institutions;
 
 namespace StudyBuddies.Service.Services.Implementation
 {
-    public class InstitutionService : ServiceBase<Institution>, IInstitutionService
+    public class InstitutionService : IInstitutionService
     {
         private readonly IInstitutionRepository _institutionRepository;
-        private readonly ISubjectRepository _subjectRepository;
 
-        public InstitutionService(IRepository<Institution> institutionRepository, ISubjectRepository subjectRepository) : base(institutionRepository)
+        public InstitutionService(IInstitutionRepository institutionRepository)
         {
-            _institutionRepository = (IInstitutionRepository)institutionRepository;
-            _subjectRepository = subjectRepository;
+            _institutionRepository = institutionRepository;
         }
 
-        public void CreateSubject(Subject subject)
+        public void CreateInstitution(InstitutionViewModel institutionViewModel)
         {
-            if (subject == null)
-                throw new BusinessLayerException("Invalid subject!");
-
-            _subjectRepository.Add(subject);
-        }
-
-        public void CreateInstitution(Institution institution)
-        {
-            if (institution == null)
-                throw new BusinessLayerException("Invalid institution!");
-
+            var institution = new Academy(institutionViewModel.Name);
             _institutionRepository.Add(institution);
-        }
+            //called form the admin panel, CREATES NEW INSTITUTION!!
 
-        public University GetUniversityById(Guid id)
-        {
-            University university = _institutionRepository.GetUniversityById(id);
-            if (university == null)
-                throw new NotFoundException("Invalid university!");
-
-            return university;
-        }
-
-        public void CreateUniversity(University university)
-        {
-            if (university == null)
-                throw new BusinessLayerException("Invalid university!");
-
-            _institutionRepository.AddUniversity(university);
-        }
-
-        public void RemoveUniversity(University university)
-        {
-            GetUniversityById(university.Id); // this will check if the university exists
-            _institutionRepository.DeleteUniversity(university);
+            //Institution institution = null;
+            //if (institutionViewModel.Type == InstitutionType.Academy)
+            //{
+            //    institution = new Academy(institutionViewModel.Name);
+            //}
+            //else
+            //{
+            //    institution = new Faculty(institutionViewModel.Name, _institutionRepository.GetUniversityById(institutionViewModel.UniversityId));
+            //}
+            //foreach (var location in institutionViewModel.Locations)
+            //{
+            //    var loc = _institutionRepository.GetLocationById(location.Id);
+            //    institution.AddLocation(loc);
+            //}
         }
     }
 }

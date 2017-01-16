@@ -5,3 +5,20 @@
 #loading-bar .bar {
   background: white;
 }
+
+.separator:after {
+    content: "|";
+}
+
+.featured_user {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: white;
+    border: 2px solid #18bc9c;
+    border-radius: 4px;
+}
+
+.cover {
+    background-size: cover;
+}

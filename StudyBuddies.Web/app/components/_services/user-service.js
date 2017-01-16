@@ -7,7 +7,7 @@
                 id: id
             };
 
-            return $http.get("/api/user/", {params: params});
+            return $http.get("/api/user", {params: params});
         };
 
         factory.getAllUsers = function() {
@@ -15,34 +15,45 @@
         };
 
         factory.getCurrentUser = function() {
-            var currentUserId = "C07806DE-3C03-4140-8E75-A6B400BDF2B9";
+            var currentUserId = "1507a17d-0143-40be-858b-e20fdb0a8eeb";
 
-            var params = {
-                id: currentUserId
-            };
-
-            return $http.get("/api/user/", { params: params });
+            return factory.getUserById(currentUserId);
         };
 
         factory.saveUser = function (user) {
-            var fd = new FormData();
+            //var fd = new FormData();
 
-            fd.append("name", user.name);
-            fd.append("surname", user.surname);
-            fd.append("email", user.email);
-            fd.append("username", user.username);
-            fd.append("password", user.password);
+            //fd.append("name", user.name);
+            //fd.append("surname", user.surname);
+            //fd.append("email", user.email);
+            //fd.append("username", user.username);
+            //fd.append("password", user.password);
 
-            if (user.image)
-                fd.append("file[]", user.image);
+            //if (user.image)
+            //    fd.append("file[]", user.image);
 
-            var data = fd;
-            var config = {
-                headers: { 'Content-Type': undefined },
-                transformRequest: angular.identity
+            //var data = fd;
+            //var config = {
+            //    headers: { 'Content-Type': undefined },
+            //    transformRequest: angular.identity
+            //};
+            var data = {
+                Name: user.name,
+                Surname: user.surname,
+                Email: user.email,
+                Password: user.password
             };
 
-            return $http.post("/api/user", data, config);
+            //return $http.post("/api/user", data, config);
+            return $http.post("/api/user", data);
+        };
+
+        factory.deleteUser = function (id) {
+            var params = {
+                id: id
+            };
+
+            return $http.delete("/api/user", { params: params });
         };
 
         return factory;

@@ -6,6 +6,7 @@
 
 var app = angular.module("StudyBuddies", [
     "ui.router",
+    "ui.bootstrap",
     "angular-loading-bar"
     //"oc.lazyLoad"
 ]);
@@ -17,4 +18,7 @@ require("./common")(app);
 
 //webpack context module API
 var requireContext = require.context("./components", true, /^\.\/.*\.js$/);
+requireAll(requireContext, app);
+
+requireContext = require.context("./admin", true, /^\.\/.*\.js$/);
 requireAll(requireContext, app);

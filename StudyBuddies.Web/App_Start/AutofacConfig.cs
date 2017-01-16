@@ -7,8 +7,8 @@ using System.Web.Mvc;
 using StudyBuddies.Data.Infrastructure;
 using NHibernate;
 using StudyBuddies.Data.Configuration;
-using StudyBuddies.Domain.Models;
-using StudyBuddies.Service.Infrastructure;
+using StudyBuddies.Domain;
+using StudyBuddies.Service.Services;
 
 namespace StudyBuddies.Web
 {
@@ -37,7 +37,7 @@ namespace StudyBuddies.Web
             builder.RegisterInstance(FluentNHibernateConfig.CreateSessionFactory()).As<ISessionFactory>();
 
             // scans for services in the services assembly
-            builder.RegisterAssemblyTypes(typeof(IService<BaseEntity>).Assembly)
+            builder.RegisterAssemblyTypes(typeof(IUserService).Assembly)
                 .Where(x => x.Namespace.EndsWith(".Implementation"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();

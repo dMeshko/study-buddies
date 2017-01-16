@@ -40,22 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Academy.cs" />
-    <Compile Include="Models\AreaOfStudy.cs" />
-    <Compile Include="Models\BaseEntity.cs" />
-    <Compile Include="Models\Faculty.cs" />
-    <Compile Include="Models\Friendship.cs" />
-    <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\GroupRating.cs" />
-    <Compile Include="Models\Institution.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\UserGroup.cs" />
-    <Compile Include="Models\UserSubject.cs" />
-    <Compile Include="Models\Subject.cs" />
-    <Compile Include="Models\University.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserAttendsInstitution.cs" />
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Groups\Attachment.cs" />
+    <Compile Include="Groups\Comment.cs" />
+    <Compile Include="Groups\Group.cs" />
+    <Compile Include="Groups\GroupRating.cs" />
+    <Compile Include="Groups\GroupRequest.cs" />
+    <Compile Include="Institutions\Academy.cs" />
+    <Compile Include="Institutions\EnrolledInstitution.cs" />
+    <Compile Include="Institutions\Faculty.cs" />
+    <Compile Include="Institutions\Institution.cs" />
+    <Compile Include="Institutions\Location.cs" />
+    <Compile Include="Institutions\University.cs" />
+    <Compile Include="NotificationEntity.cs" />
+    <Compile Include="Subjects\AreaOfStudy.cs" />
+    <Compile Include="Subjects\EnrolledSubject.cs" />
+    <Compile Include="Subjects\Subject.cs" />
+    <Compile Include="Users\BuddyRequest.cs" />
+    <Compile Include="Users\Message.cs" />
+    <Compile Include="Groups\Post.cs" />
+    <Compile Include="Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -1,84 +1,103 @@
-﻿using StudyBuddies.Domain.Models;
-using StudyBuddies.Service.Services;
+﻿using StudyBuddies.Service.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using AutoMapper;
-using StudyBuddies.Service.Infrastructure;
-using StudyBuddies.Web.App_Start;
-using StudyBuddies.Web.ViewModels;
 using System.IO;
-using System.Net.Http.Formatting;
-using Newtonsoft.Json.Linq;
+using StudyBuddies.Service.ViewModels.Users;
 
 namespace StudyBuddies.Web.Controllers.Api
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
-        private readonly IUserService _service;
+        private readonly IUserService _userService;
 
-        public UserController(IUserService service)
+        public UserController(IUserService userService)
         {
-            _service = service;
+            _userService = userService;
         }
 
+        [Route("")]
         public IHttpActionResult Get()
         {
-            var users = _service.GetAllUsers();
-    
-            var mappedUser = Mapper.Map<IEnumerable<User>, IList<UserViewModel>>(users);
-            return Ok(mappedUser);
+            var users = _userService.GetAllUsers();
+            return Ok(users);
         }
 
+        [Route("{id:guid}")]
         public IHttpActionResult Get(Guid id)
         {
-            var user = _service.GetUserById(id);
-
-            var mappedUser = Mapper.Map<User, UserViewModel>(user);
-            return Ok(mappedUser);
+            var user = _userService.GetUserById(id);
+            return Ok(user);
         }
 
-        public async Task<IHttpActionResult> Post()
+        [Route("")]
+        public IHttpActionResult Post(RegisterUserViewModel model)
         {
-            // Check if the request contains multipart/form-data.
-            if (!Request.Content.IsMimeMultipartContent())
-            {
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-            }
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok();
+        }
+
+        //public async Task<IHttpActionResult> Post()
+        //{
+        //    // Check if the request contains multipart/form-data.
+        //    if (!Request.Content.IsMimeMultipartContent())
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+        //    }
 
 
-            string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
-            var provider = new MultipartFormDataStreamProvider(root);
+        //    string root = System.Web.HttpContext.Current.Server.MapPath("~/App_Data");
+        //    var provider = new MultipartFormDataStreamProvider(root);
 
-            var filesReadToProvider = await Request.Content.ReadAsMultipartAsync(provider);
+        //    var filesReadToProvider = await Request.Content.ReadAsMultipartAsync(provider);
 
 
-            RegisterUserViewModel user = new RegisterUserViewModel
-            {
-                Name = provider.FormData.Get("name"),
-                Surname = provider.FormData.Get("surname"),
-                Email = provider.FormData.Get("email"),
-                Username = provider.FormData.Get("username"),
-                Password = provider.FormData.Get("password")
-            };
+        //    RegisterUserViewModel user = new RegisterUserViewModel
+        //    {
+        //        Name = provider.FormData.Get("name"),
+        //        Surname = provider.FormData.Get("surname"),
+        //        Email = provider.FormData.Get("email"),
+        //        Username = provider.FormData.Get("username"),
+        //        Password = provider.FormData.Get("password")
+        //    };
 
-            foreach (var file in provider.FileData)
-            {
-                var fileName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
-                byte[] documentData;
+        //    foreach (var file in provider.FileData)
+        //    {
+        //        var fileName = file.Headers.ContentDisposition.FileName.Replace("\"", string.Empty);
+        //        byte[] documentData;
 
-                documentData = File.ReadAllBytes(file.LocalFileName);
+        //        documentData = File.ReadAllBytes(file.LocalFileName);
 
-                user.Image = documentData.Select(x => x).ToArray();
-            }
+        //        user.Image = documentData.Select(x => x).ToArray();
+        //    }
 
-            var mappedUser = Mapper.Map<RegisterUserViewModel, User>(user);
-            _service.Save(mappedUser);
+        //    var mappedUser = Mapper.Map<RegisterUserViewModel, User>(user);
+        //    _service.Save(mappedUser);
 
+        //    return Ok();
+        //}
+
+        [Route("")]
+        public IHttpActionResult Delete(Guid id)
+        {
+            _userService.Delete(id);
+            return Ok();
+        }
+
+        //public IHttpActionResult Put()
+        //{
+        //    return Ok();
+        //}
+
+        [Route("{id:guid}/message")]
+        public IHttpActionResult GetMessages(Guid id)
+        {
             return Ok();
         }
     }

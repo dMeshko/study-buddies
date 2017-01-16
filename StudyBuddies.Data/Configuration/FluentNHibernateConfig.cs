@@ -2,7 +2,7 @@
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
-using StudyBuddies.Data.Mappings;
+using StudyBuddies.Data.Mappings.Users;
 
 namespace StudyBuddies.Data.Configuration
 {
@@ -13,7 +13,7 @@ namespace StudyBuddies.Data.Configuration
             ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2008
                     //.ConnectionString(@"Data Source=DEV-LT1;Initial Catalog=StudyBuddiesDb;User ID=wwwuser;Password=P@ssw0rd;Pooling=False")
-                    .ConnectionString(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=StudyBuddies;Integrated Security=true;Pooling=False")
+                    .ConnectionString(@"Data Source=localhost;Initial Catalog=StudyBuddies;Integrated Security=SSPI")
                     .ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>())
                 //.ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
 using System.Web.Http;
-using StudyBuddies.Web.Mappings;
+using StudyBuddies.Service.Infrastructure;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
 namespace StudyBuddies.Web
@@ -23,7 +19,8 @@ namespace StudyBuddies.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             AutofacConfig.Configure();
-            AutoMapperConfiguration.Configure();
+            AutoMapperConfig.Configure();
+            FluentValidatoinConfig.Configure(GlobalConfiguration.Configuration);
 
             log4net.Config.XmlConfigurator.Configure(new FileInfo(Server.MapPath("~/Web.config")));
         }

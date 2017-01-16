@@ -1,6 +1,10 @@
 ﻿module.exports = function (ngModule) {
     ngModule.controller("HomeController", ["$scope", "UserService", function ($scope, UserService) {
         $scope.users = [];
+            $scope.updateFriendship = function(status) {
+                alert(status);
+            }    
+
 
             UserService.getAllUsers().success(function(data) {
                 $scope.users = data;

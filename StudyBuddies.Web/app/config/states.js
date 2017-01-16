@@ -7,6 +7,7 @@
                 .state("app",
                 {
                     url: "/",
+                    abstract: true,
                     views: {
                         "header": {
                             controller: "HeaderController",
@@ -29,6 +30,10 @@
                             controller: "HomeController"
                         }
                     }
+                })
+                .state("app.home",
+                {
+                    url: "" //<-- Empty string for "app" state to override the / abstract state
                 })
                 .state("app.profile",
                 {

@@ -6,7 +6,8 @@
             template: require("./featured-user.html"),
             scope:
             {
-                "user": "="
+                "user": "=",
+                "callback": "="
             }
         }
     });

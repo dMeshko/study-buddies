@@ -28,6 +28,8 @@ namespace StudyBuddies.Web
 
             config.Filters.Add(new UnitOfWorkActionFilter());
             config.Filters.Add(new WebApiExceptionFilter());
+            // Binary JSON formatter
+            config.Formatters.Add(new BsonMediaTypeFormatter());
 
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().FirstOrDefault();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
