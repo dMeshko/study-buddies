@@ -1195,7 +1195,7 @@
       <Project>{B4A19554-6CC8-44C1-A50C-24DA53433609}</Project>
       <Name>StudyBuddies.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StudyBuddies.Service\StudyBuddies.Business.csproj">
+    <ProjectReference Include="..\StudyBuddies.Business\StudyBuddies.Business.csproj">
       <Project>{2ebd1125-158c-4721-a25e-896a7097a938}</Project>
       <Name>StudyBuddies.Business</Name>
     </ProjectReference>

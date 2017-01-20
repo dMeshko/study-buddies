@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
-using StudyBuddies.Service.Infrastructure;
+using StudyBuddies.Business.Infrastructure;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
 namespace StudyBuddies.Web

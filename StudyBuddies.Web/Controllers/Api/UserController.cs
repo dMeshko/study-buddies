@@ -1,12 +1,7 @@
-﻿using StudyBuddies.Service.Services;
-using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System;
 using System.Web.Http;
-using System.IO;
-using StudyBuddies.Service.ViewModels.Users;
+using StudyBuddies.Business.Services;
+using StudyBuddies.Business.ViewModels.Users;
 
 namespace StudyBuddies.Web.Controllers.Api
 {
@@ -19,6 +14,8 @@ namespace StudyBuddies.Web.Controllers.Api
         {
             _userService = userService;
         }
+
+        #region User
 
         [Route("")]
         public IHttpActionResult Get()
@@ -40,6 +37,7 @@ namespace StudyBuddies.Web.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            _userService.RegisterUser(model);
             return Ok();
         }
 
@@ -83,22 +81,157 @@ namespace StudyBuddies.Web.Controllers.Api
         //    return Ok();
         //}
 
-        [Route("")]
+        [Route("{id:guid}")]
         public IHttpActionResult Delete(Guid id)
         {
             _userService.Delete(id);
             return Ok();
         }
 
-        //public IHttpActionResult Put()
-        //{
-        //    return Ok();
-        //}
-
-        [Route("{id:guid}/message")]
-        public IHttpActionResult GetMessages(Guid id)
+        [Route("")]
+        public IHttpActionResult Put(UpdateUserViewModel model)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _userService.UpdateUser(model);
             return Ok();
         }
+
+        #endregion
+
+        #region Conversation
+
+        [Route("{id:guid}/conversation")]
+        public IHttpActionResult GetConversations(Guid id)
+        {
+            var conversatoins = _userService.GetAllConversations(id);
+            return Ok(conversatoins);
+        }
+
+        [Route("{id:guid}/conversation/{otherUserId:guid}")]
+        public IHttpActionResult GetConversation(Guid id, Guid otherUserId)
+        {
+            var conversation = _userService.GetConversation(id, otherUserId);
+            return Ok(conversation);
+        }
+
+        [Route("{userFromId:guid}/conversation/{userToId:guid}")]
+        public IHttpActionResult PostMessage(MessageViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _userService.SendMessage(model);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Buddy
+
+        [Route("{id:guid}/buddy")]
+        public IHttpActionResult GetBuddies(Guid id)
+        {
+            var buddies = _userService.GetAllBuddies(id);
+            return Ok(buddies);
+        }
+
+        [Route("{id:guid}/buddy/sent")]
+        public IHttpActionResult GetSentPendingBuddyRequests(Guid id)
+        {
+            var buddies = _userService.GetAllSentPendingBuddyRequests(id);
+            return Ok(buddies);
+        }
+
+        [Route("{id:guid}/buddy/received")]
+        public IHttpActionResult GetReceivedPendingBuddyRequests(Guid id)
+        {
+            var buddies = _userService.GetAllReceivedPendingBuddyRequests(id);
+            return Ok(buddies);
+        }
+
+        [Route("{userFromId:guid}/buddy/{userToId:guid}")]
+        public IHttpActionResult PostBuddyRequest(BuddyRequestViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _userService.SendBuddyRequest(model);
+            return Ok();
+        }
+
+        [Route("{userFromId:guid}/buddy/{userToId:guid}")]
+        public IHttpActionResult PutBuddyRequest(BuddyRequestViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _userService.UpdateBuddyRequest(model);
+            return Ok();
+        }
+
+        #endregion
+
+        #region Subject
+
+        [Route("{id:guid}/subject")]
+        public IHttpActionResult GetEnrolledSubjects(Guid id)
+        {
+            var subjects = _userService.GetEnrolledSubjects(id);
+            return Ok(subjects);
+        }
+
+        [Route("{id:guid}/subject/passed")]
+        public IHttpActionResult GetPassedSubjects(Guid id)
+        {
+            var subjects = _userService.GetPassedSubjects(id);
+            return Ok(subjects);
+        }
+
+        [Route("{id:guid}/subject/current")]
+        public IHttpActionResult GetCurrentSubjects(Guid id)
+        {
+            var subjects = _userService.GetCurrentSubjects(id);
+            return Ok(subjects);
+        }
+
+        #endregion
+
+        #region Group
+
+        [Route("{id:guid}/group")]
+        public IHttpActionResult GetAllGroups(Guid id)
+        {
+            var groups = _userService.GetAllGroups(id);
+            return Ok(groups);
+        }
+
+        [Route("{id:guid}/group/admin")]
+        public IHttpActionResult GetAllManagedGroups(Guid id)
+        {
+            var groups = _userService.GetAllManagedGroups(id);
+            return Ok(groups);
+        }
+
+        [Route("{id:guid}/group/member")]
+        public IHttpActionResult GetAllMemberingGroups(Guid id)
+        {
+            var groups = _userService.GetAllMemberingGroups(id);
+            return Ok(groups);
+        }
+
+        #endregion
+
+        #region Post
+
+        [Route("{id:guid}/post")]
+        public IHttpActionResult GetLatestGroupsPosts(Guid id)
+        {
+            var groups = _userService.GetLatestGroupsPosts(id);
+            return Ok(groups);
+        }
+
+        #endregion
     }
 }

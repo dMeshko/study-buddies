@@ -12,7 +12,7 @@ namespace StudyBuddies.Domain.Subjects
 
         protected EnrolledSubject() { }
 
-        public EnrolledSubject(User user, Subject subject, SubjectStatus subjectStatus = SubjectStatus.Listening, int? grade = null)
+        public EnrolledSubject(User user, Subject subject, SubjectStatus subjectStatus = SubjectStatus.Current, int? grade = null)
         {
             if (user == null)
                 throw new InvalidDataException(nameof(user));
@@ -20,7 +20,7 @@ namespace StudyBuddies.Domain.Subjects
             if (subject == null)
                 throw new InvalidDataException(nameof(subject));
 
-            if (grade != null && subjectStatus == SubjectStatus.Listening)
+            if (grade != null && subjectStatus == SubjectStatus.Current)
                 throw new InvalidDataException(nameof(subjectStatus));
 
             if (grade == null || grade < 6 || grade > 10)

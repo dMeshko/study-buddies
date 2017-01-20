@@ -1,4 +1,7 @@
-﻿using StudyBuddies.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using StudyBuddies.Data.Infrastructure;
 using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Repository.Groups.Implementation
@@ -7,6 +10,11 @@ namespace StudyBuddies.Data.Repository.Groups.Implementation
     {
         public PostRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-
+        public IList<Post> GetLatestPosts(IEnumerable<Guid> groupIds)
+        {
+            return GetMany(x => groupIds.Contains(x.Id))
+                .OrderByDescending(x => x.Date)
+                .ToList();
+        }
     }
 }

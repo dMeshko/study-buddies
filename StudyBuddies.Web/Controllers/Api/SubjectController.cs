@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using StudyBuddies.Service.Services;
-using StudyBuddies.Service.ViewModels.Subjects;
+using StudyBuddies.Business.Services;
+using StudyBuddies.Business.ViewModels.Subjects;
 
 namespace StudyBuddies.Web.Controllers.Api
 {

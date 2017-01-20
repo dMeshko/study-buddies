@@ -28,7 +28,7 @@ namespace StudyBuddies.Domain
 
     public enum SubjectStatus
     {
-        Listening = 0,
+        Current = 0,
         Passed = 1
     }
 

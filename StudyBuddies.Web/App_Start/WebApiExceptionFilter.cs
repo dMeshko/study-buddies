@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http.Filters;
-using StudyBuddies.Service.Infrastructure;
-using StudyBuddies.Service.Infrastructure.Exceptions;
+using StudyBuddies.Business.Infrastructure.Exceptions;
 
 namespace StudyBuddies.Web.App_Start
 {
     public class WebApiExceptionFilter : ExceptionFilterAttribute
     {
-        readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        readonly log4net.ILog _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
@@ -38,7 +36,7 @@ namespace StudyBuddies.Web.App_Start
             }
             else
             {
-                logger.Error(actionExecutedContext.Exception);
+                _logger.Error(actionExecutedContext.Exception);
             }
 
             actionExecutedContext.Response = new HttpResponseMessage

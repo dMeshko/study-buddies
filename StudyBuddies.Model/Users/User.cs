@@ -81,7 +81,7 @@ namespace StudyBuddies.Domain.Users
         public virtual IList<GroupRequest> MemberInGroups => _memberInGroups;
         public virtual IList<BuddyRequest> SentBuddyRequests => _sentBuddyRequests;
         public virtual IList<BuddyRequest> ReceivedBuddyRequests => _receivedBuddyRequests;
-        public virtual IList<BuddyRequest> Buddies => _sentBuddyRequests.Union(_receivedBuddyRequests).Where(x => x.Status == RequestStatus.Accepted).ToList();
+        public virtual List<BuddyRequest> Buddies => _sentBuddyRequests.Union(_receivedBuddyRequests).Where(x => x.Status == RequestStatus.Accepted).ToList();
         public virtual IDictionary<Guid, List<Message>> Messages
         {
             get

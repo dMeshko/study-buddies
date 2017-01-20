@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Domain", "Stud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Data", "StudyBuddies.Data\StudyBuddies.Data.csproj", "{B1B59478-AD10-4DBE-AED6-CC383316D355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Business", "StudyBuddies.Service\StudyBuddies.Business.csproj", "{2EBD1125-158C-4721-A25E-896A7097A938}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Business", "StudyBuddies.Business\StudyBuddies.Business.csproj", "{2EBD1125-158C-4721-A25E-896A7097A938}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Web", "StudyBuddies.Web\StudyBuddies.Web.csproj", "{96B11D26-03C9-4DB1-B7C2-11D11887FFF5}"
 EndProject

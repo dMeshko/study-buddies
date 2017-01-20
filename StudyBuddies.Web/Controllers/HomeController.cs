@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using StudyBuddies.Business.Services;
 using StudyBuddies.Data.Infrastructure;
-using StudyBuddies.Service.Services;
-using StudyBuddies.Service.ViewModels;
-using StudyBuddies.Service.ViewModels.Institutions;
-using StudyBuddies.Service.ViewModels.Users;
 
 namespace StudyBuddies.Web.Controllers
 {

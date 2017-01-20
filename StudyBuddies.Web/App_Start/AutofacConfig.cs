@@ -6,9 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using StudyBuddies.Data.Infrastructure;
 using NHibernate;
+using StudyBuddies.Business.Services;
 using StudyBuddies.Data.Configuration;
 using StudyBuddies.Domain;
-using StudyBuddies.Service.Services;
 
 namespace StudyBuddies.Web
 {

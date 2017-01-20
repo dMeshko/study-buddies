@@ -5,6 +5,6 @@ namespace StudyBuddies.Data.Repository.Subjects
 {
     public interface ISubjectRepository : IRepository<Subject>
     {
-        
+
     }
 }
