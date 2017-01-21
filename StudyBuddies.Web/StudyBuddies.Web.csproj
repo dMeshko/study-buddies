@@ -1153,6 +1153,7 @@
     <Compile Include="Controllers\Api\GroupController.cs" />
     <Compile Include="Controllers\Api\InstitutionController.cs" />
     <Compile Include="Controllers\Api\LocationController.cs" />
+    <Compile Include="Controllers\Api\PostController.cs" />
     <Compile Include="Controllers\Api\SubjectController.cs" />
     <Compile Include="Controllers\Api\UniversityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

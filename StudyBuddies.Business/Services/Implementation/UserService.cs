@@ -54,7 +54,7 @@ namespace StudyBuddies.Business.Services.Implementation
         public void RegisterUser(RegisterUserViewModel user)
         {
             if (user == null)
-                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
+                throw new BusinessLayerException(AppExceptionMessage.INVALID_INTERNAL_STATE);
 
             var dboUser = Mapper.Map<RegisterUserViewModel, User>(user);
             _userRepository.Add(dboUser);
