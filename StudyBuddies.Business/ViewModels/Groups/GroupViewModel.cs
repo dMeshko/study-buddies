@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using StudyBuddies.Business.ViewModels.Users;
+using StudyBuddies.Domain;
 using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Business.ViewModels.Groups
@@ -23,6 +24,10 @@ namespace StudyBuddies.Business.ViewModels.Groups
                 .ForMember(x => x.OccupiedCapacity, opt => opt.MapFrom(y => y.AcceptedMembers.Count));
 
             CreateMap<Group, LookupViewModel>();
+
+            CreateMap<GroupStatus, IdentityLookupViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => (int) y))
+                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.ToString()));
         }
     }
 }

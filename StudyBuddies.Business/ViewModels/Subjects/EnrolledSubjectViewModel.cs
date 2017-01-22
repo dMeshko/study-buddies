@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using StudyBuddies.Domain;
 using StudyBuddies.Domain.Subjects;
 
 namespace StudyBuddies.Business.ViewModels.Subjects
@@ -16,6 +17,10 @@ namespace StudyBuddies.Business.ViewModels.Subjects
         public EnrolledSubjectViewModelMappingProfile()
         {
             CreateMap<EnrolledSubject, EnrolledSubjectViewModel>();
+
+            CreateMap<SubjectStatus, IdentityLookupViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => (int)y))
+                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.ToString()));
         }
     }
 }

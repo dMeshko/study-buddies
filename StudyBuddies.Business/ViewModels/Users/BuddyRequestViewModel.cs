@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using FluentValidation;
+using StudyBuddies.Domain;
 using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Business.ViewModels.Users
@@ -30,6 +31,10 @@ namespace StudyBuddies.Business.ViewModels.Users
         public BuddyRequestViewModelMappingProfile()
         {
             CreateMap<BuddyRequest, BuddyRequestViewModel>();
+
+            CreateMap<RequestStatus, IdentityLookupViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(y => (int)y))
+                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.ToString()));
         }
     }
 }
