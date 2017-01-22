@@ -17,10 +17,6 @@ namespace StudyBuddies.Business.ViewModels.Subjects
         public EnrolledSubjectViewModelMappingProfile()
         {
             CreateMap<EnrolledSubject, EnrolledSubjectViewModel>();
-
-            CreateMap<SubjectStatus, IdentityLookupViewModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => (int)y))
-                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.ToString()));
         }
     }
 }

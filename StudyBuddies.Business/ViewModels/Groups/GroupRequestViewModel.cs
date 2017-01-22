@@ -31,10 +31,6 @@ namespace StudyBuddies.Business.ViewModels.Groups
         public GroupRequestViewModelMappingProfile()
         {
             CreateMap<GroupRequest, GroupRequestViewModel>();
-
-            CreateMap<RequestStatus, IdentityLookupViewModel>()
-                .ForMember(x => x.Id, opt => opt.MapFrom(y => (int)y))
-                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.ToString()));
         }
     }
 }
