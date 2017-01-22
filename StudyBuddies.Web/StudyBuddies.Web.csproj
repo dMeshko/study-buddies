@@ -254,6 +254,8 @@
     <Content Include="app\admin\config.js" />
     <Content Include="app\admin\home.html" />
     <Content Include="app\app.js" />
+    <Content Include="app\components\create-group\create-group-controller.js" />
+    <Content Include="app\components\create-group\create-group.html" />
     <Content Include="app\components\_directives\cover-image\cover-image-directive.js" />
     <Content Include="app\components\_directives\featured-user\featured-user-directive.js" />
     <Content Include="app\components\_directives\featured-user\featured-user.html" />
@@ -264,6 +266,8 @@
     <Content Include="app\components\register-user\register-user.html" />
     <Content Include="app\components\_directives\two-state-button\two-state-button-directive.js" />
     <Content Include="app\components\_directives\two-state-button\two-state-button.html" />
+    <Content Include="app\components\_services\group-service.js" />
+    <Content Include="app\components\_services\subject-service.js" />
     <Content Include="app\components\_services\user-service.js" />
     <Content Include="app\components\view-profile\view-profile.html" />
     <Content Include="app\components\view-profile\view-profile.js" />

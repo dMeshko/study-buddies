@@ -21,6 +21,10 @@ namespace StudyBuddies.Business.ViewModels.Groups
                 .NotEmpty()
                 .Length(1, 255);
 
+            RuleFor(x => x.Description)
+                .NotEmpty()
+                .Length(1, 255);
+
             RuleFor(x => x.GroupCapacity)
                 .NotEmpty();
 

@@ -9,6 +9,7 @@ using StudyBuddies.Business.ViewModels.Subjects;
 
 namespace StudyBuddies.Web.Controllers.Api
 {
+    //[RoutePrefix("api/subject")]
     public class SubjectController : ApiController
     {
         private readonly ISubjectService _subjectService;
@@ -20,7 +21,8 @@ namespace StudyBuddies.Web.Controllers.Api
 
         public IHttpActionResult Get()
         {
-            return Ok();
+            var subjects = _subjectService.GetAllSubjects();
+            return Ok(subjects);
         }
 
         public IHttpActionResult Get(Guid id)
@@ -33,7 +35,7 @@ namespace StudyBuddies.Web.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _subjectService.CreateGroup(model);
+            _subjectService.CreateSubject(model);
             return Ok();
         }
 

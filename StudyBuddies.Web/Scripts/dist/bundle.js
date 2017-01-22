@@ -18,13 +18,13 @@ webpackJsonp([0],[
 	__webpack_require__(/*! ./constants */ 1)(app);
 	__webpack_require__(/*! ./config */ 2)(app);
 	
-	__webpack_require__(/*! ./common */ 12)(app);
+	__webpack_require__(/*! ./common */ 13)(app);
 	
 	//webpack context module API
-	var requireContext = __webpack_require__(/*! ./components */ 19);
+	var requireContext = __webpack_require__(/*! ./components */ 20);
 	requireAll(requireContext, app);
 	
-	requireContext = __webpack_require__(/*! ./admin */ 30);
+	requireContext = __webpack_require__(/*! ./admin */ 33);
 	requireAll(requireContext, app);
 
 /***/ },
@@ -117,6 +117,14 @@ webpackJsonp([0],[
 	                    controller: "RegisterUserController"
 	                }
 	            }
+	        }).state("app.create-group", {
+	            url: "create-group",
+	            views: {
+	                "content@": {
+	                    template: __webpack_require__(/*! app/components/create-group/create-group.html */ 12),
+	                    controller: "CreateGroupController"
+	                }
+	            }
 	        });
 	    }]);
 	};
@@ -128,7 +136,7 @@ webpackJsonp([0],[
   \****************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavCollapsed = !isNavCollapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a ui-sref=\"app.home\" class=\"navbar-brand\">{{ siteName }}</a>\r\n        </div>\r\n        <div class=\"navbar-collapse collapse\" uib-collapse=\"isNavCollapsed\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.home\">Home</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.profile\">Profile</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.register\">Register</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavCollapsed = !isNavCollapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a ui-sref=\"app.home\" class=\"navbar-brand\">{{ siteName }}</a>\r\n        </div>\r\n        <div class=\"navbar-collapse collapse\" uib-collapse=\"isNavCollapsed\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.home\">Home</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.profile\">Profile</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.register\">Register</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.create-group\">Create Group</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
 /* 6 */
@@ -186,6 +194,15 @@ webpackJsonp([0],[
 
 /***/ },
 /* 12 */
+/*!***************************************************!*\
+  !*** ./components/create-group/create-group.html ***!
+  \***************************************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row\">\r\n    <input type=\"text\" ng-model=\"model.name\" class=\"form-control\" name=\"name\" placeholder=\"Name\" />\r\n    <input type=\"text\" ng-model=\"model.description\" class=\"form-control\" name=\"description\" placeholder=\"Description\" />\r\n    <input type=\"number\" ng-model=\"model.groupCapacity\" class=\"form-control\" name=\"capacity\" placeholder=\"Capacity\" min=\"0\" />\r\n    <select class=\"form-control\" name=\"subject\" ng-model=\"model.subject\" \r\n            ng-options=\"subject as subject.name + ' ( ' + subject.areaOfStudy.name + ' )' for subject in subjects track by subject.id\"></select>\r\n    <button ng-click=\"createGroup()\" class=\"btn btn-success\">Create Group</button>\r\n</div>"
+
+/***/ },
+/* 13 */
 /*!*************************!*\
   !*** ./common/index.js ***!
   \*************************/
@@ -194,14 +211,14 @@ webpackJsonp([0],[
 	// list all the componenets u want included
 	// i.e. list all the dependencies
 	module.exports = function (ngModule) {
-	    __webpack_require__(/*! ./header-controller */ 13)(ngModule);
-	    __webpack_require__(/*! ./footer-controller */ 14)(ngModule);
+	    __webpack_require__(/*! ./header-controller */ 14)(ngModule);
+	    __webpack_require__(/*! ./footer-controller */ 15)(ngModule);
 	
-	    __webpack_require__(/*! ./style.css */ 15);
+	    __webpack_require__(/*! ./style.css */ 16);
 	};
 
 /***/ },
-/* 13 */
+/* 14 */
 /*!*************************************!*\
   !*** ./common/header-controller.js ***!
   \*************************************/
@@ -214,7 +231,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 14 */
+/* 15 */
 /*!*************************************!*\
   !*** ./common/footer-controller.js ***!
   \*************************************/
@@ -228,7 +245,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 15 */
+/* 16 */
 /*!**************************!*\
   !*** ./common/style.css ***!
   \**************************/
@@ -237,10 +254,10 @@ webpackJsonp([0],[
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./style.css */ 16);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./style.css */ 17);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 18)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 19)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -257,13 +274,13 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 16 */
+/* 17 */
 /*!******************************************!*\
   !*** ../~/css-loader!./common/style.css ***!
   \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 17)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 18)();
 	// imports
 	
 	
@@ -274,24 +291,27 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */
 /*!*********************************!*\
   !*** ./components ^\.\/.*\.js$ ***!
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./_directives/cover-image/cover-image-directive.js": 51,
-		"./_directives/featured-user/featured-user-directive.js": 20,
-		"./_directives/file-model-directive.js": 22,
-		"./_directives/two-state-button/two-state-button-directive.js": 23,
-		"./_services/user-service.js": 25,
-		"./home/home-controller.js": 26,
-		"./home/sidebar-controller.js": 27,
-		"./register-user/register-user-controller.js": 28,
-		"./view-profile/view-profile.js": 29
+		"./_directives/cover-image/cover-image-directive.js": 21,
+		"./_directives/featured-user/featured-user-directive.js": 22,
+		"./_directives/file-model-directive.js": 24,
+		"./_directives/two-state-button/two-state-button-directive.js": 25,
+		"./_services/group-service.js": 54,
+		"./_services/subject-service.js": 55,
+		"./_services/user-service.js": 27,
+		"./create-group/create-group-controller.js": 28,
+		"./home/home-controller.js": 29,
+		"./home/sidebar-controller.js": 30,
+		"./register-user/register-user-controller.js": 31,
+		"./view-profile/view-profile.js": 32
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -304,11 +324,32 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 19;
+	webpackContext.id = 20;
 
 
 /***/ },
-/* 20 */
+/* 21 */
+/*!*********************************************************************!*\
+  !*** ./components/_directives/cover-image/cover-image-directive.js ***!
+  \*********************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function (ngModule) {
+	    ngModule.directive("cover", function () {
+	        return {
+	            restrict: "C",
+	            scope: {
+	                "img": "="
+	            },
+	            link: function ($scope, $element, $attributes) {
+	                console.log($scope.img);
+	            }
+	        };
+	    });
+	};
+
+/***/ },
+/* 22 */
 /*!*************************************************************************!*\
   !*** ./components/_directives/featured-user/featured-user-directive.js ***!
   \*************************************************************************/
@@ -319,7 +360,7 @@ webpackJsonp([0],[
 	        return {
 	            restrict: "E",
 	            replace: true,
-	            template: __webpack_require__(/*! ./featured-user.html */ 21),
+	            template: __webpack_require__(/*! ./featured-user.html */ 23),
 	            scope: {
 	                "user": "=",
 	                "callback": "="
@@ -329,7 +370,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 21 */
+/* 23 */
 /*!*****************************************************************!*\
   !*** ./components/_directives/featured-user/featured-user.html ***!
   \*****************************************************************/
@@ -338,7 +379,7 @@ webpackJsonp([0],[
 	module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" ng-src=\"data:image/png;base64,{{ user.image }}\" />\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n        <h4>{{ user.fullName }}<small>&nbsp;&nbsp;[{{ user.username }}]</small></h4>\r\n        <p>\r\n            <span uib-rating ng-model=\"user.rating\" read-only=\"true\" ng-class=\"{ 'text-danger': user.rating <= 2, 'text-info': user.rating > 2 && user.rating <= 4, 'text-success': user.rating > 4 }\"></span>\r\n            <span class=\"separator\"></span>\r\n            <span>some important info</span>\r\n            <span class=\"separator\"></span>\r\n            <span>something</span>\r\n        </p>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <two-state-button status=\"true\" callback=\"callback\" />\r\n        <button class=\"btn btn-success btn-block\">\r\n            <i class=\"glyphicon glyphicon-education\"></i> Buddy up\r\n        </button>\r\n        <button ui-sref=\"app.profile({id: user.id})\" class=\"btn btn-warning btn-block\">\r\n            <i class=\"glyphicon glyphicon-eye-open\"></i> Preview\r\n        </button>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 22 */
+/* 24 */
 /*!********************************************************!*\
   !*** ./components/_directives/file-model-directive.js ***!
   \********************************************************/
@@ -367,7 +408,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 23 */
+/* 25 */
 /*!*******************************************************************************!*\
   !*** ./components/_directives/two-state-button/two-state-button-directive.js ***!
   \*******************************************************************************/
@@ -378,7 +419,7 @@ webpackJsonp([0],[
 	        return {
 	            restrict: "E",
 	            replace: true,
-	            template: __webpack_require__(/*! ./two-state-button.html */ 24),
+	            template: __webpack_require__(/*! ./two-state-button.html */ 26),
 	            scope: {
 	                status: "=",
 	                callback: "="
@@ -412,7 +453,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 24 */
+/* 26 */
 /*!***********************************************************************!*\
   !*** ./components/_directives/two-state-button/two-state-button.html ***!
   \***********************************************************************/
@@ -421,7 +462,7 @@ webpackJsonp([0],[
 	module.exports = "<button></button>"
 
 /***/ },
-/* 25 */
+/* 27 */
 /*!**********************************************!*\
   !*** ./components/_services/user-service.js ***!
   \**********************************************/
@@ -490,7 +531,46 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 26 */
+/* 28 */
+/*!************************************************************!*\
+  !*** ./components/create-group/create-group-controller.js ***!
+  \************************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function (ngModule) {
+	    ngModule.controller("CreateGroupController", ["$scope", "GroupService", "SubjectService", function ($scope, GroupService, SubjectService) {
+	        $scope.model = {
+	            name: "",
+	            description: "",
+	            groupCapacity: 0,
+	            admin: {
+	                id: "50C308F7-E2E5-4529-8BA8-A700017C712D",
+	                name: "Darko Meshkovski"
+	            },
+	            subject: null
+	        };
+	
+	        $scope.createGroup = function () {
+	            GroupService.createGroup($scope.model).success(function (response) {
+	                alert("DONE" + response);
+	            }).error(function (response) {
+	                angular.forEach(response.modelState, function (value) {
+	                    console.log(value[0]);
+	                });
+	            });
+	        };
+	
+	        $scope.subjects = [];
+	        SubjectService.getAllSubjects().success(function (data) {
+	            $scope.subjects = data;
+	        }).error(function (response) {
+	            console.log(response);
+	        });
+	    }]);
+	};
+
+/***/ },
+/* 29 */
 /*!********************************************!*\
   !*** ./components/home/home-controller.js ***!
   \********************************************/
@@ -512,7 +592,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 27 */
+/* 30 */
 /*!***********************************************!*\
   !*** ./components/home/sidebar-controller.js ***!
   \***********************************************/
@@ -533,7 +613,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 28 */
+/* 31 */
 /*!**************************************************************!*\
   !*** ./components/register-user/register-user-controller.js ***!
   \**************************************************************/
@@ -561,7 +641,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 29 */
+/* 32 */
 /*!*************************************************!*\
   !*** ./components/view-profile/view-profile.js ***!
   \*************************************************/
@@ -589,14 +669,14 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 30 */
+/* 33 */
 /*!****************************!*\
   !*** ./admin ^\.\/.*\.js$ ***!
   \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./config.js": 31
+		"./config.js": 34
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -609,11 +689,11 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 30;
+	webpackContext.id = 33;
 
 
 /***/ },
-/* 31 */
+/* 34 */
 /*!*************************!*\
   !*** ./admin/config.js ***!
   \*************************/
@@ -625,7 +705,7 @@ webpackJsonp([0],[
 	            url: "/admin",
 	            views: {
 	                "content": {
-	                    template: __webpack_require__(/*! app/admin/home.html */ 32)
+	                    template: __webpack_require__(/*! app/admin/home.html */ 35)
 	                }
 	            }
 	        });
@@ -633,7 +713,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 32 */
+/* 35 */
 /*!*************************!*\
   !*** ./admin/home.html ***!
   \*************************/
@@ -642,9 +722,6 @@ webpackJsonp([0],[
 	module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <title></title>\r\n\t<meta charset=\"utf-8\" />\r\n</head>\r\n<body>\r\n\r\n</body>\r\n</html>\r\n"
 
 /***/ },
-/* 33 */,
-/* 34 */,
-/* 35 */,
 /* 36 */,
 /* 37 */,
 /* 38 */,
@@ -660,24 +737,48 @@ webpackJsonp([0],[
 /* 48 */,
 /* 49 */,
 /* 50 */,
-/* 51 */
-/*!*********************************************************************!*\
-  !*** ./components/_directives/cover-image/cover-image-directive.js ***!
-  \*********************************************************************/
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */
+/*!***********************************************!*\
+  !*** ./components/_services/group-service.js ***!
+  \***********************************************/
 /***/ function(module, exports) {
 
 	module.exports = function (ngModule) {
-	    ngModule.directive("cover", function () {
-	        return {
-	            restrict: "C",
-	            scope: {
-	                "img": "="
-	            },
-	            link: function ($scope, $element, $attributes) {
-	                console.log($scope.img);
-	            }
+	    ngModule.factory("GroupService", ["$http", function ($http) {
+	        var factory = {};
+	
+	        factory.getAllGroups = function () {
+	            return $http.get("/api/group");
 	        };
-	    });
+	
+	        factory.createGroup = function (data) {
+	            return $http.post("/api/group", data);
+	        };
+	
+	        return factory;
+	    }]);
+	};
+
+/***/ },
+/* 55 */
+/*!*************************************************!*\
+  !*** ./components/_services/subject-service.js ***!
+  \*************************************************/
+/***/ function(module, exports) {
+
+	module.exports = function (ngModule) {
+	    ngModule.factory("SubjectService", ["$http", function ($http) {
+	        var factory = {};
+	
+	        factory.getAllSubjects = function () {
+	            return $http.get("/api/subject");
+	        };
+	
+	        return factory;
+	    }]);
 	};
 
 /***/ }

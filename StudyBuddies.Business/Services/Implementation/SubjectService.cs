@@ -1,4 +1,8 @@
-﻿using StudyBuddies.Business.Infrastructure.Exceptions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Http;
+using AutoMapper;
+using StudyBuddies.Business.Infrastructure.Exceptions;
 using StudyBuddies.Business.Infrastructure.Exceptions.Messages;
 using StudyBuddies.Business.ViewModels.Subjects;
 using StudyBuddies.Data.Repository.Subjects;
@@ -17,7 +21,13 @@ namespace StudyBuddies.Business.Services.Implementation
             _areaOfStudyRepository = areaOfStudyRepository;
         }
 
-        public void CreateGroup(SubjectViewModel model)
+        public IList<SubjectViewModel> GetAllSubjects()
+        {
+            var subjects = _subjectRepository.GetAll().ToList();
+            return Mapper.Map<IList<Subject>, IList<SubjectViewModel>>(subjects);
+        }
+
+        public void CreateSubject(SubjectViewModel model)
         {
             var areaOfStudy = _areaOfStudyRepository.GetById(model.AreaOfStudy.Id);
             if (areaOfStudy == null)

@@ -54,8 +54,17 @@
                             controller: "RegisterUserController"
                         }
                     }
-                }
-                );
+                })
+                .state("app.create-group",
+                {
+                    url: "create-group",
+                    views: {
+                        "content@": {
+                            template: require("app/components/create-group/create-group.html"),
+                            controller: "CreateGroupController"
+                        }
+                    }
+                });
         }
     ]);
 };

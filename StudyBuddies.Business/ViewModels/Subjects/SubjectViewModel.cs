@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FluentValidation;
 using FluentValidation.Attributes;
 using StudyBuddies.Domain.Subjects;
@@ -8,6 +9,7 @@ namespace StudyBuddies.Business.ViewModels.Subjects
     [Validator(typeof(SubjectViewModelValidator))]
     public class SubjectViewModel
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public LookupViewModel AreaOfStudy { get; set; }
     }
@@ -16,6 +18,9 @@ namespace StudyBuddies.Business.ViewModels.Subjects
     {
         public SubjectViewModelValidator()
         {
+            RuleFor(x => x.Id)
+                .NotEmpty();
+
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .Length(1, 255);

@@ -1,9 +1,11 @@
-﻿using StudyBuddies.Business.ViewModels.Subjects;
+﻿using System.Collections.Generic;
+using StudyBuddies.Business.ViewModels.Subjects;
 
 namespace StudyBuddies.Business.Services
 {
     public interface ISubjectService
     {
-        void CreateGroup(SubjectViewModel model);
+        IList<SubjectViewModel> GetAllSubjects();
+        void CreateSubject(SubjectViewModel model);
     }
 }
