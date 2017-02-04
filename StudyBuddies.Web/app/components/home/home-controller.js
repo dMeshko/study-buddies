@@ -1,16 +1,15 @@
 ﻿module.exports = function (ngModule) {
     ngModule.controller("HomeController", ["$scope", "UserService", function ($scope, UserService) {
-        $scope.users = [];
-            $scope.updateFriendship = function(status) {
-                alert(status);
-            }    
+        $scope.posts = [];
 
-
-            UserService.getAllUsers().success(function(data) {
-                $scope.users = data;
-            }).error(function(data) {
-                console.log("Unable to fetch the users!! " + data);
+        UserService.getLatestGroupsPosts($scope.currentUser.id)
+            .success(function (data) {
+                $scope.posts = data;
+            })
+            .error(function (response) {
+                console.log("Unable to fetch the users!! " + response);
+                $scope.parseErrorMessage(response);
             });
-        }
+    }
     ]);
 };

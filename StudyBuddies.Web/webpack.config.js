@@ -17,9 +17,12 @@ var config = {
             { test: /\.js$/, loader: "ng-annotate!babel", exclude: /node_modules/ }, // enable usage od ES6
             { test: /\.html$/, loader: "raw", exclude: /node_modules/ },
 // enable require-ing views as template param INSTEAD of templateUrl and giving the path
-            { test: /\.css$/, loader: "style!css", exclude: /node_modules/ },
+            { test: /\.css$/, loader: "style!css"/*, exclude: /node_modules/*/ },
 // enable processing css and generating style/link tags
-            { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.ttf$|\.eot$/, loader: "url" }
+            { test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.woff2$|\.ttf$|\.eot$/, loader: "url" },
+            { test: /\/.scss$/, loader: "style!css!sass" },
+            //{ test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+            //{ test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
         ]
     },
     plugins: [

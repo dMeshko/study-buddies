@@ -37,4 +37,15 @@ namespace StudyBuddies.Domain
         Attending = 0,
         Graduated = 1
     }
+
+    public enum NotificationType
+    {
+        BuddyRequest = 0,
+        BuddyAcceptance = 1,
+        Message = 2,
+        GroupRequest = 3,
+        GroupAcceptance = 4,
+        Post = 5,
+        Comment = 6
+    }
 }

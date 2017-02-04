@@ -126,6 +126,20 @@ namespace StudyBuddies.Web.Controllers.Api
             return Ok();
         }
 
+        [Route("{id:guid}/conversation/notification")]
+        public IHttpActionResult GetAllMessageNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllMessageNotifications(id);
+            return Ok(notifications);
+        }
+
+        [Route("{id:guid}/conversation/notification/not")]
+        public IHttpActionResult GetAllUnseenMessageNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllUnseenMessageNotifications(id);
+            return Ok(notifications);
+        }
+
         #endregion
 
         #region Buddy
@@ -171,6 +185,20 @@ namespace StudyBuddies.Web.Controllers.Api
             return Ok();
         }
 
+        [Route("{id:guid}/buddy/notification")]
+        public IHttpActionResult GetAllBuddyNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllBuddyNotifications(id);
+            return Ok(notifications);
+        }
+
+        [Route("{id:guid}/buddy/notification/not")]
+        public IHttpActionResult GetAllUnseenBuddyNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllUnseenBuddyNotifications(id);
+            return Ok(notifications);
+        }
+
         #endregion
 
         #region Subject
@@ -207,6 +235,13 @@ namespace StudyBuddies.Web.Controllers.Api
             return Ok(groups);
         }
 
+        [Route("{id:guid}/group/not")]
+        public IHttpActionResult GetAllGroupsWhereNoRequestIsSent(Guid id)
+        {
+            var groups = _userService.GetAllGroupsWhereNoRequestIsSent(id);
+            return Ok(groups);
+        }
+
         [Route("{id:guid}/group/admin")]
         public IHttpActionResult GetAllManagedGroups(Guid id)
         {
@@ -219,6 +254,20 @@ namespace StudyBuddies.Web.Controllers.Api
         {
             var groups = _userService.GetAllMemberingGroups(id);
             return Ok(groups);
+        }
+
+        [Route("{id:guid}/group/notification")]
+        public IHttpActionResult GetAllGroupNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllGroupNotifications(id);
+            return Ok(notifications);
+        }
+
+        [Route("{id:guid}/group/notification/not")]
+        public IHttpActionResult GetAllUnseenGroupNotifications(Guid id)
+        {
+            var notifications = _userService.GetAllUnseenGroupNotifications(id);
+            return Ok(notifications);
         }
 
         #endregion

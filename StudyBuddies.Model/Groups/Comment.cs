@@ -4,7 +4,7 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Domain.Groups
 {
-    public class Comment : NotificationEntity
+    public class Comment : BaseEntity
     {
         private User _user;
         private Post _post;

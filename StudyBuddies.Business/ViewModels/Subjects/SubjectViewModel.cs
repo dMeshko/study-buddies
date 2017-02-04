@@ -37,6 +37,8 @@ namespace StudyBuddies.Business.ViewModels.Subjects
             CreateMap<AreaOfStudy, LookupViewModel>();
 
             CreateMap<Subject, SubjectViewModel>();
+
+            CreateMap<Subject, LookupViewModel>();
         }
     }
 }

@@ -71,6 +71,8 @@
     <Compile Include="Mappings\Subjects\SubjectMap.cs" />
     <Compile Include="Mappings\Users\BuddyRequestMap.cs" />
     <Compile Include="Mappings\Users\MessageMap.cs" />
+    <Compile Include="Mappings\Users\NotificationDetailsMap.cs" />
+    <Compile Include="Mappings\Users\NotificationMap.cs" />
     <Compile Include="Mappings\Users\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
@@ -110,8 +112,12 @@
     <Compile Include="Repository\Users\IMessageRepository.cs" />
     <Compile Include="Repository\Users\Implementation\BuddyRequestRepository.cs" />
     <Compile Include="Repository\Users\Implementation\MessageRepository.cs" />
+    <Compile Include="Repository\Users\Implementation\NotificationDetailsRepository.cs" />
+    <Compile Include="Repository\Users\Implementation\NotificationRepository.cs" />
     <Compile Include="Repository\Users\Implementation\UserRepository.cs" />
     <Compile Include="Repository\Subjects\ISubjectRepository.cs" />
+    <Compile Include="Repository\Users\INotificationRepository.cs" />
+    <Compile Include="Repository\Users\INotificationDetailsRepository.cs" />
     <Compile Include="Repository\Users\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

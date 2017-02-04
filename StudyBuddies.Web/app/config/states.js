@@ -1,7 +1,10 @@
 ﻿module.exports = function (ngModule) {
     ngModule.config([
-        "$stateProvider", "$urlRouterProvider", function ($stateProvider, $urlRouterProvider) {
+        "$stateProvider", "$urlRouterProvider", "refsProvider", function ($stateProvider, $urlRouterProvider, refsProvider) {
             $urlRouterProvider.otherwise("/"); //for undefined state go to the default/home
+
+            refsProvider.injectRef('$urlRouterProvider', $urlRouterProvider);
+            refsProvider.injectRef('$stateProvider', $stateProvider);
 
             $stateProvider
                 .state("app",
@@ -18,52 +21,25 @@
                         },
                         "footer": {
                             controller: "FooterController",
-                            //templateUrl: "./app/home/footer.html"
                             template: require("app/common/footer.html")
                         },
                         "left@app": {
-                            template: require("app/components/home/sidebar.html"),
-                            controller: "SidebarController"
+                            template: require("app/components/home/left-sidebar.html"),
+                            controller: "LeftSidebarController"
                         },
                         "main@app": {
                             template: require("app/components/home/home.html"),
                             controller: "HomeController"
+                        },
+                        "right@app": {
+                            template: require("app/components/home/right-sidebar.html"),
+                            controller: "RightSidebarController"
                         }
                     }
                 })
                 .state("app.home",
                 {
                     url: "" //<-- Empty string for "app" state to override the / abstract state
-                })
-                .state("app.profile",
-                {
-                    url: "profile/:id",
-                    views: {
-                        "main@app": {
-                            template: require("app/components/view-profile/view-profile.html"),
-                            controller: "ViewUserProfileController"
-                        }
-                    }
-                })
-                .state("app.register",
-                {
-                    url: "register",
-                    views: {
-                        "content@": {
-                            template: require("app/components/register-user/register-user.html"),
-                            controller: "RegisterUserController"
-                        }
-                    }
-                })
-                .state("app.create-group",
-                {
-                    url: "create-group",
-                    views: {
-                        "content@": {
-                            template: require("app/components/create-group/create-group.html"),
-                            controller: "CreateGroupController"
-                        }
-                    }
                 });
         }
     ]);

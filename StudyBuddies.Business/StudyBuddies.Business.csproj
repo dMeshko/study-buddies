@@ -95,6 +95,7 @@
     <Compile Include="ViewModels\IdentityLookupViewModel.cs" />
     <Compile Include="ViewModels\Institutions\InstitutionViewModel.cs" />
     <Compile Include="ViewModels\LookupViewModel.cs" />
+    <Compile Include="ViewModels\NotificationViewModel.cs" />
     <Compile Include="ViewModels\RelationLookupViewModel.cs" />
     <Compile Include="ViewModels\Subjects\EnrolledSubjectViewModel.cs" />
     <Compile Include="ViewModels\Subjects\SubjectViewModel.cs" />

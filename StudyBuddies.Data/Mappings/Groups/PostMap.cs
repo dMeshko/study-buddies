@@ -30,11 +30,6 @@ namespace StudyBuddies.Data.Mappings.Groups
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Not.Nullable();
 
-            Map(x => x.Seen)
-                .Column("Seen")
-                .Access.CamelCaseField(Prefix.Underscore)
-                .Not.Nullable();
-
             HasMany(x => x.Attachments)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .KeyColumn("PostId")

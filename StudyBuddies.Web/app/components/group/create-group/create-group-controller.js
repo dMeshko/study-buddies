@@ -19,9 +19,7 @@
                         alert("DONE" + response);
                     })
                     .error(function (response) {
-                        angular.forEach(response.modelState, function(value) {
-                            console.log(value[0]);
-                        });
+                        $scope.parseErrorMessage(response);
                     });
             };
 
@@ -31,7 +29,7 @@
                     $scope.subjects = data;
                 })
                 .error(function (response) {
-                    console.log(response);
+                    $scope.parseErrorMessage(response);
                 });
         }]);
 }

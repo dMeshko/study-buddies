@@ -123,6 +123,19 @@ namespace StudyBuddies.Business.Services.Implementation
             return Mapper.Map<IList<User>, List<UserViewModel>>(members);
         }
 
+        public void AddGroupMember(GroupRequestViewModel groupRequest)
+        {
+            var group = _groupRepository.GetById(groupRequest.Group.Id);
+            if (group == null)
+                throw new NotFoundException(GroupExceptionMessage.GROUP_NOT_FOUND);
+
+            var user = _userRepository.GetById(groupRequest.User.Id);
+            if (user == null)
+                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
+
+            group.AddPendingMember(new GroupRequest(user, group));
+        }
+
         public void UpdateGroupMember(GroupRequestViewModel groupRequest)
         {
             var group = _groupRepository.GetById(groupRequest.Group.Id);

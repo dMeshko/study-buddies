@@ -25,6 +25,7 @@ namespace StudyBuddies.Domain.Users
         private IList<Message> _receivedMessages { get; }
         private IList<EnrolledSubject> _enrolledSubjects;
         private IList<EnrolledInstitution> _enrolledInstitutions;
+        private IList<Notification> _notifications;
 
         protected User() { }
 
@@ -58,6 +59,7 @@ namespace StudyBuddies.Domain.Users
             _receivedMessages = new List<Message>();
             _enrolledSubjects = new List<EnrolledSubject>();
             _enrolledInstitutions = new List<EnrolledInstitution>();
+            _notifications = new List<Notification>();
         }
 
         #region Properties
@@ -109,8 +111,12 @@ namespace StudyBuddies.Domain.Users
                 return res;
             }
         }
+
+        public virtual IList<Message> SentMessages => _sentMessages;
+        public virtual IList<Message> ReceivedMessages => _receivedMessages;
         public virtual IList<EnrolledSubject> EnrolledSubjects => _enrolledSubjects;
         public virtual IList<EnrolledInstitution> EnrolledInstitutions => _enrolledInstitutions;
+        public virtual IList<Notification> Notifications => _notifications;
 
         #endregion
 
@@ -234,6 +240,14 @@ namespace StudyBuddies.Domain.Users
                 throw new InvalidDataException(nameof(enrolledInstitution));
 
             _enrolledInstitutions.Add(enrolledInstitution);
+        }
+
+        public virtual void AddNotification(Notification notification)
+        {
+            if (notification == null)
+                throw new InvalidDataException(nameof(notification));
+
+            _notifications.Add(notification);
         }
         #endregion
     }

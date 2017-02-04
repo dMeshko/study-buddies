@@ -101,6 +101,12 @@ namespace StudyBuddies.Data.Mappings.Users
                 .KeyColumn("UserId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+
+            HasMany(x => x.Notifications)
+                .Access.CamelCaseField(Prefix.Underscore)
+                .KeyColumn("UserToId")
+                .Inverse()
+                .Cascade.AllDeleteOrphan();
         }
     }
 }

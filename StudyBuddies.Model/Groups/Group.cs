@@ -135,6 +135,14 @@ namespace StudyBuddies.Domain.Groups
             _posts.Remove(post);
         }
 
+        public virtual void AddPendingMember(GroupRequest groupRequest)
+        {
+            if (groupRequest == null)
+                throw new InvalidDataException(nameof(groupRequest));
+
+            _members.Add(groupRequest);
+        }
+
         #endregion
     }
 }

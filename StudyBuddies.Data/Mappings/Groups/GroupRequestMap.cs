@@ -26,11 +26,6 @@ namespace StudyBuddies.Data.Mappings.Groups
                 .Column("Status")
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Not.Nullable();
-
-            Map(x => x.Seen)
-                .Column("Seen")
-                .Access.CamelCaseField(Prefix.Underscore)
-                .Not.Nullable();
         }
     }
 }

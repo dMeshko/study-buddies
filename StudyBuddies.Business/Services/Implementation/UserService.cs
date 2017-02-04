@@ -4,12 +4,12 @@ using System.Linq;
 using AutoMapper;
 using StudyBuddies.Business.Infrastructure.Exceptions;
 using StudyBuddies.Business.Infrastructure.Exceptions.Messages;
+using StudyBuddies.Business.ViewModels;
 using StudyBuddies.Business.ViewModels.Groups;
 using StudyBuddies.Business.ViewModels.Subjects;
 using StudyBuddies.Business.ViewModels.Users;
 using StudyBuddies.Data.Repository.Groups;
 using StudyBuddies.Data.Repository.Institutions;
-using StudyBuddies.Data.Repository.Subjects;
 using StudyBuddies.Data.Repository.Users;
 using StudyBuddies.Domain;
 using StudyBuddies.Domain.Groups;
@@ -25,13 +25,17 @@ namespace StudyBuddies.Business.Services.Implementation
         private readonly IBuddyRequestRepository _buddyRequestRepository;
         private readonly IInstitutionRepository _institutionRepository;
         private readonly IPostRepository _postRepository;
+        private readonly IGroupRepository _groupRepository;
+        private readonly IGroupRequestRepository _groupRequestRepository;
 
-        public UserService(IUserRepository userRepository, IBuddyRequestRepository buddyRequestRepository, IInstitutionRepository institutionRepository, IPostRepository postRepository)
+        public UserService(IUserRepository userRepository, IBuddyRequestRepository buddyRequestRepository, IInstitutionRepository institutionRepository, IPostRepository postRepository, IGroupRepository groupRepository, IGroupRequestRepository groupRequestRepository)
         {
             _userRepository = userRepository;
             _buddyRequestRepository = buddyRequestRepository;
             _institutionRepository = institutionRepository;
             _postRepository = postRepository;
+            _groupRepository = groupRepository;
+            _groupRequestRepository = groupRequestRepository;
         }
 
         #region User
@@ -107,11 +111,26 @@ namespace StudyBuddies.Business.Services.Implementation
             var otherUser = _userRepository.GetById(messageViewModel.UserToId);
 
             if (currentUser == null || otherUser == null)
-                throw new BusinessLayerException(UserExceptionMessage.USER_NOT_FOUND);
+                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
 
             var message = new Message(currentUser, otherUser, messageViewModel.Content);
             currentUser.SendMessage(message);
             _userRepository.Update(currentUser);
+        }
+
+        public List<NotificationViewModel> GetAllMessageNotifications(Guid userId)
+        {
+            var user = _userRepository.GetById(userId);
+            if (user == null)
+                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
+
+            var messages = user.ReceivedMessages;
+            throw new NotImplementedException();
+        }
+
+        public List<NotificationViewModel> GetAllUnseenMessageNotifications(Guid userId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -176,6 +195,16 @@ namespace StudyBuddies.Business.Services.Implementation
             buddyRequest.Status = (RequestStatus) model.Status.Id;
         }
 
+        public List<NotificationViewModel> GetAllBuddyNotifications(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<NotificationViewModel> GetAllUnseenBuddyNotifications(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         #region Subject
@@ -227,7 +256,23 @@ namespace StudyBuddies.Business.Services.Implementation
             var groups = user.CreatedGroups.Concat(user.MemberInGroups
                 .Where(x => x.Status == RequestStatus.Accepted)
                 .Select(x => x.Group)
-                .ToList()).ToList();
+                .ToList())
+                .ToList();
+            return Mapper.Map<List<Group>, List<GroupViewModel>>(groups);
+        }
+
+        public List<GroupViewModel> GetAllGroupsWhereNoRequestIsSent(Guid userId)
+        {
+            var user = _userRepository.GetById(userId);
+            if (user == null)
+                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
+
+            var allGroups = _groupRepository.GetMany(x => x.Status == GroupStatus.Assembly && x.Admin.Id != userId);
+            var groups = (from x in allGroups
+                          let groupRequests = _groupRequestRepository.GetMany(y => y.User.Id == userId).ToList()
+                          where !x.Members.Intersect(groupRequests).Any()
+                          select x)
+                .ToList();
             return Mapper.Map<List<Group>, List<GroupViewModel>>(groups);
         }
 
@@ -251,6 +296,16 @@ namespace StudyBuddies.Business.Services.Implementation
                 .Where(x => x.Status == RequestStatus.Accepted)
                 .Select(x => x.Group).ToList();
             return Mapper.Map<IList<Group>, List<GroupViewModel>>(groups);
+        }
+
+        public List<NotificationViewModel> GetAllGroupNotifications(Guid userid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<NotificationViewModel> GetAllUnseenGroupNotifications(Guid userid)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

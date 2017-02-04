@@ -31,7 +31,7 @@ namespace StudyBuddies.Business.ViewModels.Users
                 .NotEmpty();
 
             RuleFor(x => x.Password)
-                .Length(1, 255)
+                .Length(6, 255)
                 .NotEmpty();
         }
     }

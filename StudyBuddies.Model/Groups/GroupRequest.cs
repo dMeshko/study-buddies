@@ -3,7 +3,7 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Domain.Groups
 {
-    public class GroupRequest : NotificationEntity
+    public class GroupRequest : BaseEntity
     {
         private User _user;
         private Group _group;

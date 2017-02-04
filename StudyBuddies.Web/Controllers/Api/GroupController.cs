@@ -95,6 +95,16 @@ namespace StudyBuddies.Web.Controllers.Api
         }
 
         [Route("{id:guid}/member/{userId:guid}")]
+        public IHttpActionResult PostGroupMember(GroupRequestViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _groupService.AddGroupMember(model);
+            return Ok();
+        }
+
+        [Route("{id:guid}/member/{userId:guid}")]
         public IHttpActionResult PutGroupMember(GroupRequestViewModel model)
         {
             if (!ModelState.IsValid)

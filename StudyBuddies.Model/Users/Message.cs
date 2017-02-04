@@ -3,7 +3,7 @@ using System.IO;
 
 namespace StudyBuddies.Domain.Users
 {
-    public class Message : NotificationEntity
+    public class Message : BaseEntity
     {
         private User _userFrom;
         private User _userTo;

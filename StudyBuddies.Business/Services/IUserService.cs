@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StudyBuddies.Business.ViewModels;
 using StudyBuddies.Business.ViewModels.Groups;
 using StudyBuddies.Business.ViewModels.Subjects;
 using StudyBuddies.Business.ViewModels.Users;
@@ -24,7 +25,7 @@ namespace StudyBuddies.Business.Services
         List<MessageViewModel> GetConversation(Guid userId, Guid otherUserId);
         void SendMessage(MessageViewModel messageViewModel);
 
-        #endregion
+            #endregion
 
         #region Buddy
 
@@ -34,7 +35,7 @@ namespace StudyBuddies.Business.Services
         void SendBuddyRequest(BuddyRequestViewModel model);
         void UpdateBuddyRequest(BuddyRequestViewModel model);
 
-        #endregion
+            #endregion
 
         #region Subject
 
@@ -47,6 +48,7 @@ namespace StudyBuddies.Business.Services
         #region Group
 
         List<GroupViewModel> GetAllGroups(Guid userId);
+        List<GroupViewModel> GetAllGroupsWhereNoRequestIsSent(Guid userId);
         List<GroupViewModel> GetAllManagedGroups(Guid userId);
         List<GroupViewModel> GetAllMemberingGroups(Guid userId);
 
@@ -55,6 +57,17 @@ namespace StudyBuddies.Business.Services
         #region Post
 
         List<PostViewModel> GetLatestGroupsPosts(Guid userId);
+
+        #endregion
+
+        #region Notifications
+
+        List<NotificationViewModel> GetAllMessageNotifications(Guid userId);
+        List<NotificationViewModel> GetAllUnseenMessageNotifications(Guid userId);
+        List<NotificationViewModel> GetAllBuddyNotifications(Guid userId);
+        List<NotificationViewModel> GetAllUnseenBuddyNotifications(Guid userId);
+        List<NotificationViewModel> GetAllGroupNotifications(Guid userid);
+        List<NotificationViewModel> GetAllUnseenGroupNotifications(Guid userid);
 
         #endregion
         void EnrollInstitution(Guid userId, Guid institutionId);

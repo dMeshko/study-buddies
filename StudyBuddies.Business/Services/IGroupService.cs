@@ -28,6 +28,7 @@ namespace StudyBuddies.Business.Services
         IList<GroupRequestViewModel> GetGroupMembers(Guid groupId);
         IList<UserViewModel> GetPendingGroupMembers(Guid groupId);
         IList<UserViewModel> GetAcceptedGroupMembers(Guid groupId);
+        void AddGroupMember(GroupRequestViewModel groupRequest);
         void UpdateGroupMember(GroupRequestViewModel groupRequest);
 
         #endregion

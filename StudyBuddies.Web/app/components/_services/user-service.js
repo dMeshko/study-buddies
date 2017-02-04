@@ -7,7 +7,7 @@
                 id: id
             };
 
-            return $http.get("/api/user", {params: params});
+            return $http.get("/api/user", { params: params });
         };
 
         factory.getAllUsers = function() {
@@ -55,6 +55,10 @@
 
             return $http.delete("/api/user", { params: params });
         };
+
+        factory.getLatestGroupsPosts = function(id) {
+            return $http.get("/api/user/" + id + "/post");
+        }
 
         return factory;
     }]);

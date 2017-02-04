@@ -52,13 +52,14 @@
     <Compile Include="Institutions\Institution.cs" />
     <Compile Include="Institutions\Location.cs" />
     <Compile Include="Institutions\University.cs" />
-    <Compile Include="NotificationEntity.cs" />
     <Compile Include="Subjects\AreaOfStudy.cs" />
     <Compile Include="Subjects\EnrolledSubject.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Users\BuddyRequest.cs" />
     <Compile Include="Users\Message.cs" />
     <Compile Include="Groups\Post.cs" />
+    <Compile Include="Users\Notification.cs" />
+    <Compile Include="Users\NotificationDetails.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

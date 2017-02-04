@@ -7,7 +7,9 @@
 var app = angular.module("StudyBuddies", [
     "ui.router",
     "ui.bootstrap",
-    "angular-loading-bar"
+    "angular-loading-bar",
+    "uiRouterStyles",
+    "ui-notification"
     //"oc.lazyLoad"
 ]);
 

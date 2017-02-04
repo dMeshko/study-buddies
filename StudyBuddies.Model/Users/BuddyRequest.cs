@@ -3,7 +3,7 @@ using System.IO;
 
 namespace StudyBuddies.Domain.Users
 {
-    public class BuddyRequest : NotificationEntity
+    public class BuddyRequest : BaseEntity
     {
         private User _userFrom;
         private User _userTo;

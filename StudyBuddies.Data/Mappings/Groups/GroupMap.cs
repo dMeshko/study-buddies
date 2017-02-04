@@ -16,6 +16,11 @@ namespace StudyBuddies.Data.Mappings.Groups
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Not.Nullable();
 
+            Map(x => x.Description)
+                .Column("Description")
+                .Access.CamelCaseField(Prefix.Underscore)
+                .Not.Nullable();
+
             Map(x => x.GroupCapacity)
                 .Column("Capacity")
                 .Access.CamelCaseField(Prefix.Underscore)

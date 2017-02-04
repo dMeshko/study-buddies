@@ -1,0 +1,10 @@
+﻿<div class="row well">
+    <div class="col-md-12">
+        <h4 ng-bind="::group.name"></h4>
+        <small>{{ ::group.admin.name }} | {{ ::group.subject.name }}</small>
+        <p ng-bind="::group.description"></p>
+        <p><span class="badge">{{ group.occupiedCapacity }} / {{ ::group.groupCapacity }}</span> | <span class="label label-success" ng-bind="group.status.name"></span></p>
+        <button ng-click="joinGroup(group.id)" class="pull-right btn btn-sm btn-success"><i class="fa fa-plus"></i> Join</button>
+        <button ui-sref="app.groups.details({ id: group.id })" style="margin-right: 10px;" class="pull-right btn btn-sm btn-success"><i class="fa fa-eye"></i> Details</button>
+    </div>
+</div>
