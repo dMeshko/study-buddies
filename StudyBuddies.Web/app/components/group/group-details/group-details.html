@@ -1,2 +1,8 @@
 ﻿<h2>details</h2>
 <pre>{{ group | json }}</pre>
+<div>
+    <textarea rows="5" class="form-control" ng-model="post.content"></textarea>
+    <input type="file" nv-file-select="" uploader="uploader" multiple="">
+    <button ng-click="addPost()" class="btn btn-success">Add Post</button>
+</div>
+<div ng-repeat="post in posts" post="post" on-remove="posts.splice($index, 1)"></div>

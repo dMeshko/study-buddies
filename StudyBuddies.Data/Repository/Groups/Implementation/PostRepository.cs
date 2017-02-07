@@ -12,7 +12,7 @@ namespace StudyBuddies.Data.Repository.Groups.Implementation
 
         public IList<Post> GetLatestPosts(IEnumerable<Guid> groupIds)
         {
-            return GetMany(x => groupIds.Contains(x.Id))
+            return GetMany(x => groupIds.Contains(x.Group.Id))
                 .OrderByDescending(x => x.Date)
                 .ToList();
         }

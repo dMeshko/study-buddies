@@ -1,0 +1,22 @@
+﻿<div class="well">
+    <h2>{{ ::post.user.name }} <small>&lt;{{ ::post.group.name }}&gt;</small>
+    </h2>
+    <p ng-bind="::post.date | date: 'short'"></p>
+    <p ng-bind="::post.content"></p>
+    <div class="row">
+        <button class="btn btn-info" ng-click="hideComments = !hideComments">Comment</button>
+        <button class="btn btn-danger" ng-click="deletePost()">Delete</button>
+    </div>
+    <div uib-collapse="hideComments" expanded="initCommentsSection()">
+        <div class="well well-lg">
+            <div class="row">
+                <textarea rows="3" class="form-control" ng-model="comment.content"></textarea>
+                <div ng-click="postComment()" class="btn btn-success pull-right">Post the comment!</div>
+            </div>
+            <div class="row" ng-repeat="comment in comments" style="border-top: 1px solid red; margin-top: 10px; padding-top: 10px;">
+                <strong>{{ ::comment.user.name }}, <small ng-bind="::comment.date | date: 'short'"></small></strong>: {{ ::comment.content }}
+                <button class="btn btn-danger btn-sm" ng-click="deleteComment(comment.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

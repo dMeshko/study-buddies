@@ -3,11 +3,7 @@
         var factory = {};
 
         factory.getUserById = function (id) {
-            var params = {
-                id: id
-            };
-
-            return $http.get("/api/user", { params: params });
+            return $http.get("/api/user/" + id);
         };
 
         factory.getAllUsers = function() {
@@ -15,7 +11,7 @@
         };
 
         factory.getCurrentUser = function() {
-            var currentUserId = "1507a17d-0143-40be-858b-e20fdb0a8eeb";
+            var currentUserId = "50C308F7-E2E5-4529-8BA8-A700017C712D";
 
             return factory.getUserById(currentUserId);
         };

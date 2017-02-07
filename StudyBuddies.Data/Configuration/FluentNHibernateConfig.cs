@@ -11,7 +11,7 @@ namespace StudyBuddies.Data.Configuration
         public static ISessionFactory CreateSessionFactory()
         {
             ISessionFactory sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008
+                .Database(MsSqlConfiguration.MsSql2012
                     //.ConnectionString(@"Data Source=DEV-LT1;Initial Catalog=StudyBuddiesDb;User ID=wwwuser;Password=P@ssw0rd;Pooling=False")
                     .ConnectionString(@"Data Source=localhost;Initial Catalog=StudyBuddies;Integrated Security=SSPI")
                     .ShowSql())

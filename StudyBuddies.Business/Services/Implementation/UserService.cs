@@ -294,7 +294,9 @@ namespace StudyBuddies.Business.Services.Implementation
 
             var groups = user.MemberInGroups
                 .Where(x => x.Status == RequestStatus.Accepted)
-                .Select(x => x.Group).ToList();
+                .Select(x => x.Group)
+                .Union(user.CreatedGroups)
+                .ToList();
             return Mapper.Map<IList<Group>, List<GroupViewModel>>(groups);
         }
 

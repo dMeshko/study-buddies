@@ -259,9 +259,13 @@
     <Content Include="app\components\group\group-details\group-details.html" />
     <Content Include="app\components\home\right-sidebar.html" />
     <Content Include="app\components\home\right-sidebar-controller.js" />
+    <Content Include="app\components\user\list-user-groups\list-user-groups-controller.js" />
+    <Content Include="app\components\user\list-user-groups\list-user-groups.html" />
     <Content Include="app\components\user\list-users\list-users-controller.js" />
     <Content Include="app\components\user\list-users\list-users.html" />
     <Content Include="app\components\user\states.js" />
+    <Content Include="app\components\_directives\post\post-directive.js" />
+    <Content Include="app\components\_directives\post\post.html" />
     <Content Include="app\components\_directives\sidebar-group\sidebar-group-directive.js" />
     <Content Include="app\components\_directives\sidebar-group\sidebar-group.html" />
     <Content Include="app\components\_directives\frontpage-group\frontpage-group-directive.js" />
@@ -282,6 +286,7 @@
     <Content Include="app\components\_directives\two-state-button\two-state-button-directive.js" />
     <Content Include="app\components\_directives\two-state-button\two-state-button.html" />
     <Content Include="app\components\_services\group-service.js" />
+    <Content Include="app\components\_services\post-service.js" />
     <Content Include="app\components\_services\subject-service.js" />
     <Content Include="app\components\_services\user-service.js" />
     <Content Include="app\components\user\view-profile\view-profile.html" />
@@ -1164,6 +1169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\InMemoryMultipartFormDataStreamProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnitOfWorkActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />

@@ -5,7 +5,7 @@
         }
 
         $rootScope.currentUser = {
-            id: "50C308F7-E2E5-4529-8BA8-A700017C712D",
+            id: "33CA1AB3-3AFC-4308-9179-A71101711844",
             name: "Darko Meshkovski"
         };
     }

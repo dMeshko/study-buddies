@@ -1,0 +1,21 @@
+﻿<div class="row well" ng-repeat="group in groups">
+    <div class="col-md-2">
+        <img class="img img-responsive" />
+    </div>
+    <div class="col-md-10">
+        <h4 ng-bind="::group.name"></h4>
+        <span ng-bind="::group.admin.name"></span>
+        <span ng-bind="::group.description"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <span>Members: <span ng-class="{ 'text-danger': group.occupiedCapacity == group.groupCapacity }" ng-bind="::group.occupiedCapacity"></span> / <span ng-bind="::group.groupCapacity"></span></span>
+            </div>
+            <div class="col-md-6">
+                <span>Group status: <strong class="text-success" ng-class="{ 'text-danger': group.status.id == 1 }" ng-bind="::group.status.name"></strong></span>
+            </div>
+        </div>
+        <button ui-sref="app.groups.details({ id: group.id })" class="btn btn-default btn-block">
+            Details
+        </button>
+    </div>
+</div>

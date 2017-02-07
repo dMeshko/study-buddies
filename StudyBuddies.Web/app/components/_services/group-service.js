@@ -18,8 +18,16 @@
             return $http.get("/api/user/" + userId + "/group/not");
         };
 
+        factory.getAllMemberingGroups = function (userId) {
+            return $http.get("/api/user/" + userId + "/group/member");
+        };
+
         factory.sendGroupRequest = function(data) {
             return $http.post("/api/group/" + data.group.id + "/member/" + data.user.id, data);
+        }
+
+        factory.getAllPosts = function(groupId) {
+            return $http.get("/api/group/" + groupId + "/post");
         }
 
         return factory;

@@ -6,6 +6,7 @@ namespace StudyBuddies.Business.ViewModels.Groups
 {
     public class PostViewModel
     {
+        public Guid Id { get; set; }
         public LookupViewModel User { get; set; }
         public LookupViewModel Group { get; set; }
         public DateTime Date { get; set; }
@@ -17,6 +18,9 @@ namespace StudyBuddies.Business.ViewModels.Groups
         public PostViewModelMappingProfile()
         {
             CreateMap<Post, PostViewModel>();
+
+            CreateMap<Post, LookupViewModel>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(y => y.Content));
         }
     }
 }

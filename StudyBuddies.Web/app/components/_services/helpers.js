@@ -10,9 +10,14 @@
             if (typeof response === "string")
                 errorMessages = response;
             else
-                angular.forEach(response.modelState, function (value) {
-                    errorMessages += "<p>" + value[0] + "</p>";
-                });
+                if (response.hasOwnProperty("modelState"))
+                    angular.forEach(response.modelState, function (value) {
+                        errorMessages += "<p>" + value[0] + "</p>";
+                    });
+                else
+                    angular.forEach(response, function (value) {
+                        errorMessages += "<p>" + value + "</p>";
+                    });
 
             Notification.error({ message: errorMessages, title: "Please correct the following fields:"});
         };

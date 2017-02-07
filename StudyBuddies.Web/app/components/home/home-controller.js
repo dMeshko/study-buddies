@@ -7,7 +7,6 @@
                 $scope.posts = data;
             })
             .error(function (response) {
-                console.log("Unable to fetch the users!! " + response);
                 $scope.parseErrorMessage(response);
             });
     }

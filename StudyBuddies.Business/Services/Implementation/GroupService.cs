@@ -47,7 +47,7 @@ namespace StudyBuddies.Business.Services.Implementation
             return Mapper.Map<IEnumerable<Group>, IEnumerable<GroupViewModel>>(groups);
         }
 
-        public void CreateGroup(CreateGroupViewModel group)
+        public Guid CreateGroup(CreateGroupViewModel group)
         {
             var user = _userRepository.GetById(group.Admin.Id);
             if (user == null)
@@ -59,6 +59,7 @@ namespace StudyBuddies.Business.Services.Implementation
 
             var dboGroup = new Group(group.Name, group.Description, group.GroupCapacity, user, subject);
             _groupRepository.Add(dboGroup);
+            return dboGroup.Id;
         }
 
         public void UpdateGroup(UpdateGroupViewModel group)

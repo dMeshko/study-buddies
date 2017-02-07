@@ -37,8 +37,8 @@ namespace StudyBuddies.Web.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _groupService.CreateGroup(model);
-            return Ok();
+            var groupId = _groupService.CreateGroup(model);
+            return Ok(groupId);
         }
 
         [Route("")]

@@ -36,7 +36,7 @@ namespace StudyBuddies.Business.Services.Implementation
             return Mapper.Map<Post, PostViewModel>(post);
         }
 
-        public void CreatePost(CreatePostViewModel post)
+        public PostViewModel CreatePost(CreatePostViewModel post)
         {
             if (post == null)
                 throw new BusinessLayerException(AppExceptionMessage.INVALID_INTERNAL_STATE);
@@ -49,8 +49,22 @@ namespace StudyBuddies.Business.Services.Implementation
             if (group == null)
                 throw new NotFoundException(GroupExceptionMessage.GROUP_NOT_FOUND);
 
-            var dboPost = new Post(user, group, post.Content, Mapper.Map<IList<AttachmentViewModel>, List<Attachment>>(post.Attachments));
+            var dboPost = new Post(user, group, post.Content);
             _postRepository.Add(dboPost);
+            return Mapper.Map<Post, PostViewModel>(dboPost);
+        }
+
+        public void AddAttachment(AttachmentViewModel attachment)
+        {
+            if (attachment == null)
+                throw new ArgumentNullException(nameof(attachment));
+
+            var post = _postRepository.GetById(attachment.PostId);
+            if (post == null)
+                throw new NotFoundException(PostExceptionMessage.POST_NOT_FOUND);
+
+            var dboAttachment = new Attachment(post, attachment.Name, attachment.File);
+            post.AddAttachment(dboAttachment);
         }
 
         public void DeletePost(Guid postId)
@@ -66,17 +80,17 @@ namespace StudyBuddies.Business.Services.Implementation
 
         #region Comment
 
-        public IList<CommentViewModel> GetAllComments(Guid postId)
+        public List<CommentViewModel> GetAllComments(Guid postId)
         {
             var post = _postRepository.GetById(postId);
             if (post == null)
                 throw new NotFoundException(PostExceptionMessage.POST_NOT_FOUND);
 
             var comments = post.Comments;
-            return Mapper.Map<IList<Comment>, IList<CommentViewModel>>(comments);
+            return Mapper.Map<IList<Comment>, List<CommentViewModel>>(comments);
         }
 
-        public void AddComment(CreateCommentViewModel comment)
+        public CommentViewModel AddComment(CreateCommentViewModel comment)
         {
             if (comment == null)
                 throw new BusinessLayerException(AppExceptionMessage.INVALID_INTERNAL_STATE);
@@ -91,9 +105,10 @@ namespace StudyBuddies.Business.Services.Implementation
 
             var dboComment = new Comment(user, post, comment.Content);
             _commentRepository.Add(dboComment);
+            return Mapper.Map<Comment, CommentViewModel>(dboComment);
         }
 
-        public void DeleteComment(Guid postId, Guid commentId)
+        public Guid DeleteComment(Guid postId, Guid commentId)
         {
             var post = _postRepository.GetById(postId);
             if (post == null)
@@ -104,6 +119,7 @@ namespace StudyBuddies.Business.Services.Implementation
                 throw new NotFoundException(CommentExceptionMessage.COMMENT_NOT_FOUND);
 
             post.RemoveComment(comment);
+            return comment.Id;
         }
 
         #endregion

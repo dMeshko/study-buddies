@@ -6,6 +6,7 @@ namespace StudyBuddies.Business.ViewModels.Groups
 {
     public class CommentViewModel
     {
+        public Guid Id { get; set; }
         public LookupViewModel User { get; set; }
         public LookupViewModel Post { get; set; }
         public DateTime Date { get; set; }

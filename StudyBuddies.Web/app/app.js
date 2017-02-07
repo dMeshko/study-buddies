@@ -9,7 +9,8 @@ var app = angular.module("StudyBuddies", [
     "ui.bootstrap",
     "angular-loading-bar",
     "uiRouterStyles",
-    "ui-notification"
+    "ui-notification",
+    "angularFileUpload"
     //"oc.lazyLoad"
 ]);
 

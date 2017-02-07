@@ -29,6 +29,16 @@
                         }
                     }
                 })
+                 .state("app.users.profile.groups",
+                {
+                    url: "/groups",
+                    views: {
+                        "content@": {
+                            template: require("./list-user-groups/list-user-groups.html"),
+                            controller: "ListUserGroupsController"
+                        }
+                    }
+                })
                 .state("app.users.register",
                 {
                     url: "/register",
@@ -39,6 +49,6 @@
                         }
                     }
                 });
-            }
+        }
     ]);
 };

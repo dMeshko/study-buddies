@@ -11,7 +11,7 @@ namespace StudyBuddies.Business.Services
 
         GroupViewModel GetGroupById(Guid groupId);
         IEnumerable<GroupViewModel> GetAllGroups();
-        void CreateGroup(CreateGroupViewModel group);
+        Guid CreateGroup(CreateGroupViewModel group);
         void UpdateGroup(UpdateGroupViewModel group);
         void DeleteGroup(Guid groupId);
 

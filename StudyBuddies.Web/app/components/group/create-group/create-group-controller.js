@@ -1,22 +1,19 @@
 ﻿module.exports = function(ngModule) {
     ngModule.controller("CreateGroupController", [
-        "$scope", "GroupService", "SubjectService",
-        function ($scope, GroupService, SubjectService) {
+        "$scope", "GroupService", "SubjectService", "$state",
+        function ($scope, GroupService, SubjectService, $state) {
             $scope.model = {
                 name: "",
                 description: "",
                 groupCapacity: 0,
-                admin: {
-                    id: "50C308F7-E2E5-4529-8BA8-A700017C712D",
-                    name: "Darko Meshkovski"
-                },
+                admin: $scope.currentUser,
                 subject: null
             };
 
             $scope.createGroup = function() {
                 GroupService.createGroup($scope.model)
-                    .success(function(response) {
-                        alert("DONE" + response);
+                    .success(function(data) {
+                        $state.go("app.groups.details", { id: data });
                     })
                     .error(function (response) {
                         $scope.parseErrorMessage(response);

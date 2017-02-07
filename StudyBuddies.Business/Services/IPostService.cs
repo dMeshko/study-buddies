@@ -9,16 +9,17 @@ namespace StudyBuddies.Business.Services
         #region Post
 
         PostViewModel GetPostById(Guid postId);
-        void CreatePost(CreatePostViewModel post);
+        PostViewModel CreatePost(CreatePostViewModel post);
+        void AddAttachment(AttachmentViewModel attachment);
         void DeletePost(Guid postId);
 
         #endregion
 
         #region Comment
 
-        IList<CommentViewModel> GetAllComments(Guid postId);
-        void AddComment(CreateCommentViewModel comment);
-        void DeleteComment(Guid postId, Guid commentId);
+        List<CommentViewModel> GetAllComments(Guid postId);
+        CommentViewModel AddComment(CreateCommentViewModel comment);
+        Guid DeleteComment(Guid postId, Guid commentId);
 
         #endregion
     }

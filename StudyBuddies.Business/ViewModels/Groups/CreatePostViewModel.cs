@@ -10,7 +10,6 @@ namespace StudyBuddies.Business.ViewModels.Groups
         public LookupViewModel User { get; set; }
         public LookupViewModel Group { get; set; }
         public string Content { get; set; }
-        public IList<AttachmentViewModel> Attachments { get; set; }
     }
 
     public class CreatePostViewModelValidator : AbstractValidator<CreatePostViewModel>

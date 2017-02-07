@@ -16,7 +16,7 @@ namespace StudyBuddies.Domain.Groups
 
         protected Post() { }
 
-        public Post(User user, Group group, string content, IList<Attachment> attachments)
+        public Post(User user, Group group, string content)
         {
             if (user == null)
                 throw new InvalidDataException(nameof(user));
@@ -31,7 +31,7 @@ namespace StudyBuddies.Domain.Groups
             _group = group;
             _date = DateTime.UtcNow;
             _content = content;
-            _attachments = attachments;
+            _attachments = new List<Attachment>();
             _comments = new List<Comment>();
         }
 
@@ -47,6 +47,22 @@ namespace StudyBuddies.Domain.Groups
         #endregion
 
         #region Public Methods
+
+        public virtual void AddAttachment(Attachment attachment)
+        {
+            if (attachment == null)
+                throw new InvalidDataException(nameof(attachment));
+
+            _attachments.Add(attachment);
+        }
+
+        public virtual void RemoveAttachment(Attachment attachment)
+        {
+            if (attachment == null)
+                throw new InvalidDataException(nameof(attachment));
+
+            _attachments.Remove(attachment);
+        }
 
         public virtual void AddComment(Comment comment)
         {
