@@ -14,4 +14,5 @@ require("scripts/loading-bar.min");
 require("angular-ui-router-styles/ui-router-styles.js");
 require("angular-ui-notification/dist/angular-ui-notification.min.js");
 require("angular-file-upload");
+require("angular-file-saver");
 //require("oclazyload");

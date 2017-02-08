@@ -9,6 +9,7 @@
   "author": "dMeshko",
   "license": "ISC",
   "devDependencies": {
+    "angular-file-saver": "^1.1.3",
     "angular-file-upload": "^2.5.0",
     "angular-ui-notification": "^0.3.5",
     "angular-ui-router-styles": "^0.0.6",

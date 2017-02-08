@@ -60,7 +60,8 @@ namespace StudyBuddies.Web.Controllers.Api
             
             HttpContent file = files[0];
             model.Name = file.Headers.ContentDisposition.FileName;
-            
+            model.ContentType = file.Headers.ContentType.MediaType;
+
             // access file's stream
             Stream fileStream = await file.ReadAsStreamAsync();
             using (MemoryStream memoryStream = new MemoryStream())

@@ -20,6 +20,11 @@ namespace StudyBuddies.Data.Mappings.Groups
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Not.Nullable();
 
+            Map(x => x.ContentType)
+                .Column("ContentType")
+                .Access.CamelCaseField(Prefix.Underscore)
+                .Not.Nullable();
+
             Map(x => x.File)
                 .CustomType<NHibernate.Type.BinaryBlobType>()
                 .CustomSqlType("varbinary(MAX)")

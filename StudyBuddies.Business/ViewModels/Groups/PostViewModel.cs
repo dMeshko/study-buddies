@@ -1,6 +1,7 @@
 ﻿using System;
 using AutoMapper;
 using StudyBuddies.Domain.Groups;
+using System.Collections.Generic;
 
 namespace StudyBuddies.Business.ViewModels.Groups
 {
@@ -11,6 +12,7 @@ namespace StudyBuddies.Business.ViewModels.Groups
         public LookupViewModel Group { get; set; }
         public DateTime Date { get; set; }
         public string Content { get; set; }
+        public List<AttachmentViewModel> Attachments { get; set; }
     }
 
     public class PostViewModelMappingProfile : Profile

@@ -3,6 +3,7 @@
     </h2>
     <p ng-bind="::post.date | date: 'short'"></p>
     <p ng-bind="::post.content"></p>
+    <div ng-repeat="attachment in post.attachments" ng-click="downloadFile(attachment)" ng-bind="::attachment.name"></div>
     <div class="row">
         <button class="btn btn-info" ng-click="hideComments = !hideComments">Comment</button>
         <button class="btn btn-danger" ng-click="deletePost()">Delete</button>

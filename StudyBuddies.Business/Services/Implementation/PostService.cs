@@ -63,7 +63,7 @@ namespace StudyBuddies.Business.Services.Implementation
             if (post == null)
                 throw new NotFoundException(PostExceptionMessage.POST_NOT_FOUND);
 
-            var dboAttachment = new Attachment(post, attachment.Name, attachment.File);
+            var dboAttachment = new Attachment(post, attachment.Name, attachment.ContentType, attachment.File);
             post.AddAttachment(dboAttachment);
         }
 

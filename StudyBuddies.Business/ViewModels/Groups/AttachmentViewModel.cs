@@ -8,6 +8,7 @@ namespace StudyBuddies.Business.ViewModels.Groups
     {
         public Guid PostId { get; set; }
         public string Name { get; set; }
+        public string ContentType { get; set; }
         public byte[] File { get; set; }
     }
 
