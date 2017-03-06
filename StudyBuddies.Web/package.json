@@ -21,6 +21,7 @@
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.2.0",
+    "node-sass": "^4.5.0",
     "oclazyload": "^1.0.9",
     "raw-loader": "^0.5.1",
     "sass-loader": "^4.1.1",

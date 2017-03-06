@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class BuddyRequestMap : ClassMap<BuddyRequest>
+    public class BuddyRequestMap : SubclassMap<BuddyRequest>
     {
         public BuddyRequestMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.UserFrom)
                 .Column("UserFromId")

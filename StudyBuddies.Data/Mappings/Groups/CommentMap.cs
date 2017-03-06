@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Mappings.Groups
 {
-    public class CommentMap : ClassMap<Comment>
+    public class CommentMap : SubclassMap<Comment>
     {
         public CommentMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.User)
                 .Column("UserId")

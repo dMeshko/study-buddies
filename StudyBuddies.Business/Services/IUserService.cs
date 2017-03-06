@@ -13,9 +13,10 @@ namespace StudyBuddies.Business.Services
 
         UserViewModel GetUserById(Guid userId);
         IEnumerable<UserViewModel> GetAllUsers();
-        void RegisterUser(RegisterUserViewModel user);
+        Guid RegisterUser(RegisterUserViewModel user);
         void Delete(Guid userId);
         void UpdateUser(UpdateUserViewModel user);
+        LookupViewModel Login(LoginViewModel user);
 
         #endregion
 

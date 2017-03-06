@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class UserMap : ClassMap<User>
+    public class UserMap : SubclassMap<User>
     {
         public UserMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             Map(x => x.Name)
                 .Access.CamelCaseField(Prefix.Underscore)
@@ -39,8 +38,7 @@ namespace StudyBuddies.Data.Mappings.Users
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Nullable()
                 .Column("Username")
-                .Length(25)
-                .Unique();
+                .Length(25);
 
             Map(x => x.CoverImage)
                 .CustomType<NHibernate.Type.BinaryBlobType>()

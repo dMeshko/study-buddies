@@ -1,8 +1,36 @@
-﻿<h2>details</h2>
-<pre>{{ group | json }}</pre>
-<div>
-    <textarea rows="5" class="form-control" ng-model="post.content"></textarea>
-    <input type="file" nv-file-select="" uploader="uploader" multiple="">
-    <button ng-click="addPost()" class="btn btn-success">Add Post</button>
+﻿<div class="row" style="margin: 5px;">
+    <div class="col-md-3 well">
+        <div class="row">
+            <span style="background: url(group.jpg) 50% 50% no-repeat; border-radius: 60%"></span>
+        </div>
+        <div class="row" style="margin: 5px;">
+            <strong style="font-size: x-large">Name: </strong> <span style="font-size: x-large">{{ group.name }}</span>
+            <br />
+            <strong style="font-size: large">Description: </strong> <span style="font-size: large">{{ group.description }}</span>
+            <br />
+            <i class="fa fa-user-circle"></i> Admin: <a href="">{{ group.admin.name }}</a>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <i class="fa fa-user"></i> Capacity: <span class="badge badge-info">{{ group.occupiedCapacity}} / {{ group.groupCapacity }}</span>
+            </div>
+            <div class="col-md-6">
+                <i class="fa fa-inbox"></i> Status: <span ng-class="{'label-success': group.status.id == 0, 'label-danger' : group.status.id > 0}" class="label">{{ group.status.name }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="row" style="margin-bottom: 10px">
+            <div class="col-md-12">
+                <h4><i class="fa fa-pencil"></i> Write Post</h4>
+                <textarea rows="5" class="form-control" ng-model="post.content"></textarea>
+                <input type="file" nv-file-select="" uploader="uploader" multiple="">
+                <button ng-click="addPost()" class="btn btn-success">Add Post</button>
+            </div>
+        </div>
+        <hr />
+        <div ng-repeat="post in posts" post="post" on-remove="posts.splice($index, 1)"></div>
+    </div>
 </div>
-<div ng-repeat="post in posts" post="post" on-remove="posts.splice($index, 1)"></div>

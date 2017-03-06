@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class NotificationMap : ClassMap<Notification>
+    public class NotificationMap : SubclassMap<Notification>
     {
         public NotificationMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract(); // indicates that the parent class is abstract.
 
             References(x => x.UserFrom)
                 .Column("UserFromId")
@@ -21,10 +20,10 @@ namespace StudyBuddies.Data.Mappings.Users
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Not.Nullable();
 
-            //References(x => x.SourceEntity)
-            //    .Column("SourceEntityId")
-            //    .Access.CamelCaseField(Prefix.Underscore)
-            //    .Not.Nullable();
+            References(x => x.SourceEntity)
+                .Column("SourceEntityId")
+                .Access.CamelCaseField(Prefix.Underscore)
+                .Not.Nullable();
 
             Map(x => x.Date)
                 .Column("Date")

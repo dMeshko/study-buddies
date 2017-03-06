@@ -1,5 +1,21 @@
-﻿<div class="row">
-    <span ng-bind="::user.fullName"></span>
-    <a ui-sref="app.users.profile.buddies">Buddies</a>
-    <a ui-sref="app.users.profile.groups({ id: currentUser.id })">Groups</a>
+﻿<div class="well">
+    <div class="row">
+        <span style="background: url(group.jpg) 50% 50% no-repeat; border-radius: 60%"></span>
+    </div>
+    <div class="row" style="margin: 5px;">
+        <strong style="font-size: x-large">Name: </strong> <span style="font-size: x-large">{{ ::user.fullName }}</span>
+        <br />
+        <strong style="font-size: large">Institutions: </strong> <span style="font-size: large">{{ ::user.institutions }}</span>
+        <br />
+        <i class="fa fa-user-circle"></i> Admin: <a href="">{{ ::user.username || 'x' }}</a>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <a ui-sref="app.users.profile.buddies({ id: currentUser.id })" title="Buddies"><i class="fa fa-users fa-2x"></i></a>
+        </div>
+        <div class="col-md-6 text-center">
+            <a ui-sref="app.users.profile.groups({ id: currentUser.id })" title="Groups"><i class="fa fa-object-group fa-2x"></i></a>
+        </div>
+    </div>
 </div>

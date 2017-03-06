@@ -16,5 +16,8 @@
         </div>
         <button ng-disabled="group.occupiedCapacity == group.groupCapacity || group.status.id == 1" 
                 ng-click="joinGroup(group.id)" class="btn btn-default btn-block">Join Group</button>
+        <button ng-if="currentUser.id.toLowerCase() === group.admin.id.toLowerCase()" ng-click="deleteGroup(group.id)" class="btn btn-danger btn-block">
+            Delete Group
+        </button>
     </div>
 </div>

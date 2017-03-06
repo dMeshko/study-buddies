@@ -18,13 +18,13 @@ webpackJsonp([0],[
 	__webpack_require__(/*! ./constants */ 1)(app);
 	__webpack_require__(/*! ./config */ 2)(app);
 	
-	__webpack_require__(/*! ./common */ 13)(app);
+	__webpack_require__(/*! ./common */ 15)(app);
 	
 	//webpack context module API
-	var requireContext = __webpack_require__(/*! ./components */ 20);
+	var requireContext = __webpack_require__(/*! ./components */ 24);
 	requireAll(requireContext, app);
 	
-	requireContext = __webpack_require__(/*! ./admin */ 58);
+	requireContext = __webpack_require__(/*! ./admin */ 61);
 	requireAll(requireContext, app);
 
 /***/ },
@@ -49,7 +49,7 @@ webpackJsonp([0],[
 	    __webpack_require__(/*! ./providers */ 3)(ngModule);
 	    __webpack_require__(/*! ./config */ 4)(ngModule);
 	    __webpack_require__(/*! ./states */ 5)(ngModule);
-	    __webpack_require__(/*! ./run */ 12)(ngModule);
+	    __webpack_require__(/*! ./run */ 14)(ngModule);
 	};
 
 /***/ },
@@ -134,6 +134,22 @@ webpackJsonp([0],[
 	            }
 	        }).state("app.home", {
 	            url: "" //<-- Empty string for "app" state to override the / abstract state
+	        }).state("app.login", {
+	            url: "login",
+	            views: {
+	                "content@": {
+	                    template: __webpack_require__(/*! app/common/auth/login.html */ 12),
+	                    controller: "LoginController"
+	                }
+	            }
+	        }).state("app.logout", {
+	            url: "logout",
+	            views: {
+	                "content@": {
+	                    template: __webpack_require__(/*! app/common/auth/logout.html */ 13),
+	                    controller: "LogoutController"
+	                }
+	            }
 	        });
 	    }]);
 	};
@@ -145,7 +161,7 @@ webpackJsonp([0],[
   \****************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavCollapsed = !isNavCollapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a ui-sref=\"app.home\" class=\"navbar-brand\">{{ siteName }}</a>\r\n        </div>\r\n        <div class=\"navbar-collapse collapse\" uib-collapse=\"isNavCollapsed\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.home\">Home</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.users.profile\">Profile</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.register\">Register</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.create\">Create Group</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.list\">View Groups</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.member\">My Groups</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"navbar navbar-inverse navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle\" ng-click=\"isNavCollapsed = !isNavCollapsed\" data-toggle=\"collapse\" data-target=\".navbar-collapse\">\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a ui-sref=\"app.home\" class=\"navbar-brand\">{{ siteName }}</a>\r\n        </div>\r\n        <div class=\"navbar-collapse collapse\" uib-collapse=\"isNavCollapsed\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.home\">Home</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.users.profile\">Profile</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.create\">Create Group</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.list\">View Groups</a></li>\r\n                <li ui-sref-active=\"active\"><a ui-sref=\"app.groups.member\">My Groups</a></li>\r\n            </ul>\r\n            \r\n            <ul class=\"nav navbar-nav pull-right\">\r\n                <li ng-if=\"!currentUser.id\" ui-sref-active=\"active\"><a ui-sref=\"app.login\">Login</a></li>\r\n                <li ng-if=\"currentUser.id\" ui-sref-active=\"active\"><a ui-sref=\"app.logout\">Logout</a></li>\r\n                <li ng-if=\"!currentUser.id\" ui-sref-active=\"active\"><a ui-sref=\"app.users.register\">Register</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
 /* 7 */
@@ -172,7 +188,7 @@ webpackJsonp([0],[
   \*******************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row\">\r\n    <span ng-bind=\"::user.fullName\"></span>\r\n    <a ui-sref=\"app.users.profile.buddies\">Buddies</a>\r\n    <a ui-sref=\"app.users.profile.groups({ id: currentUser.id })\">Groups</a>\r\n</div>"
+	module.exports = "<div class=\"well\">\r\n    <div class=\"row\">\r\n        <span style=\"background: url(group.jpg) 50% 50% no-repeat; border-radius: 60%\"></span>\r\n    </div>\r\n    <div class=\"row\" style=\"margin: 5px;\">\r\n        <strong style=\"font-size: x-large\">Name: </strong> <span style=\"font-size: x-large\">{{ ::user.fullName }}</span>\r\n        <br />\r\n        <strong style=\"font-size: large\">Institutions: </strong> <span style=\"font-size: large\">{{ ::user.institutions }}</span>\r\n        <br />\r\n        <i class=\"fa fa-user-circle\"></i> Admin: <a href=\"\">{{ ::user.username || 'x' }}</a>\r\n        <hr />\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-6 text-center\">\r\n            <a ui-sref=\"app.users.profile.buddies({ id: currentUser.id })\" title=\"Buddies\"><i class=\"fa fa-users fa-2x\"></i></a>\r\n        </div>\r\n        <div class=\"col-md-6 text-center\">\r\n            <a ui-sref=\"app.users.profile.groups({ id: currentUser.id })\" title=\"Groups\"><i class=\"fa fa-object-group fa-2x\"></i></a>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
 /* 10 */
@@ -194,6 +210,24 @@ webpackJsonp([0],[
 
 /***/ },
 /* 12 */
+/*!********************************!*\
+  !*** ./common/auth/login.html ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"row well\">\r\n    <input type=\"email\" ng-model=\"model.email\" class=\"form-control\" placeholder=\"Email Address\" />\r\n    <input type=\"password\" ng-model=\"model.password\" class=\"form-control\" placeholder=\"Email Address\" />\r\n    <button ng-click=\"login()\" type=\"button\" class=\"btn btn-block btn-success\"><i class=\"fa fa-login\"></i> Login</button>\r\n</div>"
+
+/***/ },
+/* 13 */
+/*!*********************************!*\
+  !*** ./common/auth/logout.html ***!
+  \*********************************/
+/***/ function(module, exports) {
+
+	module.exports = "out.."
+
+/***/ },
+/* 14 */
 /*!***********************!*\
   !*** ./config/run.js ***!
   \***********************/
@@ -206,30 +240,36 @@ webpackJsonp([0],[
 	        };
 	
 	        $rootScope.currentUser = {
-	            id: "33CA1AB3-3AFC-4308-9179-A71101711844",
+	            //id: "2F27D7B7-B62E-4E00-B5DD-A71500019A2C",
+	            id: "DB69A5E9-2537-47CC-8151-A714018A667E",
+	            //id: "70FE7E5A-42BD-4BBB-B6F4-A714018ABD53",
 	            name: "Darko Meshkovski"
 	        };
 	    }]);
 	};
 
 /***/ },
-/* 13 */
+/* 15 */
 /*!*************************!*\
   !*** ./common/index.js ***!
   \*************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	/// <reference path="index.js" />
 	// list all the componenets u want included
 	// i.e. list all the dependencies
 	module.exports = function (ngModule) {
-	    __webpack_require__(/*! ./header-controller */ 14)(ngModule);
-	    __webpack_require__(/*! ./footer-controller */ 15)(ngModule);
+	    __webpack_require__(/*! ./header-controller */ 16)(ngModule);
+	    __webpack_require__(/*! ./footer-controller */ 17)(ngModule);
 	
-	    __webpack_require__(/*! ./style.css */ 16);
+	    __webpack_require__(/*! ./auth/login-controller */ 18)(ngModule);
+	    __webpack_require__(/*! ./auth/logout-controller */ 19)(ngModule);
+	
+	    __webpack_require__(/*! ./style.css */ 20);
 	};
 
 /***/ },
-/* 14 */
+/* 16 */
 /*!*************************************!*\
   !*** ./common/header-controller.js ***!
   \*************************************/
@@ -242,7 +282,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 15 */
+/* 17 */
 /*!*************************************!*\
   !*** ./common/footer-controller.js ***!
   \*************************************/
@@ -256,7 +296,44 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 16 */
+/* 18 */
+/*!*****************************************!*\
+  !*** ./common/auth/login-controller.js ***!
+  \*****************************************/
+/***/ function(module, exports) {
+
+	module.exports = function (ngModule) {
+	    ngModule.controller("LoginController", ["$scope", "$rootScope", "UserService", "$state", function ($scope, $rootScope, UserService, $state) {
+	        $rootScope.currentUser = {};
+	
+	        $scope.model = {};
+	        $scope.login = function () {
+	            UserService.login($scope.model).success(function (data) {
+	                $rootScope.currentUser = data;
+	                $state.go("app.home");
+	            }).error(function (response) {
+	                $scope.parseErrorMessage(response);
+	            });
+	        };
+	    }]);
+	};
+
+/***/ },
+/* 19 */
+/*!******************************************!*\
+  !*** ./common/auth/logout-controller.js ***!
+  \******************************************/
+/***/ function(module, exports) {
+
+	module.exports = function (ngModule) {
+	    ngModule.controller("LogoutController", ["$state", "$rootScope", function ($state, $rootScope) {
+	        $rootScope.currentUser = {};
+	        $state.go("app.login");
+	    }]);
+	};
+
+/***/ },
+/* 20 */
 /*!**************************!*\
   !*** ./common/style.css ***!
   \**************************/
@@ -265,10 +342,10 @@ webpackJsonp([0],[
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./style.css */ 17);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./style.css */ 21);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 19)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 23)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -285,13 +362,13 @@ webpackJsonp([0],[
 	}
 
 /***/ },
-/* 17 */
+/* 21 */
 /*!******************************************!*\
   !*** ../~/css-loader!./common/style.css ***!
   \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 18)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 22)();
 	// imports
 	
 	
@@ -302,39 +379,39 @@ webpackJsonp([0],[
 
 
 /***/ },
-/* 18 */,
-/* 19 */,
-/* 20 */
+/* 22 */,
+/* 23 */,
+/* 24 */
 /*!*********************************!*\
   !*** ./components ^\.\/.*\.js$ ***!
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./_directives/cover-image/cover-image-directive.js": 21,
-		"./_directives/featured-user/featured-user-directive.js": 23,
-		"./_directives/file-model-directive.js": 25,
-		"./_directives/frontpage-group/frontpage-group-directive.js": 26,
-		"./_directives/post/post-directive.js": 28,
-		"./_directives/sidebar-group/sidebar-group-directive.js": 30,
-		"./_directives/two-state-button/two-state-button-directive.js": 32,
-		"./_services/group-service.js": 34,
-		"./_services/helpers.js": 35,
-		"./_services/post-service.js": 36,
-		"./_services/subject-service.js": 37,
-		"./_services/user-service.js": 38,
-		"./group/create-group/create-group-controller.js": 39,
-		"./group/group-details/group-details-controller.js": 40,
-		"./group/list-groups/list-groups-controller.js": 41,
-		"./group/states.js": 42,
-		"./home/home-controller.js": 46,
-		"./home/left-sidebar-controller.js": 47,
-		"./home/right-sidebar-controller.js": 48,
-		"./user/list-user-groups/list-user-groups-controller.js": 49,
-		"./user/list-users/list-users-controller.js": 50,
-		"./user/register-user/register-user-controller.js": 51,
-		"./user/states.js": 52,
-		"./user/view-profile/view-profile.js": 57
+		"./_directives/cover-image/cover-image-directive.js": 25,
+		"./_directives/featured-user/featured-user-directive.js": 26,
+		"./_directives/file-model-directive.js": 28,
+		"./_directives/frontpage-group/frontpage-group-directive.js": 29,
+		"./_directives/post/post-directive.js": 31,
+		"./_directives/sidebar-group/sidebar-group-directive.js": 33,
+		"./_directives/two-state-button/two-state-button-directive.js": 35,
+		"./_services/group-service.js": 37,
+		"./_services/helpers.js": 38,
+		"./_services/post-service.js": 39,
+		"./_services/subject-service.js": 40,
+		"./_services/user-service.js": 41,
+		"./group/create-group/create-group-controller.js": 42,
+		"./group/group-details/group-details-controller.js": 43,
+		"./group/list-groups/list-groups-controller.js": 44,
+		"./group/states.js": 45,
+		"./home/home-controller.js": 49,
+		"./home/left-sidebar-controller.js": 50,
+		"./home/right-sidebar-controller.js": 51,
+		"./user/list-user-groups/list-user-groups-controller.js": 52,
+		"./user/list-users/list-users-controller.js": 53,
+		"./user/register-user/register-user-controller.js": 54,
+		"./user/states.js": 55,
+		"./user/view-profile/view-profile.js": 60
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -347,11 +424,11 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 20;
+	webpackContext.id = 24;
 
 
 /***/ },
-/* 21 */
+/* 25 */
 /*!*********************************************************************!*\
   !*** ./components/_directives/cover-image/cover-image-directive.js ***!
   \*********************************************************************/
@@ -372,8 +449,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 22 */,
-/* 23 */
+/* 26 */
 /*!*************************************************************************!*\
   !*** ./components/_directives/featured-user/featured-user-directive.js ***!
   \*************************************************************************/
@@ -384,7 +460,7 @@ webpackJsonp([0],[
 	        return {
 	            restrict: "E",
 	            replace: true,
-	            template: __webpack_require__(/*! ./featured-user.html */ 24),
+	            template: __webpack_require__(/*! ./featured-user.html */ 27),
 	            scope: {
 	                "user": "=",
 	                "callback": "="
@@ -394,7 +470,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 24 */
+/* 27 */
 /*!*****************************************************************!*\
   !*** ./components/_directives/featured-user/featured-user.html ***!
   \*****************************************************************/
@@ -403,7 +479,7 @@ webpackJsonp([0],[
 	module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" ng-src=\"data:image/png;base64,{{ user.image }}\" />\r\n    </div>\r\n    <div class=\"col-md-7\">\r\n        <h4>{{ user.fullName }}<small>&nbsp;&nbsp;[{{ user.username }}]</small></h4>\r\n        <p>\r\n            <span uib-rating ng-model=\"user.rating\" read-only=\"true\" ng-class=\"{ 'text-danger': user.rating <= 2, 'text-info': user.rating > 2 && user.rating <= 4, 'text-success': user.rating > 4 }\"></span>\r\n            <span class=\"separator\"></span>\r\n            <span>some important info</span>\r\n            <span class=\"separator\"></span>\r\n            <span>something</span>\r\n        </p>\r\n    </div>\r\n    <div class=\"col-md-3\">\r\n        <!--<two-state-button status=\"true\" callback=\"callback\" />-->\r\n        <button class=\"btn btn-success btn-block\">\r\n            <i class=\"glyphicon glyphicon-education\"></i> Buddy up\r\n        </button>\r\n        <button ui-sref=\"app.profile({id: user.id})\" class=\"btn btn-warning btn-block\">\r\n            <i class=\"glyphicon glyphicon-eye-open\"></i> Preview\r\n        </button>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 25 */
+/* 28 */
 /*!********************************************************!*\
   !*** ./components/_directives/file-model-directive.js ***!
   \********************************************************/
@@ -432,7 +508,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 26 */
+/* 29 */
 /*!*****************************************************************************!*\
   !*** ./components/_directives/frontpage-group/frontpage-group-directive.js ***!
   \*****************************************************************************/
@@ -445,7 +521,7 @@ webpackJsonp([0],[
 	            scope: {
 	                group: "="
 	            },
-	            template: __webpack_require__(/*! ./frontpage-group.html */ 27),
+	            template: __webpack_require__(/*! ./frontpage-group.html */ 30),
 	            link: function ($scope, $element, $attributes) {}
 	        };
 	
@@ -454,7 +530,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 27 */
+/* 30 */
 /*!*********************************************************************!*\
   !*** ./components/_directives/frontpage-group/frontpage-group.html ***!
   \*********************************************************************/
@@ -463,7 +539,7 @@ webpackJsonp([0],[
 	module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-2\">\r\n        <img src=\"\" class=\"img img-responsive\" />\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <h4>title</h4>\r\n        <small>author | subject</small>\r\n        <p>Description</p>\r\n        <p><span>Members x/y</span> | <span>Group Status: Assembly</span></p>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 28 */
+/* 31 */
 /*!*******************************************************!*\
   !*** ./components/_directives/post/post-directive.js ***!
   \*******************************************************/
@@ -476,9 +552,11 @@ webpackJsonp([0],[
 	                post: "=",
 	                onRemove: "&"
 	            },
-	            template: __webpack_require__(/*! ./post.html */ 29),
+	            template: __webpack_require__(/*! ./post.html */ 32),
 	            link: function ($scope, $element, $attributes) {
 	                $scope.hideComments = true;
+	
+	                $scope.currentUser = $rootScope.currentUser;
 	
 	                $scope.initCommentsSection = function () {
 	                    $scope.comments = [];
@@ -490,7 +568,7 @@ webpackJsonp([0],[
 	
 	                    $scope.comment = {
 	                        user: {
-	                            id: $rootScope.currentUser.id
+	                            id: $scope.currentUser.id
 	                        },
 	                        post: {
 	                            id: $scope.post.id
@@ -558,16 +636,16 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 29 */
+/* 32 */
 /*!***********************************************!*\
   !*** ./components/_directives/post/post.html ***!
   \***********************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"well\">\r\n    <h2>{{ ::post.user.name }} <small>&lt;{{ ::post.group.name }}&gt;</small>\r\n    </h2>\r\n    <p ng-bind=\"::post.date | date: 'short'\"></p>\r\n    <p ng-bind=\"::post.content\"></p>\r\n    <div ng-repeat=\"attachment in post.attachments\" ng-click=\"downloadFile(attachment)\" ng-bind=\"::attachment.name\"></div>\r\n    <div class=\"row\">\r\n        <button class=\"btn btn-info\" ng-click=\"hideComments = !hideComments\">Comment</button>\r\n        <button class=\"btn btn-danger\" ng-click=\"deletePost()\">Delete</button>\r\n    </div>\r\n    <div uib-collapse=\"hideComments\" expanded=\"initCommentsSection()\">\r\n        <div class=\"well well-lg\">\r\n            <div class=\"row\">\r\n                <textarea rows=\"3\" class=\"form-control\" ng-model=\"comment.content\"></textarea>\r\n                <div ng-click=\"postComment()\" class=\"btn btn-success pull-right\">Post the comment!</div>\r\n            </div>\r\n            <div class=\"row\" ng-repeat=\"comment in comments\" style=\"border-top: 1px solid red; margin-top: 10px; padding-top: 10px;\">\r\n                <strong>{{ ::comment.user.name }}, <small ng-bind=\"::comment.date | date: 'short'\"></small></strong>: {{ ::comment.content }}\r\n                <button class=\"btn btn-danger btn-sm\" ng-click=\"deleteComment(comment.id)\">Delete</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"well\">\r\n    <h2>\r\n        {{ ::post.user.name }} \r\n        <small>&lt;{{ ::post.group.name }}&gt;</small>&nbsp;\r\n        <button class=\"btn btn-danger btn-sm\" ng-click=\"deletePost()\"><i class=\"fa fa-trash-o\"></i></button>\r\n    </h2>\r\n    <p ng-bind=\"::post.date | date: 'short'\"></p>\r\n    <div style=\"background-color: white; padding: 5px;\">\r\n        <p ng-bind=\"::post.content\"></p>\r\n        <hr style=\"border-style: dashed\" />\r\n        <div class=\"row\">\r\n            <div ng-repeat=\"attachment in post.attachments\" ng-click=\"downloadFile(attachment)\" class=\"col-sm-3\" style=\"text-align: center\">\r\n                <span class=\"fa fa-file-o\" style=\"font-size: xx-large\"></span><br />\r\n                <a href=\"\" ng-bind=\"::attachment.name\"></a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <br />\r\n    <div class=\"row\">\r\n        <div class=\"pull-right\">\r\n            <button class=\"btn btn-info btn-sm\" ng-click=\"hideComments = !hideComments\"><span ng-bind=\"!!hideComments ? 'View Comments' : 'Hide Comments'\">{{ if (!!hideComments) '<span>View comments <i class=\"fa fa-chevron-down\"></i></span>' else 'Hide comments <i class=\"fa fa-chevron-up\"></i>' }}</span> <i class=\"fa fa-chevron-down\"></i></button>\r\n        </div>\r\n    </div>\r\n    <br />\r\n    <div uib-collapse=\"hideComments\" expanded=\"initCommentsSection()\">\r\n        <div class=\"input-group\">\r\n            <input type=\"text\" class=\"form-control\" ng-model=\"comment.content\" placeholder=\"Write a comment...\" aria-describedby=\"postComment\">\r\n            <span class=\"input-group-addon btn btn-success\" ng-click=\"postComment()\" id=\"postComment\">Post the comment!</span>\r\n        </div>\r\n        <br />\r\n        <div class=\"well\">\r\n            <div class=\"row\" ng-repeat=\"comment in comments\" style=\"border-top: 1px solid red; margin-top: 10px; padding-top: 10px;\">\r\n                <div class=\"col-md-4 padding-left-0\">\r\n                    <strong>\r\n                        <span style=\"font-size: small\">{{ ::comment.user.name }}, </span><br />\r\n                    </strong>\r\n                    <span style=\"font-size: smaller\" ng-bind=\"::comment.date | date: 'short'\"></span>\r\n                </div>\r\n                <div class=\"col-md-7 padding-left-0\">\r\n                    {{ ::comment.content }}\r\n                </div>\r\n                <div class=\"col-md-1 padding-left-0\">\r\n                    <button class=\"btn btn-danger btn-sm\" ng-click=\"deleteComment(comment.id)\"><i class=\"fa fa-trash-o\"></i></button>\r\n                </div>\r\n                <hr />\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 30 */
+/* 33 */
 /*!*************************************************************************!*\
   !*** ./components/_directives/sidebar-group/sidebar-group-directive.js ***!
   \*************************************************************************/
@@ -580,7 +658,7 @@ webpackJsonp([0],[
 	            scope: {
 	                group: "="
 	            },
-	            template: __webpack_require__(/*! ./sidebar-group.html */ 31),
+	            template: __webpack_require__(/*! ./sidebar-group.html */ 34),
 	            link: function ($scope, $element, $attributes) {
 	                $scope.model = {
 	                    user: {
@@ -606,7 +684,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 31 */
+/* 34 */
 /*!*****************************************************************!*\
   !*** ./components/_directives/sidebar-group/sidebar-group.html ***!
   \*****************************************************************/
@@ -615,7 +693,7 @@ webpackJsonp([0],[
 	module.exports = "<div class=\"row well\">\r\n    <div class=\"col-md-12\">\r\n        <h4 ng-bind=\"::group.name\"></h4>\r\n        <small>{{ ::group.admin.name }} | {{ ::group.subject.name }}</small>\r\n        <p ng-bind=\"::group.description\"></p>\r\n        <p><span class=\"badge\">{{ group.occupiedCapacity }} / {{ ::group.groupCapacity }}</span> | <span class=\"label label-success\" ng-bind=\"group.status.name\"></span></p>\r\n        <button ng-click=\"joinGroup(group.id)\" class=\"pull-right btn btn-sm btn-success\"><i class=\"fa fa-plus\"></i> Join</button>\r\n        <button ui-sref=\"app.groups.details({ id: group.id })\" style=\"margin-right: 10px;\" class=\"pull-right btn btn-sm btn-success\"><i class=\"fa fa-eye\"></i> Details</button>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 32 */
+/* 35 */
 /*!*******************************************************************************!*\
   !*** ./components/_directives/two-state-button/two-state-button-directive.js ***!
   \*******************************************************************************/
@@ -626,7 +704,7 @@ webpackJsonp([0],[
 	        return {
 	            restrict: "E",
 	            replace: true,
-	            template: __webpack_require__(/*! ./two-state-button.html */ 33),
+	            template: __webpack_require__(/*! ./two-state-button.html */ 36),
 	            scope: {
 	                status: "=",
 	                callback: "="
@@ -660,7 +738,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 33 */
+/* 36 */
 /*!***********************************************************************!*\
   !*** ./components/_directives/two-state-button/two-state-button.html ***!
   \***********************************************************************/
@@ -669,7 +747,7 @@ webpackJsonp([0],[
 	module.exports = "<button></button>"
 
 /***/ },
-/* 34 */
+/* 37 */
 /*!***********************************************!*\
   !*** ./components/_services/group-service.js ***!
   \***********************************************/
@@ -689,6 +767,10 @@ webpackJsonp([0],[
 	
 	        factory.createGroup = function (data) {
 	            return $http.post("/api/group", data);
+	        };
+	
+	        factory.deleteGroup = function (id) {
+	            return $http.delete("/api/group/" + id);
 	        };
 	
 	        factory.getAllGroupsWhereNoRequestIsSent = function (userId) {
@@ -712,7 +794,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 35 */
+/* 38 */
 /*!*****************************************!*\
   !*** ./components/_services/helpers.js ***!
   \*****************************************/
@@ -739,7 +821,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 36 */
+/* 39 */
 /*!**********************************************!*\
   !*** ./components/_services/post-service.js ***!
   \**********************************************/
@@ -778,7 +860,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 37 */
+/* 40 */
 /*!*************************************************!*\
   !*** ./components/_services/subject-service.js ***!
   \*************************************************/
@@ -797,7 +879,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 38 */
+/* 41 */
 /*!**********************************************!*\
   !*** ./components/_services/user-service.js ***!
   \**********************************************/
@@ -806,6 +888,10 @@ webpackJsonp([0],[
 	module.exports = function (ngModule) {
 	    ngModule.factory("UserService", ["$http", "$location", function ($http, $location) {
 	        var factory = {};
+	
+	        factory.login = function (model) {
+	            return $http.post("/api/user/login", model);
+	        };
 	
 	        factory.getUserById = function (id) {
 	            return $http.get("/api/user/" + id);
@@ -866,7 +952,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 39 */
+/* 42 */
 /*!******************************************************************!*\
   !*** ./components/group/create-group/create-group-controller.js ***!
   \******************************************************************/
@@ -900,7 +986,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 40 */
+/* 43 */
 /*!********************************************************************!*\
   !*** ./components/group/group-details/group-details-controller.js ***!
   \********************************************************************/
@@ -954,7 +1040,17 @@ webpackJsonp([0],[
 	                    });
 	                });
 	                $scope.uploader.uploadAll();
-	                $scope.posts.push(data);
+	
+	                //$scope.uploader.onCompleteAll = function () {
+	                if ($scope.uploader.queue.length === 0) $scope.posts.unshift(data);else // we gotta fetch the post, to get the attachments
+	                    PostService.getPostById(data.id).success(function (data) {
+	                        $scope.posts.unshift(data);
+	                    }).error(function (response) {
+	                        $scope.parseErrorMessage(response);
+	                    });
+	
+	                $scope.post.content = "";
+	                //}
 	            }).error(function (response) {
 	                $scope.parseErrorMessage(response);
 	            });
@@ -963,7 +1059,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 41 */
+/* 44 */
 /*!****************************************************************!*\
   !*** ./components/group/list-groups/list-groups-controller.js ***!
   \****************************************************************/
@@ -992,11 +1088,22 @@ webpackJsonp([0],[
 	            $scope.model.group.id = groupId;
 	            GroupService.sendGroupRequest($scope.model);
 	        };
+	
+	        $scope.deleteGroup = function (groupId) {
+	            GroupService.deleteGroup(groupId).success(function (data) {
+	                $scope.groups = $scope.groups.filter(function (item) {
+	                    if (item.id === groupId) return false;
+	                    return true;
+	                });
+	            }).error(function (response) {
+	                $scope.parseErrorMessage(response);
+	            });
+	        };
 	    }]);
 	};
 
 /***/ },
-/* 42 */
+/* 45 */
 /*!************************************!*\
   !*** ./components/group/states.js ***!
   \************************************/
@@ -1011,7 +1118,7 @@ webpackJsonp([0],[
 	            abstract: true,
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./list-groups/list-groups.html */ 43),
+	                    template: __webpack_require__(/*! ./list-groups/list-groups.html */ 46),
 	                    controller: "ListGroupsController"
 	                }
 	            }
@@ -1021,7 +1128,7 @@ webpackJsonp([0],[
 	            url: "/details/:id",
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./group-details/group-details.html */ 44),
+	                    template: __webpack_require__(/*! ./group-details/group-details.html */ 47),
 	                    controller: "ViewGroupDetailsController"
 	                }
 	            }
@@ -1029,7 +1136,7 @@ webpackJsonp([0],[
 	            url: "/create",
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./create-group/create-group.html */ 45),
+	                    template: __webpack_require__(/*! ./create-group/create-group.html */ 48),
 	                    controller: "CreateGroupController"
 	                }
 	            }
@@ -1038,25 +1145,25 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 43 */
+/* 46 */
 /*!*******************************************************!*\
   !*** ./components/group/list-groups/list-groups.html ***!
   \*******************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row well\" ng-repeat=\"group in groups\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" />\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <h4 ng-bind=\"::group.name\"></h4>\r\n        <span ng-bind=\"::group.admin.name\"></span>\r\n        <span ng-bind=\"::group.description\"></span>\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <span>Members: <span ng-class=\"{ 'text-danger': group.occupiedCapacity == group.groupCapacity }\" ng-bind=\"::group.occupiedCapacity\"></span> / <span ng-bind=\"::group.groupCapacity\"></span></span>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <span>Group status: <strong class=\"text-success\" ng-class=\"{ 'text-danger': group.status.id == 1 }\" ng-bind=\"::group.status.name\"></strong></span>\r\n            </div>\r\n        </div>\r\n        <button ng-disabled=\"group.occupiedCapacity == group.groupCapacity || group.status.id == 1\" \r\n                ng-click=\"joinGroup(group.id)\" class=\"btn btn-default btn-block\">Join Group</button>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"row well\" ng-repeat=\"group in groups\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" />\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <h4 ng-bind=\"::group.name\"></h4>\r\n        <span ng-bind=\"::group.admin.name\"></span>\r\n        <span ng-bind=\"::group.description\"></span>\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <span>Members: <span ng-class=\"{ 'text-danger': group.occupiedCapacity == group.groupCapacity }\" ng-bind=\"::group.occupiedCapacity\"></span> / <span ng-bind=\"::group.groupCapacity\"></span></span>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <span>Group status: <strong class=\"text-success\" ng-class=\"{ 'text-danger': group.status.id == 1 }\" ng-bind=\"::group.status.name\"></strong></span>\r\n            </div>\r\n        </div>\r\n        <button ng-disabled=\"group.occupiedCapacity == group.groupCapacity || group.status.id == 1\" \r\n                ng-click=\"joinGroup(group.id)\" class=\"btn btn-default btn-block\">Join Group</button>\r\n        <button ng-if=\"currentUser.id.toLowerCase() === group.admin.id.toLowerCase()\" ng-click=\"deleteGroup(group.id)\" class=\"btn btn-danger btn-block\">\r\n            Delete Group\r\n        </button>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 44 */
+/* 47 */
 /*!***********************************************************!*\
   !*** ./components/group/group-details/group-details.html ***!
   \***********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h2>details</h2>\r\n<pre>{{ group | json }}</pre>\r\n<div>\r\n    <textarea rows=\"5\" class=\"form-control\" ng-model=\"post.content\"></textarea>\r\n    <input type=\"file\" nv-file-select=\"\" uploader=\"uploader\" multiple=\"\">\r\n    <button ng-click=\"addPost()\" class=\"btn btn-success\">Add Post</button>\r\n</div>\r\n<div ng-repeat=\"post in posts\" post=\"post\" on-remove=\"posts.splice($index, 1)\"></div>\r\n"
+	module.exports = "<div class=\"row\" style=\"margin: 5px;\">\r\n    <div class=\"col-md-3 well\">\r\n        <div class=\"row\">\r\n            <span style=\"background: url(group.jpg) 50% 50% no-repeat; border-radius: 60%\"></span>\r\n        </div>\r\n        <div class=\"row\" style=\"margin: 5px;\">\r\n            <strong style=\"font-size: x-large\">Name: </strong> <span style=\"font-size: x-large\">{{ group.name }}</span>\r\n            <br />\r\n            <strong style=\"font-size: large\">Description: </strong> <span style=\"font-size: large\">{{ group.description }}</span>\r\n            <br />\r\n            <i class=\"fa fa-user-circle\"></i> Admin: <a href=\"\">{{ group.admin.name }}</a>\r\n            <hr />\r\n        </div>\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <i class=\"fa fa-user\"></i> Capacity: <span class=\"badge badge-info\">{{ group.occupiedCapacity}} / {{ group.groupCapacity }}</span>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <i class=\"fa fa-inbox\"></i> Status: <span ng-class=\"{'label-success': group.status.id == 0, 'label-danger' : group.status.id > 0}\" class=\"label\">{{ group.status.name }}</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-8\">\r\n        <div class=\"row\" style=\"margin-bottom: 10px\">\r\n            <div class=\"col-md-12\">\r\n                <h4><i class=\"fa fa-pencil\"></i> Write Post</h4>\r\n                <textarea rows=\"5\" class=\"form-control\" ng-model=\"post.content\"></textarea>\r\n                <input type=\"file\" nv-file-select=\"\" uploader=\"uploader\" multiple=\"\">\r\n                <button ng-click=\"addPost()\" class=\"btn btn-success\">Add Post</button>\r\n            </div>\r\n        </div>\r\n        <hr />\r\n        <div ng-repeat=\"post in posts\" post=\"post\" on-remove=\"posts.splice($index, 1)\"></div>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 45 */
+/* 48 */
 /*!*********************************************************!*\
   !*** ./components/group/create-group/create-group.html ***!
   \*********************************************************/
@@ -1065,7 +1172,7 @@ webpackJsonp([0],[
 	module.exports = "<div class=\"row\">\r\n    <input type=\"text\" ng-model=\"model.name\" class=\"form-control\" name=\"name\" placeholder=\"Name\" />\r\n    <input type=\"text\" ng-model=\"model.description\" class=\"form-control\" name=\"description\" placeholder=\"Description\" />\r\n    <input type=\"number\" ng-model=\"model.groupCapacity\" class=\"form-control\" name=\"capacity\" placeholder=\"Capacity\" min=\"0\" />\r\n    <select class=\"form-control\" name=\"subject\" ng-model=\"model.subject\" \r\n            ng-options=\"subject as subject.name + ' ( ' + subject.areaOfStudy.name + ' )' for subject in subjects track by subject.id\"></select>\r\n    <button ng-click=\"createGroup()\" class=\"btn btn-success\">Create Group</button>\r\n</div>"
 
 /***/ },
-/* 46 */
+/* 49 */
 /*!********************************************!*\
   !*** ./components/home/home-controller.js ***!
   \********************************************/
@@ -1084,7 +1191,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 47 */
+/* 50 */
 /*!****************************************************!*\
   !*** ./components/home/left-sidebar-controller.js ***!
   \****************************************************/
@@ -1103,7 +1210,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 48 */
+/* 51 */
 /*!*****************************************************!*\
   !*** ./components/home/right-sidebar-controller.js ***!
   \*****************************************************/
@@ -1121,7 +1228,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 49 */
+/* 52 */
 /*!*************************************************************************!*\
   !*** ./components/user/list-user-groups/list-user-groups-controller.js ***!
   \*************************************************************************/
@@ -1135,11 +1242,22 @@ webpackJsonp([0],[
 	        }).error(function (response) {
 	            $scope.parseErrorMessage(response);
 	        });
+	
+	        $scope.deleteGroup = function (groupId) {
+	            GroupService.deleteGroup(groupId).success(function (data) {
+	                $scope.groups = $scope.groups.filter(function (item) {
+	                    if (item.id === groupId) return false;
+	                    return true;
+	                });
+	            }).error(function (response) {
+	                $scope.parseErrorMessage(response);
+	            });
+	        };
 	    }]);
 	};
 
 /***/ },
-/* 50 */
+/* 53 */
 /*!*************************************************************!*\
   !*** ./components/user/list-users/list-users-controller.js ***!
   \*************************************************************/
@@ -1152,22 +1270,23 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 51 */
+/* 54 */
 /*!*******************************************************************!*\
   !*** ./components/user/register-user/register-user-controller.js ***!
   \*******************************************************************/
 /***/ function(module, exports) {
 
 	module.exports = function (ngModule) {
-	    ngModule.controller("RegisterUserController", ["$scope", "UserService", function ($scope, UserService) {
+	    ngModule.controller("RegisterUserController", ["$scope", "UserService", "$state", "$rootScope", function ($scope, UserService, $state, $rootScope) {
 	        $scope.user = {};
 	
 	        $scope.registerUser = function (form) {
 	            if (form.$valid) {
 	                UserService.saveUser($scope.user).success(function (data) {
-	                    console.log(data);
-	                }).error(function (data) {
-	                    console.log(data);
+	                    $rootScope.currentUser.id = data;
+	                    $state.go("app.home");
+	                }).error(function (response) {
+	                    $scope.parseErrorMessage(response);
 	                });
 	            };
 	        };
@@ -1180,7 +1299,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 52 */
+/* 55 */
 /*!***********************************!*\
   !*** ./components/user/states.js ***!
   \***********************************/
@@ -1195,7 +1314,7 @@ webpackJsonp([0],[
 	            abstract: true,
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./list-users/list-users.html */ 53),
+	                    template: __webpack_require__(/*! ./list-users/list-users.html */ 56),
 	                    controller: "ListUsersController"
 	                }
 	            }
@@ -1205,7 +1324,7 @@ webpackJsonp([0],[
 	            url: "/profile/:id",
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./view-profile/view-profile.html */ 54),
+	                    template: __webpack_require__(/*! ./view-profile/view-profile.html */ 57),
 	                    controller: "ViewUserProfileController"
 	                }
 	            }
@@ -1213,7 +1332,7 @@ webpackJsonp([0],[
 	            url: "/groups",
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./list-user-groups/list-user-groups.html */ 55),
+	                    template: __webpack_require__(/*! ./list-user-groups/list-user-groups.html */ 58),
 	                    controller: "ListUserGroupsController"
 	                }
 	            }
@@ -1221,7 +1340,7 @@ webpackJsonp([0],[
 	            url: "/register",
 	            views: {
 	                "content@": {
-	                    template: __webpack_require__(/*! ./register-user/register-user.html */ 56),
+	                    template: __webpack_require__(/*! ./register-user/register-user.html */ 59),
 	                    controller: "RegisterUserController"
 	                }
 	            }
@@ -1230,7 +1349,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 53 */
+/* 56 */
 /*!****************************************************!*\
   !*** ./components/user/list-users/list-users.html ***!
   \****************************************************/
@@ -1239,7 +1358,7 @@ webpackJsonp([0],[
 	module.exports = "<h2>hello</h2>"
 
 /***/ },
-/* 54 */
+/* 57 */
 /*!********************************************************!*\
   !*** ./components/user/view-profile/view-profile.html ***!
   \********************************************************/
@@ -1248,25 +1367,25 @@ webpackJsonp([0],[
 	module.exports = "<h2>Profile view here</h2>\r\n{{user | json}}\r\n<br />\r\n<button class=\"btn btn-danger\" ng-click=\"deleteProfile(user.id);\">Delete profile</button>"
 
 /***/ },
-/* 55 */
+/* 58 */
 /*!****************************************************************!*\
   !*** ./components/user/list-user-groups/list-user-groups.html ***!
   \****************************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"row well\" ng-repeat=\"group in groups\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" />\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <h4 ng-bind=\"::group.name\"></h4>\r\n        <span ng-bind=\"::group.admin.name\"></span>\r\n        <span ng-bind=\"::group.description\"></span>\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <span>Members: <span ng-class=\"{ 'text-danger': group.occupiedCapacity == group.groupCapacity }\" ng-bind=\"::group.occupiedCapacity\"></span> / <span ng-bind=\"::group.groupCapacity\"></span></span>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <span>Group status: <strong class=\"text-success\" ng-class=\"{ 'text-danger': group.status.id == 1 }\" ng-bind=\"::group.status.name\"></strong></span>\r\n            </div>\r\n        </div>\r\n        <button ui-sref=\"app.groups.details({ id: group.id })\" class=\"btn btn-default btn-block\">\r\n            Details\r\n        </button>\r\n    </div>\r\n</div>"
+	module.exports = "<div class=\"row well\" ng-repeat=\"group in groups\">\r\n    <div class=\"col-md-2\">\r\n        <img class=\"img img-responsive\" />\r\n    </div>\r\n    <div class=\"col-md-10\">\r\n        <h4 ng-bind=\"::group.name\"></h4>\r\n        <span ng-bind=\"::group.admin.name\"></span>\r\n        <span ng-bind=\"::group.description\"></span>\r\n        <div class=\"row\">\r\n            <div class=\"col-md-6\">\r\n                <span>Members: <span ng-class=\"{ 'text-danger': group.occupiedCapacity == group.groupCapacity }\" ng-bind=\"::group.occupiedCapacity\"></span> / <span ng-bind=\"::group.groupCapacity\"></span></span>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n                <span>Group status: <strong class=\"text-success\" ng-class=\"{ 'text-danger': group.status.id == 1 }\" ng-bind=\"::group.status.name\"></strong></span>\r\n            </div>\r\n        </div>\r\n        <button ui-sref=\"app.groups.details({ id: group.id })\" class=\"btn btn-default btn-block\">\r\n            Details\r\n        </button>\r\n        <button ng-if=\"currentUser.id.toLowerCase() === group.admin.id.toLowerCase()\" ng-click=\"deleteGroup(group.id)\" class=\"btn btn-danger btn-block\">\r\n            Delete Group\r\n        </button>\r\n    </div>\r\n</div>"
 
 /***/ },
-/* 56 */
+/* 59 */
 /*!**********************************************************!*\
   !*** ./components/user/register-user/register-user.html ***!
   \**********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<h3>Create account</h3>\r\n<form class=\"form-horizontal\" enctype=\"multipart/form-data\" name=\"registerForm\" novalidate>\r\n    <div class=\"form-group\">\r\n        <label for=\"name\" class=\"control-label col-md-2\">Name</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.name\" id=\"name\" required type=\"text\" class=\"form-control\" placeholder=\"Enter your first name here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"surname\" class=\"control-label col-md-2\">Surname</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.surname\" id=\"surname\" required type=\"text\" class=\"form-control\" placeholder=\"Enter your last name here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"email\" class=\"control-label col-md-2\">Email</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.email\" id=\"email\" required type=\"email\" class=\"form-control\" placeholder=\"Enter your email here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"username\" class=\"control-label col-md-2\">Username</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.username\" id=\"username\" required type=\"text\" class=\"form-control\" placeholder=\"Enter your username here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"password\" class=\"control-label col-md-2\">Password</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.password\" id=\"password\" required type=\"password\" class=\"form-control\" placeholder=\"Enter your password here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"image\" class=\"control-label col-md-2\">Image</label>\r\n        <div class=\"col-md-10\">\r\n            <input id=\"image\" type=\"file\" accept=\"image/*\" file-model=\"user.image\" class=\"form-control\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <div class=\"col-md-offset-2 col-md-3\">\r\n            <button ng-click=\"resetForm();\" class=\"btn btn-danger btn-block\"><i class=\"glyphicon glyphicon-alert\"></i> Reset form</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n            <button ng-click=\"registerUser(registerForm);\" ng-disabled=\"registerForm.$invalid\" class=\"btn btn-success btn-block\"><i class=\"glyphicon glyphicon-check\"></i> Register</button>\r\n        </div>\r\n    </div>\r\n</form>"
+	module.exports = "<h3>Create account</h3>\r\n<form class=\"form-horizontal\" enctype=\"multipart/form-data\" name=\"registerForm\" novalidate>\r\n    <div class=\"form-group\">\r\n        <label for=\"name\" class=\"control-label col-md-2\">Name</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.name\" id=\"name\" required type=\"text\" class=\"form-control\" placeholder=\"Enter your first name here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"surname\" class=\"control-label col-md-2\">Surname</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.surname\" id=\"surname\" required type=\"text\" class=\"form-control\" placeholder=\"Enter your last name here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"email\" class=\"control-label col-md-2\">Email</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.email\" id=\"email\" required type=\"email\" class=\"form-control\" placeholder=\"Enter your email here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"password\" class=\"control-label col-md-2\">Password</label>\r\n        <div class=\"col-md-10\">\r\n            <input ng-model=\"user.password\" id=\"password\" required type=\"password\" class=\"form-control\" placeholder=\"Enter your password here\"/>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <div class=\"col-md-offset-2 col-md-3\">\r\n            <button ng-click=\"resetForm();\" class=\"btn btn-danger btn-block\"><i class=\"glyphicon glyphicon-alert\"></i> Reset form</button>\r\n        </div>\r\n        <div class=\"col-md-3\">\r\n            <button ng-click=\"registerUser(registerForm);\" ng-disabled=\"registerForm.$invalid\" class=\"btn btn-success btn-block\"><i class=\"glyphicon glyphicon-check\"></i> Register</button>\r\n        </div>\r\n    </div>\r\n</form>"
 
 /***/ },
-/* 57 */
+/* 60 */
 /*!******************************************************!*\
   !*** ./components/user/view-profile/view-profile.js ***!
   \******************************************************/
@@ -1294,14 +1413,14 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 58 */
+/* 61 */
 /*!****************************!*\
   !*** ./admin ^\.\/.*\.js$ ***!
   \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./config.js": 59
+		"./config.js": 62
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -1314,11 +1433,11 @@ webpackJsonp([0],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 58;
+	webpackContext.id = 61;
 
 
 /***/ },
-/* 59 */
+/* 62 */
 /*!*************************!*\
   !*** ./admin/config.js ***!
   \*************************/
@@ -1330,7 +1449,7 @@ webpackJsonp([0],[
 	            url: "/admin",
 	            views: {
 	                "content": {
-	                    template: __webpack_require__(/*! app/admin/home.html */ 60)
+	                    template: __webpack_require__(/*! app/admin/home.html */ 63)
 	                }
 	            }
 	        });
@@ -1338,7 +1457,7 @@ webpackJsonp([0],[
 	};
 
 /***/ },
-/* 60 */
+/* 63 */
 /*!*************************!*\
   !*** ./admin/home.html ***!
   \*************************/

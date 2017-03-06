@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Institutions;
 
 namespace StudyBuddies.Data.Mappings.Institutions
 {
-    public class UniversityMap : ClassMap<University>
+    public class UniversityMap : SubclassMap<University>
     {
         public UniversityMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             Map(x => x.Name)
                 .Column("Name")

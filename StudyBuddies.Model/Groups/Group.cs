@@ -65,6 +65,7 @@ namespace StudyBuddies.Domain.Groups
             get { return _status; }
             set { _status = value; }
         }
+
         public virtual IList<Post> Posts => _posts;
 
         #endregion

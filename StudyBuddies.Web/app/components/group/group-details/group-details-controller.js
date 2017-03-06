@@ -53,7 +53,21 @@
                             });
                         });
                         $scope.uploader.uploadAll();
-                        $scope.posts.push(data);
+
+                        //$scope.uploader.onCompleteAll = function () {
+                            if ($scope.uploader.queue.length === 0)
+                                $scope.posts.unshift(data);
+                            else // we gotta fetch the post, to get the attachments
+                                PostService.getPostById(data.id)
+                                    .success(function(data) {
+                                        $scope.posts.unshift(data);
+                                    })
+                                    .error(function(response) {
+                                        $scope.parseErrorMessage(response);
+                                    });
+
+                        $scope.post.content = "";
+                        //}
                     })
                     .error(function (response) {
                         $scope.parseErrorMessage(response);

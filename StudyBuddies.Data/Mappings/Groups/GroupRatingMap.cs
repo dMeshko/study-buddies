@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Mappings.Groups
 {
-    public class GroupRatingMap : ClassMap<GroupRating>
+    public class GroupRatingMap : SubclassMap<GroupRating>
     {
         public GroupRatingMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.UserFrom)
                 .Column("UserFromId")

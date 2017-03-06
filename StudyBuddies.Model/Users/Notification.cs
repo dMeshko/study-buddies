@@ -9,7 +9,7 @@ namespace StudyBuddies.Domain.Users
         private User _userTo;
         private BaseEntity _sourceEntity;
         private DateTime _date;
-        private NotificationType _notificationType;
+        private NotificationType _notificationType; // shouldn't it be NotificationDetails?
         private bool _seen;
 
         protected Notification () { }

@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class MessageMap : ClassMap<Message>
+    public class MessageMap : SubclassMap<Message>
     {
         public MessageMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.UserFrom)
                 .Column("UserFromId")

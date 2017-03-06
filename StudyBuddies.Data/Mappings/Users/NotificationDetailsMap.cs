@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class NotificationDetailsMap : ClassMap<NotificationDetails>
+    public class NotificationDetailsMap : SubclassMap<NotificationDetails>
     {
         public NotificationDetailsMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             Map(x => x.NotificationType)
                 .Column("NotificationType")

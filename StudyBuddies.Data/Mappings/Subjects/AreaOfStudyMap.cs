@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Subjects;
 
 namespace StudyBuddies.Data.Mappings.Subjects
 {
-    public class AreaOfStudyMap : ClassMap<AreaOfStudy>
+    public class AreaOfStudyMap : SubclassMap<AreaOfStudy>
     {
         public AreaOfStudyMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             Map(x => x.Name)
                 .Column("Name")

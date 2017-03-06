@@ -37,8 +37,8 @@ namespace StudyBuddies.Web.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _userService.RegisterUser(model);
-            return Ok();
+            var userId = _userService.RegisterUser(model);
+            return Ok(userId);
         }
 
         [Route("{id:guid}")]
@@ -239,6 +239,20 @@ namespace StudyBuddies.Web.Controllers.Api
         {
             var groups = _userService.GetLatestGroupsPosts(id);
             return Ok(groups);
+        }
+
+        #endregion
+
+        #region Login
+
+        [Route("login")]
+        public IHttpActionResult PostLogin(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = _userService.Login(model);
+            return Ok(user);
         }
 
         #endregion

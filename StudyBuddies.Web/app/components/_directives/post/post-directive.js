@@ -11,6 +11,8 @@
                 link: function($scope, $element, $attributes) {
                     $scope.hideComments = true;
 
+                    $scope.currentUser = $rootScope.currentUser;
+
                     $scope.initCommentsSection = function() {
                         $scope.comments = [];
                         PostService.getAllComments($scope.post.id)
@@ -23,7 +25,7 @@
 
                         $scope.comment = {
                             user: {
-                                id: $rootScope.currentUser.id
+                                id: $scope.currentUser.id
                             },
                             post: {
                                 id: $scope.post.id

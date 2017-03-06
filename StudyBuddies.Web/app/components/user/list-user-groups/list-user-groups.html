@@ -17,5 +17,8 @@
         <button ui-sref="app.groups.details({ id: group.id })" class="btn btn-default btn-block">
             Details
         </button>
+        <button ng-if="currentUser.id.toLowerCase() === group.admin.id.toLowerCase()" ng-click="deleteGroup(group.id)" class="btn btn-danger btn-block">
+            Delete Group
+        </button>
     </div>
 </div>

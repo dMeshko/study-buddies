@@ -2,6 +2,10 @@
     ngModule.factory("UserService", ["$http", "$location", function($http, $location) {
         var factory = {};
 
+        factory.login = function (model) {
+            return $http.post("/api/user/login", model);
+        };
+
         factory.getUserById = function (id) {
             return $http.get("/api/user/" + id);
         };

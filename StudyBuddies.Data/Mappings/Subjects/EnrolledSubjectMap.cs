@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Subjects;
 
 namespace StudyBuddies.Data.Mappings.Subjects
 {
-    public class EnrolledSubjectMap : ClassMap<EnrolledSubject>
+    public class EnrolledSubjectMap : SubclassMap<EnrolledSubject>
     {
         public EnrolledSubjectMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.User)
                 .Column("UserId")

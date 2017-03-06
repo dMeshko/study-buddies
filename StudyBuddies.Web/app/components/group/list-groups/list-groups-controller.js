@@ -25,5 +25,19 @@
                 $scope.model.group.id = groupId;
                 GroupService.sendGroupRequest($scope.model);
             };
+
+            $scope.deleteGroup = function(groupId) {
+                GroupService.deleteGroup(groupId)
+                    .success(function(data) {
+                        $scope.groups = $scope.groups.filter(function(item) {
+                            if (item.id === groupId)
+                                return false;
+                            return true;
+                        });
+                    })
+                    .error(function(response) {
+                        $scope.parseErrorMessage(response);
+                    });
+            };
         }]);
 }

@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Mappings.Groups
 {
-    public class GroupRequestMap : ClassMap<GroupRequest>
+    public class GroupRequestMap : SubclassMap<GroupRequest>
     {
         public GroupRequestMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.User)
                 .Column("UserId")

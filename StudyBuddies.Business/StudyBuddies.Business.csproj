@@ -100,6 +100,7 @@
     <Compile Include="ViewModels\Subjects\EnrolledSubjectViewModel.cs" />
     <Compile Include="ViewModels\Subjects\SubjectViewModel.cs" />
     <Compile Include="ViewModels\Users\BuddyRequestViewModel.cs" />
+    <Compile Include="ViewModels\Users\LoginViewModel.cs" />
     <Compile Include="ViewModels\Users\MessageViewModel.cs" />
     <Compile Include="ViewModels\Users\RegisterUserViewModel.cs" />
     <Compile Include="ViewModels\Users\UpdateUserViewModel.cs" />

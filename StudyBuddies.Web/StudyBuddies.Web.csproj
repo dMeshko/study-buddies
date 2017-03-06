@@ -254,6 +254,10 @@
     <Content Include="app\admin\config.js" />
     <Content Include="app\admin\home.html" />
     <Content Include="app\app.js" />
+    <Content Include="app\common\auth\login-controller.js" />
+    <Content Include="app\common\auth\login.html" />
+    <Content Include="app\common\auth\logout-controller.js" />
+    <Content Include="app\common\auth\logout.html" />
     <Content Include="app\components\group\states.js" />
     <Content Include="app\components\group\group-details\group-details-controller.js" />
     <Content Include="app\components\group\group-details\group-details.html" />

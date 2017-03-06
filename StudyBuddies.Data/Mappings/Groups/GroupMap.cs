@@ -4,12 +4,11 @@ using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Mappings.Groups
 {
-    public class GroupMap : ClassMap<Group>
+    public class GroupMap : SubclassMap<Group>
     {
         public GroupMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             Map(x => x.Name)
                 .Column("Name")
@@ -55,7 +54,8 @@ namespace StudyBuddies.Data.Mappings.Groups
             HasMany(x => x.Posts)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Inverse()
-                .Cascade.AllDeleteOrphan();
+                .Cascade.AllDeleteOrphan()
+                .OrderBy("Date DESC");
         }
     }
 }

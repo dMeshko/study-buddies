@@ -3,12 +3,11 @@ using StudyBuddies.Domain.Groups;
 
 namespace StudyBuddies.Data.Mappings.Groups
 {
-    public class AttachmentMap : ClassMap<Attachment>
+    public class AttachmentMap : SubclassMap<Attachment>
     {
         public AttachmentMap()
         {
-            Id(x => x.Id)
-                .GeneratedBy.GuidComb();
+            Abstract();
 
             References(x => x.Post)
                 .Column("PostId")

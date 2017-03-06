@@ -14,6 +14,10 @@
             return $http.post("/api/group", data);
         };
 
+        factory.deleteGroup = function (id) {
+            return $http.delete("/api/group/" + id);
+        };
+
         factory.getAllGroupsWhereNoRequestIsSent = function(userId) {
             return $http.get("/api/user/" + userId + "/group/not");
         };

@@ -40,7 +40,28 @@
                 .state("app.home",
                 {
                     url: "" //<-- Empty string for "app" state to override the / abstract state
+                })
+                .state("app.login",
+                {
+                    url: "login",
+                    views: {
+                        "content@": {
+                            template: require("app/common/auth/login.html"),
+                            controller: "LoginController"
+                        }
+                    }
+                })
+                .state("app.logout",
+                {
+                    url: "logout",
+                    views: {
+                        "content@": {
+                            template: require("app/common/auth/logout.html"),
+                            controller: "LogoutController"
+                        }
+                    }
                 });
+
         }
     ]);
 };

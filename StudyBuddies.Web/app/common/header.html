@@ -12,10 +12,15 @@
             <ul class="nav navbar-nav">
                 <li ui-sref-active="active"><a ui-sref="app.home">Home</a></li>
                 <li ui-sref-active="active"><a ui-sref="app.users.profile">Profile</a></li>
-                <li ui-sref-active="active"><a ui-sref="app.register">Register</a></li>
                 <li ui-sref-active="active"><a ui-sref="app.groups.create">Create Group</a></li>
                 <li ui-sref-active="active"><a ui-sref="app.groups.list">View Groups</a></li>
                 <li ui-sref-active="active"><a ui-sref="app.groups.member">My Groups</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav pull-right">
+                <li ng-if="!currentUser.id" ui-sref-active="active"><a ui-sref="app.login">Login</a></li>
+                <li ng-if="currentUser.id" ui-sref-active="active"><a ui-sref="app.logout">Logout</a></li>
+                <li ng-if="!currentUser.id" ui-sref-active="active"><a ui-sref="app.users.register">Register</a></li>
             </ul>
         </div>
     </div>

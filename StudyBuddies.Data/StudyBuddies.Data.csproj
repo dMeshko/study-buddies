@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseEntityMap.cs" />
     <Compile Include="Configuration\FluentNHibernateConfig.cs" />
     <Compile Include="Mappings\Groups\AttachmentMap.cs" />
     <Compile Include="Mappings\Groups\CommentMap.cs" />

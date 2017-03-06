@@ -55,13 +55,15 @@ namespace StudyBuddies.Business.Services.Implementation
             return Mapper.Map<IEnumerable<User>, IEnumerable<UserViewModel>>(users);
         }
 
-        public void RegisterUser(RegisterUserViewModel user)
+        public Guid RegisterUser(RegisterUserViewModel user)
         {
             if (user == null)
                 throw new BusinessLayerException(AppExceptionMessage.INVALID_INTERNAL_STATE);
 
-            var dboUser = Mapper.Map<RegisterUserViewModel, User>(user);
+            //var dboUser = Mapper.Map<RegisterUserViewModel, User>(user);
+            var dboUser = new User(user.Name, user.Surname, user.Email, user.Password);
             _userRepository.Add(dboUser);
+            return dboUser.Id;
         }
 
         public void Delete(Guid userId)
@@ -76,6 +78,15 @@ namespace StudyBuddies.Business.Services.Implementation
         public void UpdateUser(UpdateUserViewModel user)
         {
             throw new NotImplementedException();
+        }
+
+        public LookupViewModel Login(LoginViewModel user)
+        {
+            var userDbo = _userRepository.Get(x => x.Email == user.Email && x.Password == user.Password);
+            if (userDbo == null)
+                throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
+
+            return Mapper.Map<User, LookupViewModel>(userDbo);
         }
 
         #endregion
