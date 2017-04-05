@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace StudyBuddies.Web.App_Start
+namespace StudyBuddies.Web
 {
     public class InMemoryMultipartFormDataStreamProvider : MultipartStreamProvider
     {

@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using StudyBuddies.Data.Infrastructure;
 using NHibernate;
+using Owin;
 using StudyBuddies.Business.Services;
 using StudyBuddies.Data.Configuration;
 using StudyBuddies.Domain;
@@ -14,23 +15,14 @@ namespace StudyBuddies.Web
 {
     public class AutofacConfig
     {
-        public static void Configure()
+        public static void Configure(HttpConfiguration globalConfiguration, IAppBuilder app)
         {
+            // autofac
             var builder = new ContainerBuilder();
             builder.RegisterControllers(Assembly.GetExecutingAssembly());
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            // builder.RegisterFilterProvider();
             builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
-
-            /*
-            // scans for services and repositories in the current project
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(x => x.Namespace.EndsWith(".Implementation"))
-                .AsImplementedInterfaces();
-
-            builder.RegisterType(typeof(Service.Services.Implementation.Service)).As(typeof(Service.Services.IService)).SingleInstance();
-            */
 
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerRequest().PropertiesAutowired();
 
@@ -49,8 +41,11 @@ namespace StudyBuddies.Web
                 .InstancePerRequest();
 
             var container = builder.Build();
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
-            GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+            globalConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            app.UseAutofacMiddleware(container);
+            app.UseAutofacWebApi(globalConfiguration);
+            app.UseWebApi(globalConfiguration);
         }
     }
 }

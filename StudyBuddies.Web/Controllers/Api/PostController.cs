@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Collections.Specialized;
-using StudyBuddies.Web.App_Start;
 
 namespace StudyBuddies.Web.Controllers.Api
 {

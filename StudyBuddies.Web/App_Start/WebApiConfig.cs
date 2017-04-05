@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http.Formatting;
-using System.Web.Helpers;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
-using StudyBuddies.Web.App_Start;
 
 namespace StudyBuddies.Web
 {

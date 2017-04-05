@@ -125,6 +125,11 @@ namespace StudyBuddies.Domain.Groups
             if (post == null)
                 throw new InvalidDataException(nameof(post));
 
+            foreach (var groupAcceptedMember in AcceptedMembers)
+            {
+                groupAcceptedMember.User.AddNotification(post.User, post, NotificationType.Post);
+            }
+
             _posts.Add(post);
         }
 
@@ -141,6 +146,7 @@ namespace StudyBuddies.Domain.Groups
             if (groupRequest == null)
                 throw new InvalidDataException(nameof(groupRequest));
 
+            Admin.AddNotification(groupRequest.User, groupRequest, NotificationType.GroupRequest);
             _members.Add(groupRequest);
         }
 

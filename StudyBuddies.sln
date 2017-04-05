@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Web", "StudyBu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Tests", "StudyBuddies.Tests\StudyBuddies.Tests.csproj", "{2FCDA4DD-6E31-4AB6-9C2A-CB2F01C3EEEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.IdentityServer", "StudyBuddies.IdentityServer\StudyBuddies.IdentityServer.csproj", "{40151ADB-C169-4E0D-9BBE-0781F28A3C69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2FCDA4DD-6E31-4AB6-9C2A-CB2F01C3EEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FCDA4DD-6E31-4AB6-9C2A-CB2F01C3EEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FCDA4DD-6E31-4AB6-9C2A-CB2F01C3EEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40151ADB-C169-4E0D-9BBE-0781F28A3C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40151ADB-C169-4E0D-9BBE-0781F28A3C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40151ADB-C169-4E0D-9BBE-0781F28A3C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40151ADB-C169-4E0D-9BBE-0781F28A3C69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

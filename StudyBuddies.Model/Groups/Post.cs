@@ -68,6 +68,11 @@ namespace StudyBuddies.Domain.Groups
         {
             if (comment == null)
                 throw new InvalidDataException(nameof(comment));
+            
+            foreach (var groupAcceptedMember in Group.AcceptedMembers)
+            {
+                groupAcceptedMember.User.AddNotification(comment.User, comment, NotificationType.Comment);
+            }
 
             _comments.Add(comment);
         }

@@ -9,7 +9,7 @@ namespace StudyBuddies.Domain.Users
         private User _userTo;
         private BaseEntity _sourceEntity;
         private DateTime _date;
-        private NotificationType _notificationType; // shouldn't it be NotificationDetails?
+        private NotificationType _notificationType;
         private bool _seen;
 
         protected Notification () { }
@@ -25,7 +25,7 @@ namespace StudyBuddies.Domain.Users
             if (sourceEntity == null)
                 throw new InvalidDataException(nameof(sourceEntity));
 
-            _userFrom = userFrom;
+           _userFrom = userFrom;
             _userTo = userTo;
             _sourceEntity = sourceEntity;
             _date = DateTime.UtcNow;

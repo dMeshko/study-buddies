@@ -242,11 +242,16 @@ namespace StudyBuddies.Domain.Users
             _enrolledInstitutions.Add(enrolledInstitution);
         }
 
-        public virtual void AddNotification(Notification notification)
+        public virtual void AddNotification(User userFrom, BaseEntity baseEntity, NotificationType notificationType)
         {
-            if (notification == null)
-                throw new InvalidDataException(nameof(notification));
+            if (userFrom == null)
+                throw new InvalidDataException(nameof(userFrom));
 
+            if (baseEntity == null)
+                throw new InvalidDataException(nameof(baseEntity));
+
+           var notification = new Notification(userFrom, this, baseEntity, notificationType);
+            
             _notifications.Add(notification);
         }
         #endregion

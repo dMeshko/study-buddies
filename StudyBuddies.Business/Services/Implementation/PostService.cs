@@ -50,7 +50,11 @@ namespace StudyBuddies.Business.Services.Implementation
                 throw new NotFoundException(GroupExceptionMessage.GROUP_NOT_FOUND);
 
             var dboPost = new Post(user, group, post.Content);
-            _postRepository.Add(dboPost);
+            // need the line below to mark the entity for saving, and thus generate id for the current session.
+            // since my UoW is per request, I can't close the session to get the id with the collection persistance.
+            _postRepository.Add(dboPost); 
+            group.AddPost(dboPost);
+
             return Mapper.Map<Post, PostViewModel>(dboPost);
         }
 
@@ -104,7 +108,9 @@ namespace StudyBuddies.Business.Services.Implementation
                 throw new NotFoundException(PostExceptionMessage.POST_NOT_FOUND);
 
             var dboComment = new Comment(user, post, comment.Content);
-            _commentRepository.Add(dboComment);
+            post.AddComment(dboComment);
+            _postRepository.Update(post);
+
             return Mapper.Map<Comment, CommentViewModel>(dboComment);
         }
 
