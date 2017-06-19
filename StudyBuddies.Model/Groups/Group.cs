@@ -150,6 +150,14 @@ namespace StudyBuddies.Domain.Groups
             _members.Add(groupRequest);
         }
 
+        public virtual void UpdateGroupMember(GroupRequest groupRequest)
+        {
+            if (groupRequest == null)
+                throw new InvalidDataException(nameof(groupRequest));
+
+            groupRequest.User.AddNotification(Admin, groupRequest, NotificationType.GroupAcceptance);
+        }
+
         #endregion
     }
 }

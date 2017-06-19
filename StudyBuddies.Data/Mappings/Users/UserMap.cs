@@ -105,6 +105,12 @@ namespace StudyBuddies.Data.Mappings.Users
                 .KeyColumn("UserToId")
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
+
+            HasManyToMany(x => x.Roles)
+                .Access.CamelCaseField(Prefix.Underscore)
+                .Cascade.All()
+                .ParentKeyColumn("UserId")
+                .ChildKeyColumn("RoleId");
         }
     }
 }

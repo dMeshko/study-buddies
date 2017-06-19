@@ -45,7 +45,6 @@ namespace StudyBuddies.Web
 
             app.UseAutofacMiddleware(container);
             app.UseAutofacWebApi(globalConfiguration);
-            app.UseWebApi(globalConfiguration);
         }
     }
 }

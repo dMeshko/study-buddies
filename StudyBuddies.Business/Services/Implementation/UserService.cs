@@ -135,7 +135,8 @@ namespace StudyBuddies.Business.Services.Implementation
             if (user == null)
                 throw new NotFoundException(UserExceptionMessage.USER_NOT_FOUND);
 
-            var messages = user.ReceivedMessages;
+            var messagesNotifications = user.Notifications.Where(x => x.NotificationType == NotificationType.Message);
+
             throw new NotImplementedException();
         }
 
@@ -204,6 +205,7 @@ namespace StudyBuddies.Business.Services.Implementation
                 throw new NotFoundException(UserExceptionMessage.BUDDY_REQUEST_NOT_FOUND);
 
             buddyRequest.Status = (RequestStatus) model.Status.Id;
+            buddyRequest.UserTo.UpdateBuddyRequest(buddyRequest);
         }
 
         public List<NotificationViewModel> GetAllBuddyNotifications(Guid userId)

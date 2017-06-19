@@ -8,7 +8,7 @@ using StudyBuddies.Domain.Subjects;
 
 namespace StudyBuddies.Domain.Users
 {
-    public class User : BaseEntity
+    public class User : BaseEntity // IdentityUser
     {
         private string _name;
         private string _surname;
@@ -26,6 +26,7 @@ namespace StudyBuddies.Domain.Users
         private IList<EnrolledSubject> _enrolledSubjects;
         private IList<EnrolledInstitution> _enrolledInstitutions;
         private IList<Notification> _notifications;
+        private IList<Role> _roles;
 
         protected User() { }
 
@@ -60,6 +61,7 @@ namespace StudyBuddies.Domain.Users
             _enrolledSubjects = new List<EnrolledSubject>();
             _enrolledInstitutions = new List<EnrolledInstitution>();
             _notifications = new List<Notification>();
+            _roles = new List<Role>();
         }
 
         #region Properties
@@ -117,6 +119,7 @@ namespace StudyBuddies.Domain.Users
         public virtual IList<EnrolledSubject> EnrolledSubjects => _enrolledSubjects;
         public virtual IList<EnrolledInstitution> EnrolledInstitutions => _enrolledInstitutions;
         public virtual IList<Notification> Notifications => _notifications;
+        public virtual IList<Role> Roles => _roles;
 
         #endregion
 
@@ -199,6 +202,7 @@ namespace StudyBuddies.Domain.Users
             if (buddyRequest == null)
                 throw new InvalidDataException(nameof(buddyRequest));
 
+            buddyRequest.UserTo.AddNotification(this, buddyRequest, NotificationType.BuddyRequest);
             _sentBuddyRequests.Add(buddyRequest);
         }
 
@@ -210,11 +214,20 @@ namespace StudyBuddies.Domain.Users
             _sentBuddyRequests.Union(_receivedBuddyRequests).ToList().Remove(buddyRequest);
         }
 
+        public virtual void UpdateBuddyRequest(BuddyRequest buddyRequest)
+        {
+            if (buddyRequest == null)
+                throw new InvalidDataException(nameof(buddyRequest));
+
+            buddyRequest.UserFrom.AddNotification(this, buddyRequest, NotificationType.BuddyAcceptance);
+        }
+
         public virtual void SendMessage(Message message)
         {
             if (message == null)
                 throw new InvalidDataException(nameof(message));
 
+            message.UserTo.AddNotification(this, message, NotificationType.Message);
             _sentMessages.Add(message);
         }
 
@@ -254,6 +267,25 @@ namespace StudyBuddies.Domain.Users
             
             _notifications.Add(notification);
         }
+
+        public virtual void AddRole(Role role)
+        {
+            if (role == null)
+                throw new InvalidDataException(nameof(role));
+
+            if (!_roles.Contains(role))
+                _roles.Add(role);
+        }
+
+        public virtual void RemoveRole(Role role)
+        {
+            if (role == null)
+                throw new InvalidDataException(nameof(role));
+
+            if (!_roles.Contains(role))
+                _roles.Remove(role);
+        }
+
         #endregion
     }
 }

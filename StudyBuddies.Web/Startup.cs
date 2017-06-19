@@ -1,26 +1,19 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens;
 using System.Web.Http;
-using Autofac;
-using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
 using IdentityServer3.AccessTokenValidation;
 using MB.Owin.Logging.Log4Net;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Logging;
-using NHibernate;
 using Owin;
 using StudyBuddies.Business.Infrastructure;
-using StudyBuddies.Business.Services;
-using StudyBuddies.Data.Configuration;
-using StudyBuddies.Data.Infrastructure;
-using StudyBuddies.Domain;
 using StudyBuddies.Web;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace StudyBuddies.Web
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
@@ -35,27 +28,32 @@ namespace StudyBuddies.Web
 
             #region Identity Server
 
-            //todo
             // Allow all origins
             app.UseCors(CorsOptions.AllowAll);
 
+            // claims transformation, used to map received claims with their equivalents in asp.net
+            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
+
             // Wire token validation
-            //appBuilder.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
-            //{
-            //    Authority = "https://localhost:44326",
+            app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
+            {
+                Authority = "https://sts.studybuddies.com",
 
-            //    // For access to the introspection endpoint
-            //    ClientId = "api",
-            //    ClientSecret = "api-secret",
-
-            //    RequiredScopes = new[] { "api" }
-            //});
+                // For access to the introspection endpoint
+                ClientId = "webapp_client",
+                ClientSecret = "B451713C-4E34-4D9A-9B4B-5A40EF7F5D40",
+                
+                RequiredScopes = new[] { "sbapi" }
+            });
+            
+            //ConfigureAuth(app);
 
             //config.Filters.Add(new AuthorizeAttribute());
 
             #endregion
 
             WebApiConfig.Register(config);
+            app.UseWebApi(config);
         }
     }
 }

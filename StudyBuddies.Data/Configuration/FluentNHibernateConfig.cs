@@ -16,6 +16,7 @@ namespace StudyBuddies.Data.Configuration
                     .ConnectionString(@"Data Source=localhost;Initial Catalog=StudyBuddies;Integrated Security=SSPI")
                     .ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>())
+                
                 //.ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
                 //.ExposeConfiguration(cfg => new SchemaExport(cfg).Drop(true, true))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))

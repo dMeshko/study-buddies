@@ -152,7 +152,8 @@ namespace StudyBuddies.Business.Services.Implementation
                 throw new BusinessLayerException(GroupExceptionMessage.GROUP_REQUEST_NOT_FOUND);
 
             groupRequestDto.Status = (RequestStatus) groupRequest.Status.Id;
-            _groupRequestRepository.Update(groupRequestDto);
+            group.UpdateGroupMember(groupRequestDto);
+            //_groupRequestRepository.Update(groupRequestDto);
         }
 
         #endregion
