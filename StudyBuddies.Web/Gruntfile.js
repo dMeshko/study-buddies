@@ -29,7 +29,6 @@
         ts: {
             default: {
                 src: ["app/**/*.ts", "!node_modules/**", "!obj/**", "!bin/**"],
-                html: ["app/**/*.html"],
                 tsconfig: true,
                 watch: "app/**/*.ts",
                 options: {

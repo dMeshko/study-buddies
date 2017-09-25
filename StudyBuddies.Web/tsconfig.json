@@ -1,7 +1,6 @@
 ﻿{
   "compileOnSave": true,
   "compilerOptions": {
-    //"outFile": "Scripts/dist/app.js",
     "rootDir": "app",
     "outDir": "Scripts/src",
     "alwaysStrict": true,
