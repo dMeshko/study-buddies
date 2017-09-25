@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens;
 using System.Web.Http;
-using IdentityServer3.AccessTokenValidation;
 using MB.Owin.Logging.Log4Net;
 using Microsoft.Owin;
-using Microsoft.Owin.Cors;
 using Microsoft.Owin.Logging;
 using Owin;
 using StudyBuddies.Business.Infrastructure;
