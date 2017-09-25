@@ -36,6 +36,9 @@ var config = {
             content: path.join(__dirname, "Content")
         },
         extensions: ["", ".js"]
+    },
+    resolveLoader: {
+        moduleExtensions: ['-loader']
     }
 };
 
