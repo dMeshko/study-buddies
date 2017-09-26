@@ -4,49 +4,34 @@
 
         constructor(public $stateProvider: angular.ui.IStateProvider,
             public $urlRouterProvider: angular.ui.IUrlRouterProvider,
-            public refsProvider: any) {
-            $urlRouterProvider.otherwise("/"); //for undefined state go to the default/home
+            public refsProvider: IReferenceProvider) {
+            this.$urlRouterProvider.otherwise("/");
 
             refsProvider.injectRef("$urlRouterProvider", $urlRouterProvider);
             refsProvider.injectRef("$stateProvider", $stateProvider);
 
-            $stateProvider
+            this.$stateProvider
                 .state("app",
                 {
                     url: "/",
                     abstract: true,
                     views: {
-                        //"header": {
-                        //    controller: "HeaderController",
-                        //    template: require("app/common/header.html")
-                        //},
-                        "content": {
-                            templateUrl: "app/common/test.html"
+                        "header": {
+                            controller: "HeaderController",
+                            templateUrl: "app/common/layout/header/header.html"
                         },
-                        //"footer": {
-                        //    controller: "FooterController",
-                        //    template: require("app/common/footer.html")
-                        //},
-                        //"left@app": {
-                        //    template: require("app/components/home/left-sidebar.html"),
-                        //    controller: "LeftSidebarController"
-                        //},
-                        //"main@app": {
-                        //    template: require("app/components/home/home.html"),
-                        //    controller: "HomeController"
-                        //},
-                        //"right@app": {
-                        //    template: require("app/components/home/right-sidebar.html"),
-                        //    controller: "RightSidebarController"
-                        //}
+                        "content": {
+                            templateUrl: "app/common/layout/content.html"
+                        },
+                        "footer": {
+                            controller: "FooterController",
+                            templateUrl: "app/common/layout/footer/footer.html"
+                        }
                     }
-                })
-                .state("app.home",
-                {
-                    url: "" //<-- Empty string for "app" state to override the / abstract state
                 });
         }
     }
 
-    angular.module("study.buddies").config(AppInitialStates);
+    angular.module("study.buddies")
+        .config(AppInitialStates);
 }

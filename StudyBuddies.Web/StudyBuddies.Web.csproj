@@ -350,6 +350,10 @@
     <Content Include="app1\common\style.css" />
     <Content Include="app1\config\states.js" />
     <Content Include="app1\vendor.js" />
+    <Content Include="app\common\layout\content.html" />
+    <Content Include="app\common\layout\footer\footer.html" />
+    <Content Include="app\common\layout\header\header.html" />
+    <Content Include="app\components\home\home.html" />
     <Content Include="Global.asax" />
     <None Include=".bin\git.cmd" />
     <None Include=".bin\grunt.cmd" />
@@ -412,8 +416,6 @@
     <Folder Include="app1\admin\institutions\" />
     <Folder Include="app1\admin\subjects\" />
     <Folder Include="app1\admin\users\" />
-    <Folder Include="app\common\" />
-    <Folder Include="app\components\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
@@ -440,6 +442,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
+    <TypeScriptCompile Include="app\common\layout\footer\footer-controller.ts" />
+    <TypeScriptCompile Include="app\common\layout\header\header-controller.ts" />
+    <TypeScriptCompile Include="app\components\home\home-controller.ts" />
+    <TypeScriptCompile Include="app\components\home\states.ts" />
+    <TypeScriptCompile Include="app\config\config.ts" />
     <TypeScriptCompile Include="app\config\providers.ts" />
     <TypeScriptCompile Include="app\config\states.ts" />
   </ItemGroup>

@@ -8,7 +8,6 @@
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-karma");
-    grunt.loadNpmTasks("grunt-http-server");
 
     // configure plugins
     grunt.initConfig({
