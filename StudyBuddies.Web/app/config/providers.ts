@@ -1,6 +1,4 @@
 ﻿namespace StudyBuddies {
-    export let refs: { [key: string]: angular.ui.IUrlRouterProvider | angular.ui.IStateProvider } = {};
-
     export interface IReferenceProvider extends angular.IServiceProvider {
         injectRef(name: string, ref: angular.ui.IUrlRouterProvider | angular.ui.IStateProvider): void;
     }
@@ -10,16 +8,18 @@
     }
 
     class ReferenceProvider implements IReferenceProvider {
+        private refs: { [key: string]: angular.ui.IUrlRouterProvider | angular.ui.IStateProvider } = {};
+
         $get(): IReferenceProviderGetterInterface {
             return {
                 get: (name: string): angular.ui.IUrlRouterProvider | angular.ui.IStateProvider => {
-                    return refs[name];
+                    return this.refs[name];
                 }
             };
         }
 
         injectRef(name: string, ref: angular.ui.IUrlRouterProvider | angular.ui.IStateProvider): void {
-            refs[name] = ref;
+            this.refs[name] = ref;
         }
     }
 
