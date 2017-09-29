@@ -1,4 +1,6 @@
-﻿namespace StudyBuddies {
+﻿/// <reference path="../../config/providers.ts" />
+
+namespace StudyBuddies {
     class HomeStates {
         static $inject: Array<string> = ["refs"];
 
@@ -12,18 +14,18 @@
                 {
                     url: "", // empty string for "app" state to override the / abstract state
                     views: {
-                        //"left@app": {
-                        //    templateUrl: require("app/components/home/left-sidebar.html"),
-                        //    controller: "LeftSidebarController"
-                        //},
+                        "left@app": {
+                            templateUrl: "app/components/home/left-sidebar/left-sidebar.html",
+                            controller: "LeftSidebarController"
+                        },
                         "main@app": {
-                            templateUrl: "app/components/home/home.html",
+                            templateUrl: "app/components/home/main/home.html",
                             controller: "HomeController"
                         },
-                        //"right@app": {
-                        //    templateUrl: require("app/components/home/right-sidebar.html"),
-                        //    controller: "RightSidebarController"
-                        //}
+                        "right@app": {
+                            templateUrl: "app/components/home/right-sidebar/right-sidebar.html",
+                            controller: "RightSidebarController"
+                        }
                     }
                 });
         }

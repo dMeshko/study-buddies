@@ -2,12 +2,17 @@
 <html ng-app="study.buddies" ng-strict-di>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Study buddies</title>
+    
+    <link rel="stylesheet" href="~/Content/dist/vendor.css" />
+    <link rel="stylesheet" href="~/Content/dist/app.css" />
+    
+    <base href="/" />
 </head>
 <body ng-cloak>
     <div ui-view="header" class="container"></div>
-    <div ui-view="content" class="container"></div>
+    <div ui-view="content" class="container-fluid"></div>
     <div ui-view="footer" class="container"></div>
 
     <script src="~/Scripts/dist/app.js"></script>

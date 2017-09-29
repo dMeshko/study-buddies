@@ -1,5 +1,7 @@
 ﻿namespace StudyBuddies {
     angular.module("study.buddies", [
-        "ui.router"
+        "ngSanitize",        
+        "ui.router",
+        "ui.bootstrap"
     ]);
 }
