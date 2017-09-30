@@ -1,3 +1,31 @@
-﻿[ui-view="content"] {
-    margin-top: 65px;
+﻿$marginTop: 70px;
+
+[ui-view="content"] {
+    margin-top: $marginTop;
+}
+
+/* width-[5..100] classes */
+$maxWidth: 100;
+$step: 5;
+@for $i from $step through $maxWidth {
+    .width-#{$i} {
+        width: #{$i}% !important;
+    }
+    $i: $i + $step;
+}
+
+@for $i from $step through $maxWidth {
+    .margin-#{$i} {
+        margin: #{$i}% !important;
+    }
+
+    $i: $i + $step;
+}
+
+@for $i from $step through $maxWidth {
+    .padding-#{$i} {
+        padding: #{$i}% !important;
+    }
+
+    $i: $i + $step;
 }

@@ -38,13 +38,12 @@
         },
 
         concat_css: {
-            options: {
-                // Task-specific options go here. 
-            },
+            options: { },
             vendor: {
                 src: [
                     "node_modules/bootswatch/readable/bootstrap.css",
-                    "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"
+                    "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css",
+                    "node_modules/font-awesome/css/font-awesome.css"
                 ],
                 dest: "Content/dist/vendor.css"
             },
@@ -131,9 +130,17 @@
                     "ngtemplates:app"
                 ]
             },
+            scss: {
+                files: [
+                    "app/**/*.scss"
+                ],
+                tasks: [
+                    "sass:dev"
+                ]
+            },
             styles: {
                 files: [
-                    "app/**/*.css"
+                    "Content/src/**/*.css"
                 ],
                 tasks: [
                     "concat_css:app"
@@ -151,7 +158,7 @@
     // configure plugins
 
     // define tasks
-    grunt.registerTask("dev", ["ngtemplates", "concat_css", "concat", "watch"]);
+    grunt.registerTask("dev", ["ngtemplates", "sass", "concat_css", "concat", "watch"]);
     grunt.registerTask("concat-and-uglify", ["concat", "uglify"]);
     grunt.registerTask("default", ["ngtemplates", "ts", "concat", "watch"]);
 };

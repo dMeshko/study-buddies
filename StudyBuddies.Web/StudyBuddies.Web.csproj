@@ -350,7 +350,9 @@
     <Content Include="app1\common\style.css" />
     <Content Include="app1\config\states.js" />
     <Content Include="app1\vendor.js" />
+    <Content Include="app\common\directives\user-profile-portlet\user-profile-portlet.scss" />
     <None Include="app\common\layout\content.scss" />
+    <Content Include="app\common\directives\user-profile-portlet\user-profile-portlet.html" />
     <Content Include="app\common\layout\content.html" />
     <Content Include="app\common\layout\footer\footer.html" />
     <Content Include="app\common\layout\header\header.html" />
@@ -408,6 +410,7 @@
     <Content Include="Scripts\src\app.js.map" />
     <Content Include="Scripts\src\config\providers.js.map" />
     <Content Include="Scripts\src\config\states.js.map" />
+    <Content Include="app\common\variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -420,6 +423,7 @@
     <Folder Include="app1\admin\institutions\" />
     <Folder Include="app1\admin\subjects\" />
     <Folder Include="app1\admin\users\" />
+    <Folder Include="app\common\services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
@@ -447,6 +451,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\common\constants.ts" />
+    <TypeScriptCompile Include="app\common\directives\user-profile-portlet\user-profile-portlet.ts" />
     <TypeScriptCompile Include="app\common\layout\footer\footer-controller.ts" />
     <TypeScriptCompile Include="app\common\layout\header\header-controller.ts" />
     <TypeScriptCompile Include="app\components\home\main\home-controller.ts" />
