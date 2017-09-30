@@ -4,6 +4,7 @@
     // load Grunt plugins from NPM
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks("grunt-angular-templates");
+    grunt.loadNpmTasks("grunt-contrib-sass");
     grunt.loadNpmTasks("grunt-concat-css");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-concat");
@@ -25,6 +26,17 @@
             }
         },
 
+        sass: {
+            dev: {
+                files: [{
+                    expand: true,
+                    src: ["app/**/*.scss"],
+                    dest: "Content/src",
+                    ext: ".css"
+                }]
+            }
+        },
+
         concat_css: {
             options: {
                 // Task-specific options go here. 
@@ -38,7 +50,7 @@
             },
             app: {
                 src: [
-                    "app/**/*.css"
+                    "Content/src/**/*.css"
                 ],
                 dest: "Content/dist/app.css"
             }
@@ -58,7 +70,7 @@
         },
 
         ts: {
-            default: {
+            dev: {
                 src: ["app/**/*.ts", "!node_modules/**", "!obj/**", "!bin/**"],
                 tsconfig: true,
                 watch: "app/**/*.ts",

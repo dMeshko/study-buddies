@@ -350,7 +350,7 @@
     <Content Include="app1\common\style.css" />
     <Content Include="app1\config\states.js" />
     <Content Include="app1\vendor.js" />
-    <Content Include="app\common\layout\content.css" />
+    <None Include="app\common\layout\content.scss" />
     <Content Include="app\common\layout\content.html" />
     <Content Include="app\common\layout\footer\footer.html" />
     <Content Include="app\common\layout\header\header.html" />
