@@ -16,12 +16,12 @@
                     $scope.initCommentsSection = function() {
                         $scope.comments = [];
                         PostService.getAllComments($scope.post.id)
-                            .success(function(data) {
-                                $scope.comments = data;
-                            })
-                            .error(function(response) {
-                                $rootScope.parseErrorMessage(response);
-                            });
+                            .then(function(response) {
+                                    $scope.comments = response.data;
+                                },
+                                function(response) {
+                                    $rootScope.parseErrorMessage(response.data);
+                                });
 
                         $scope.comment = {
                             user: {
@@ -34,12 +34,11 @@
                         };
                         $scope.postComment = function() {
                             PostService.addComment($scope.comment)
-                                .success(function (data) {
-                                    $scope.comments.push(data);
+                                .then(function(response) {
+                                    $scope.comments.push(response.data);
                                     $scope.comment.content = "";
-                                })
-                                .error(function(response) {
-                                    $rootScope.parseErrorMessage(response);
+                                }, function(response) {
+                                    $rootScope.parseErrorMessage(response.data);
                                 });
 
                         };
@@ -47,25 +46,23 @@
 
                     $scope.deleteComment = function(commentId) {
                         PostService.deleteComment({ id: $scope.post.id, commentId: commentId })
-                            .success(function(data) {
-                                $scope.comments = $scope.comments.filter(function(item) {
-                                    if (item.id === data)
+                            .then(function(response) {
+                                $scope.comments = $scope.comments.filter(function (item) {
+                                    if (item.id === response.data)
                                         return false;
                                     return true;
                                 });
-                            })
-                            .error(function(response) {
-                                $rootScope.parseErrorMessage(response);
+                            }, function(response) {
+                                $rootScope.parseErrorMessage(response.data);
                             });
                     };
 
                     $scope.deletePost = function () {
                         PostService.deletePost($scope.post.id)
-                            .success(function(data) {
+                            .then(function(response) {
                                 $scope.onRemove();
-                            })
-                            .error(function(response) {
-                                $rootScope.parseErrorMessage(response);
+                            }, function(response) {
+                                $rootScope.parseErrorMessage(response.data);
                             });
                     };
 

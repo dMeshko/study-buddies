@@ -5,6 +5,9 @@ namespace StudyBuddies.Data.Mappings.Institutions
 {
     public class AcademyMap : SubclassMap<Academy>
     {
-        public AcademyMap() { }
+        public AcademyMap()
+        {
+            KeyColumn("InstitutionId");
+        }
     }
 }

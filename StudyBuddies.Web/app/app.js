@@ -4,7 +4,7 @@
     });
 }
 
-var app = angular.module("StudyBuddies", [
+var app = angular.module("study.buddies", [
     "ui.router",
     "ui.bootstrap",
     "angular-loading-bar",

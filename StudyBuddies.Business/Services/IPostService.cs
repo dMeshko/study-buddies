@@ -8,6 +8,7 @@ namespace StudyBuddies.Business.Services
     {
         #region Post
 
+        IList<PostViewModel> GetAllPosts();
         PostViewModel GetPostById(Guid postId);
         PostViewModel CreatePost(CreatePostViewModel post);
         void AddAttachment(AttachmentViewModel attachment);

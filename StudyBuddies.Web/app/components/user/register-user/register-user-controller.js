@@ -4,12 +4,14 @@
 
         $scope.registerUser = function(form) {
             if (form.$valid) {
-                UserService.saveUser($scope.user).success(function (data) {
-                    $rootScope.currentUser.id = data;
-                    $state.go("app.home");
-                }).error(function (response) {
-                    $scope.parseErrorMessage(response);
-                });
+                UserService.saveUser($scope.user)
+                    .then(function(response) {
+                            $rootScope.currentUser.id = response.data;
+                            $state.go("app.home");
+                        },
+                        function(response) {
+                            $scope.parseErrorMessage(response.data);
+                        });
             };
         };
 

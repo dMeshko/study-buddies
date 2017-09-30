@@ -12,21 +12,19 @@
 
             $scope.createGroup = function() {
                 GroupService.createGroup($scope.model)
-                    .success(function(data) {
-                        $state.go("app.groups.details", { id: data });
-                    })
-                    .error(function (response) {
-                        $scope.parseErrorMessage(response);
+                    .then(function(response) {
+                        $state.go("app.groups.details", { id: response.data });
+                    }, function(response) {
+                        $scope.parseErrorMessage(response.data);
                     });
             };
 
             $scope.subjects = [];
             SubjectService.getAllSubjects()
-                .success(function (data) {
-                    $scope.subjects = data;
-                })
-                .error(function (response) {
-                    $scope.parseErrorMessage(response);
+                .then(function(response) {
+                    $scope.subjects = response.data;
+                }, function(response) {
+                    $scope.parseErrorMessage(response.data);
                 });
         }]);
 }

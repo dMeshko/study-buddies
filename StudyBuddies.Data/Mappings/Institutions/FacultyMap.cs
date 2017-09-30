@@ -7,6 +7,8 @@ namespace StudyBuddies.Data.Mappings.Institutions
     {
         public FacultyMap()
         {
+            KeyColumn("InstitutionId");
+
             References(x => x.University)
                 .Column("UniversityId")
                 .Access.CamelCaseField(Prefix.Underscore)

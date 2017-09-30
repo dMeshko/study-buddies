@@ -1,7 +1,7 @@
 ﻿module.exports = function (ngModule) {
     ngModule.controller("ListGroupsController", [
-        "$scope", "GroupService", "Helpers",
-        function ($scope, GroupService, Helpers) {
+        "$scope", "GroupService",
+        function ($scope, GroupService) {
             $scope.model = {
                 user: {
                     id: "3F6E0CC2-020C-424E-B57C-7C9BDC427EF8"
@@ -14,11 +14,10 @@
 
             $scope.groups = [];
             GroupService.getAllGroupsWhereNoRequestIsSent($scope.model.user.id)
-                .success(function (response) {
-                    $scope.groups = response;
-                })
-                .error(function (response) {
-                    Helpers.parseErrorMessage(response);
+                .then(function(response) {
+                    $scope.groups = response.data;
+                }, function(response) {
+                    $scope.parseErrorMessage(response.data);
                 });
 
             $scope.joinGroup = function(groupId) {
@@ -28,15 +27,14 @@
 
             $scope.deleteGroup = function(groupId) {
                 GroupService.deleteGroup(groupId)
-                    .success(function(data) {
+                    .then(function(response) {
                         $scope.groups = $scope.groups.filter(function(item) {
                             if (item.id === groupId)
                                 return false;
                             return true;
                         });
-                    })
-                    .error(function(response) {
-                        $scope.parseErrorMessage(response);
+                    }, function(response) {
+                        $scope.parseErrorMessage(response.data);
                     });
             };
         }]);

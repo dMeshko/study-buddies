@@ -129,6 +129,15 @@ namespace StudyBuddies.Business.Services.Implementation
             _userRepository.Update(currentUser);
         }
 
+        public IList<PostViewModel> GetMineGroupsPosts(Guid userId)
+        {
+            //var posts = _postRepository.GetAll().Where(x => x.User.Id == userId).ToList();
+            var posts = from post in _postRepository.GetAll()
+                where post.User.Id == userId
+                select post;
+            return Mapper.Map<IList<Post>, IList<PostViewModel>>(posts.ToList());
+        }
+
         public List<NotificationViewModel> GetAllMessageNotifications(Guid userId)
         {
             var user = _userRepository.GetById(userId);

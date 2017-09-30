@@ -18,10 +18,10 @@
                 $scope.joinGroup = function(groupId) {
                     $scope.model.group.id = groupId;
                     GroupService.sendGroupRequest($scope.model)
-                        .success(function(response) {
+                        .then(function(response) {
                             delete $scope.group;
-                        }).error(function(data) {
-                            $rootScope.parseErrorMessage(data);
+                        }, function(response) {
+                            $rootScope.parseErrorMessage(response.data);
                         });
                 };
             }

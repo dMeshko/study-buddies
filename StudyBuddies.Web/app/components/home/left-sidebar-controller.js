@@ -3,10 +3,11 @@
         $scope.user = {};
 
         UserService.getUserById($scope.currentUser.id)
-            .success(function (data) {
-                $scope.user = data;
-            }).error(function (data) {
-                $scope.parseErrorMessage(data);
+            .then(function(response) {
+                $scope.user = response.data;
+                $scope.userInstitutions = response.data.institutions.map(x => x.name).join(", ");
+            }, function (response) {
+                $scope.parseErrorMessage(response.data);
             });
     }]);
 };

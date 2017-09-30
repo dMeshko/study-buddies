@@ -5,20 +5,18 @@
             var groupId = $stateParams.id;
             $scope.group = {};
             GroupService.getGroupById(groupId)
-                .success(function (data) {
-                    $scope.group = data;
-                })
-                .error(function (response) {
-                    $scope.parseErrorMessage(response);
+                .then(function(response) {
+                    $scope.group = response.data;
+                }, function(response) {
+                    $scope.parseErrorMessage(response.data);
                 });
 
             $scope.posts = [];
             GroupService.getAllPosts(groupId)
-                 .success(function (data) {
-                     $scope.posts = data;
-                 })
-                .error(function (response) {
-                    $scope.parseErrorMessage(response);
+                .then(function(response) {
+                    $scope.posts = response.data;
+                }, function(response) {
+                    $scope.parseErrorMessage(response.data);
                 });
 
             // add new post
@@ -46,32 +44,30 @@
 
             $scope.addPost = function () {
                 PostService.addPost($scope.post)
-                    .success(function (data) {
-                        $scope.uploader.queue.map(function(item) {
-                            item.formData.push({
-                                postId: data.id
+                    .then(function(response) {
+                            $scope.uploader.queue.map(function(item) {
+                                item.formData.push({
+                                    postId: response.data.id
+                                });
                             });
-                        });
-                        $scope.uploader.uploadAll();
+                            $scope.uploader.uploadAll();
 
-                        //$scope.uploader.onCompleteAll = function () {
+                            //$scope.uploader.onCompleteAll = function () {
                             if ($scope.uploader.queue.length === 0)
-                                $scope.posts.unshift(data);
+                                $scope.posts.unshift(response.data);
                             else // we gotta fetch the post, to get the attachments
-                                PostService.getPostById(data.id)
-                                    .success(function(data) {
-                                        $scope.posts.unshift(data);
-                                    })
-                                    .error(function(response) {
-                                        $scope.parseErrorMessage(response);
+                                PostService.getPostById(response.data.id)
+                                    .then(function(response) {
+                                        $scope.posts.unshift(response.data);
+                                    }, function(response) {
+                                        $scope.parseErrorMessage(response.data);
                                     });
 
-                        $scope.post.content = "";
-                        //}
-                    })
-                    .error(function (response) {
-                        $scope.parseErrorMessage(response);
-                    });
+                            $scope.post.content = "";
+                        },
+                        function(response) {
+                            $scope.parseErrorMessage(response.data);
+                        });
             };
         }
     ]);

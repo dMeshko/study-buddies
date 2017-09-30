@@ -58,6 +58,7 @@ namespace StudyBuddies.Business.Services
         #region Post
 
         List<PostViewModel> GetLatestGroupsPosts(Guid userId);
+        IList<PostViewModel> GetMineGroupsPosts(Guid userId);
 
         #endregion
 

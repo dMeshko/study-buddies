@@ -34,6 +34,13 @@ namespace StudyBuddies.Web.Controllers.Api
         }
 
         [Route("")]
+        public IHttpActionResult Get()
+        {
+            var posts = _postService.GetAllPosts();
+            return Ok(posts);
+        }
+
+        [Route("")]
         public IHttpActionResult Post(CreatePostViewModel model)
         {
             if (!ModelState.IsValid)

@@ -7,7 +7,7 @@ namespace StudyBuddies.Business.ViewModels.Institutions
     public class InstitutionViewModel
     {
         public string Name { get; set; }
-        public IList<LookupViewModel> Locations { get; set; }
+        //public IList<LookupViewModel> Locations { get; set; }
         public InstitutionType Type { get; set; }
     }
 
@@ -21,8 +21,8 @@ namespace StudyBuddies.Business.ViewModels.Institutions
     {
         public InstitutionViewModelMappingProfile()
         {
-            CreateMap<Institution, InstitutionViewModel>()
-                .ForMember(x => x.Locations, opt => opt.MapFrom(y => y.Locations));
+            CreateMap<Institution, InstitutionViewModel>();
+            //    .ForMember(x => x.Locations, opt => opt.MapFrom(y => y.Locations));
 
             CreateMap<Institution, LookupViewModel>();
 

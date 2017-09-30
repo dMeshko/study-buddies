@@ -1,6 +1,6 @@
 ﻿module.exports = function (ngModule) {
-    ngModule.config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-            cfpLoadingBarProvider.includeSpinner = false;
-        }
+    ngModule.config(['cfpLoadingBarProvider', "$httpProvider", function (cfpLoadingBarProvider, $httpProvider) {
+        cfpLoadingBarProvider.includeSpinner = false;
+    }
     ]);
 };

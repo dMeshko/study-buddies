@@ -5,12 +5,11 @@
         $scope.model = {};
         $scope.login = function () {
             UserService.login($scope.model)
-            .success(function (data) {
-                $rootScope.currentUser = data;
+            .then(function (response) {
+                $rootScope.currentUser = response.data;
                 $state.go("app.home");
-            })
-            .error(function (response) {
-                $scope.parseErrorMessage(response);
+            }, function (response) {
+                $scope.parseErrorMessage(response.data);
             });
         }
     }]);

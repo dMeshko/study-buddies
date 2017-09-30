@@ -4,23 +4,21 @@
         function ($scope, GroupService) {
             $scope.groups = [];
             GroupService.getAllMemberingGroups($scope.currentUser.id)
-                .success(function (response) {
-                    $scope.groups = response;
-                })
-                .error(function (response) {
-                    $scope.parseErrorMessage(response);
+                .then(function(response) {
+                    $scope.groups = response.data;
+                }, function(response) {
+                    $scope.parseErrorMessage(response.data);
                 });
 
             $scope.deleteGroup = function (groupId) {
                 GroupService.deleteGroup(groupId)
-                    .success(function (data) {
+                    .then(function(response) {
                         $scope.groups = $scope.groups.filter(function (item) {
                             if (item.id === groupId)
                                 return false;
                             return true;
                         });
-                    })
-                    .error(function (response) {
+                    }, function(response) {
                         $scope.parseErrorMessage(response);
                     });
             };

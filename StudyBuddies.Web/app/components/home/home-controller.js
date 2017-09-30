@@ -3,11 +3,10 @@
         $scope.posts = [];
 
         UserService.getLatestGroupsPosts($scope.currentUser.id)
-            .success(function (data) {
-                $scope.posts = data;
-            })
-            .error(function (response) {
-                $scope.parseErrorMessage(response);
+            .then(function (response) {
+                $scope.posts = response.data;
+            }, function (response) {
+                $scope.parseErrorMessage(response.data);
             });
     }
     ]);

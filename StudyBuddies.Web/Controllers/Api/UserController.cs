@@ -242,6 +242,13 @@ namespace StudyBuddies.Web.Controllers.Api
             return Ok(groups);
         }
 
+        [Route("{id:guid}/post-mine")]
+        public IHttpActionResult GetMineGroupPosts(Guid id)
+        {
+            var groups = _userService.GetMineGroupsPosts(id);
+            return Ok(groups);
+        }
+
         #endregion
 
         #region Login

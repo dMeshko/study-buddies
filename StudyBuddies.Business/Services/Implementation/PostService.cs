@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using StudyBuddies.Business.Infrastructure.Exceptions;
 using StudyBuddies.Business.Infrastructure.Exceptions.Messages;
@@ -26,6 +27,12 @@ namespace StudyBuddies.Business.Services.Implementation
         }
 
         #region Post
+
+        public IList<PostViewModel> GetAllPosts()
+        {
+            var posts = _postRepository.GetAll().ToList();
+            return Mapper.Map<IList<Post>, IList<PostViewModel>>(posts);
+        }
 
         public PostViewModel GetPostById(Guid postId)
         {

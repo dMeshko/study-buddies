@@ -3,13 +3,13 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using System.Web.Http;
-using System.Web.Mvc;
 using StudyBuddies.Data.Infrastructure;
 using NHibernate;
 using Owin;
 using StudyBuddies.Business.Services;
 using StudyBuddies.Data.Configuration;
 using StudyBuddies.Domain;
+using StudyBuddies.Web.Providers;
 
 namespace StudyBuddies.Web
 {
@@ -28,6 +28,23 @@ namespace StudyBuddies.Web
 
             builder.RegisterInstance(FluentNHibernateConfig.CreateSessionFactory()).As<ISessionFactory>();
 
+            // scan for IUserApplicationService?
+            // http://docs.autofac.org/en/latest/faq/injecting-configured-parameters.html?highlight=lambda%20expression
+            //builder.RegisterType<SiteContextProvider>()
+            //    .As<ISiteContextProvider>()
+            //    .InstancePerRequest();
+
+            //builder.Register(x =>
+            //{
+            //    var isMobileDevice = x.Resolve<ISiteContextProvider>().IsMobile;
+            //    if (isMobileDevice)
+            //        return x.Resolve<IUserService>();
+
+            //    return x.Resolve<IUserService>();
+            //})
+            //.AsImplementedInterfaces()
+            //.InstancePerRequest();
+
             // scans for services in the services assembly
             builder.RegisterAssemblyTypes(typeof(IUserService).Assembly)
                 .Where(x => x.Namespace.EndsWith(".Implementation"))
@@ -39,7 +56,7 @@ namespace StudyBuddies.Web
                 .Where(x => x.Namespace.EndsWith(".Implementation"))
                 .AsImplementedInterfaces()
                 .InstancePerRequest();
-
+            
             var container = builder.Build();
             globalConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 

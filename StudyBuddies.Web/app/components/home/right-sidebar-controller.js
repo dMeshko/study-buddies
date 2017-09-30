@@ -2,12 +2,10 @@
     ngModule.controller("RightSidebarController", ["$scope", "GroupService", function ($scope, GroupService) {
         $scope.grpups = [];
         GroupService.getAllGroupsWhereNoRequestIsSent($scope.currentUser.id)
-                .success(function (response) {
-                    $scope.groups = response;
-            })
-                .error(function (response) {
-                    $scope.parseErrorMessage(response);
-                });
-
+            .then(function(response) {
+                $scope.groups = response.data;
+            }, function(response) {
+                $scope.parseErrorMessage(response.data);
+            });
     }]);
 };
