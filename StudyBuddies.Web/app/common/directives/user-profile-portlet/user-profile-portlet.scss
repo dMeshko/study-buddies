@@ -3,11 +3,18 @@
 .user-profile-portlet {
     border: 1px solid $primarySiteColor;
 
+    .cover{
+        img{
+            height: 160px;
+        }
+    }
+
     .profile > div {
         margin-top: -10%;
 
         img {
             border: 1px solid $primarySiteColor;
+            height: 60px;
         }
     }
 

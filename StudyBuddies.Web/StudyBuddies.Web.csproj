@@ -350,13 +350,14 @@
     <Content Include="app1\common\style.css" />
     <Content Include="app1\config\states.js" />
     <Content Include="app1\vendor.js" />
+    <Content Include="app\common\directives\study-group-portlet\study-group-portlet.html" />
     <Content Include="app\common\directives\user-profile-portlet\user-profile-portlet.scss" />
+    <Content Include="app\common\directives\study-group-portlet\study-group-portlet.scss" />
     <None Include="app\common\layout\content.scss" />
     <Content Include="app\common\directives\user-profile-portlet\user-profile-portlet.html" />
     <Content Include="app\common\layout\content.html" />
     <Content Include="app\common\layout\footer\footer.html" />
     <Content Include="app\common\layout\header\header.html" />
-    <Content Include="app\components\home\main\home.css" />
     <Content Include="app\components\home\main\home.html" />
     <Content Include="app\components\home\left-sidebar\left-sidebar.html" />
     <Content Include="app\components\home\right-sidebar\right-sidebar.html" />
@@ -451,6 +452,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
     <TypeScriptCompile Include="app\common\constants.ts" />
+    <TypeScriptCompile Include="app\common\directives\study-group-portlet\study-group-portlet.ts" />
     <TypeScriptCompile Include="app\common\directives\user-profile-portlet\user-profile-portlet.ts" />
     <TypeScriptCompile Include="app\common\layout\footer\footer-controller.ts" />
     <TypeScriptCompile Include="app\common\layout\header\header-controller.ts" />
