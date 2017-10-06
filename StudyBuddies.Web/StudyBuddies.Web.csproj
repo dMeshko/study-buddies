@@ -113,6 +113,12 @@
       <HintPath>..\packages\MB.Owin.Logging.Log4Net.1.0.2\lib\net45\MB.Owin.Logging.Log4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.1.2\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Hosting.Abstractions.1.1.2\lib\net451\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -133,6 +139,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.4\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.1.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
       <Private>True</Private>
@@ -372,6 +379,11 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\dist\app.js" />
     <Content Include="Scripts\dist\templates.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.1.2.min.js" />
     <Content Include="Scripts\src\app.js" />
     <Content Include="Scripts\src\config\providers.js" />
     <Content Include="Scripts\src\config\states.js" />
@@ -386,6 +398,7 @@
     <Compile Include="App_Start\UnitOfWorkActionFilter.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiExceptionFilter.cs" />
+    <Compile Include="Controllers\ApiControllerWithHub.cs" />
     <Compile Include="Controllers\Api\AcademyController.cs" />
     <Compile Include="Controllers\Api\AreaOfStudyController.cs" />
     <Compile Include="Controllers\Api\FacultyController.cs" />
@@ -400,6 +413,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\MyHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Startup.cs" />
@@ -412,6 +426,7 @@
     <Content Include="Scripts\src\config\providers.js.map" />
     <Content Include="Scripts\src\config\states.js.map" />
     <Content Include="app\common\variables.scss" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -424,7 +439,6 @@
     <Folder Include="app1\admin\institutions\" />
     <Folder Include="app1\admin\subjects\" />
     <Folder Include="app1\admin\users\" />
-    <Folder Include="app\common\services\" />
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
@@ -456,6 +470,7 @@
     <TypeScriptCompile Include="app\common\directives\user-profile-portlet\user-profile-portlet.ts" />
     <TypeScriptCompile Include="app\common\layout\footer\footer-controller.ts" />
     <TypeScriptCompile Include="app\common\layout\header\header-controller.ts" />
+    <TypeScriptCompile Include="app\common\services\user-service.ts" />
     <TypeScriptCompile Include="app\components\home\main\home-controller.ts" />
     <TypeScriptCompile Include="app\components\home\left-sidebar\left-sidebar-controller.ts" />
     <TypeScriptCompile Include="app\components\home\right-sidebar\right-sidebar-controller.ts" />

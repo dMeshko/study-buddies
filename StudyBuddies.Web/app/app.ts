@@ -2,6 +2,7 @@
     angular.module("study.buddies", [
         "ngSanitize",        
         "ui.router",
-        "ui.bootstrap"
+        "ui.bootstrap",
+        "SignalR"
     ]);
 }

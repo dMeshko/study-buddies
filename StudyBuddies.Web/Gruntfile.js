@@ -89,6 +89,7 @@
                         "node_modules/angular-ui-router/release/angular-ui-router.min.js",
                         "node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js",
                         "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js",
+                        "node_modules/angular-signalr-hub/signalr-hub.js",
 
                         // testing
                         "node_modules/angular-mocks/angular-mocks.js",
