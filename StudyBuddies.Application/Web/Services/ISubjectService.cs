@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudyBuddies.Application
+namespace StudyBuddies.Application.Web.Services
 {
-    public class Class1
+    public interface ISubjectService
     {
     }
 }
