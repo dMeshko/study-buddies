@@ -470,6 +470,7 @@
     <TypeScriptCompile Include="app\common\directives\user-profile-portlet\user-profile-portlet.ts" />
     <TypeScriptCompile Include="app\common\layout\footer\footer-controller.ts" />
     <TypeScriptCompile Include="app\common\layout\header\header-controller.ts" />
+    <TypeScriptCompile Include="app\common\services\group-service.ts" />
     <TypeScriptCompile Include="app\common\services\user-service.ts" />
     <TypeScriptCompile Include="app\components\home\main\home-controller.ts" />
     <TypeScriptCompile Include="app\components\home\left-sidebar\left-sidebar-controller.ts" />
