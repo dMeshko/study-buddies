@@ -1,8 +1,0 @@
-﻿<div class="row">
-    <input type="text" ng-model="model.name" class="form-control" name="name" placeholder="Name" />
-    <input type="text" ng-model="model.description" class="form-control" name="description" placeholder="Description" />
-    <input type="number" ng-model="model.groupCapacity" class="form-control" name="capacity" placeholder="Capacity" min="0" />
-    <select class="form-control" name="subject" ng-model="model.subject" 
-            ng-options="subject as subject.name + ' ( ' + subject.areaOfStudy.name + ' )' for subject in subjects track by subject.id"></select>
-    <button ng-click="createGroup()" class="btn btn-success">Create Group</button>
-</div>

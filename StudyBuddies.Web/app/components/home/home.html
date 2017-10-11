@@ -1,5 +1,0 @@
-﻿<div ng-if="posts.length === 0">
-    <h4>There aren't' any posts from the groups you are enrolled in.</h4>
-    <h3>Go ahead and post something fun! :)</h3>
-</div>
-<div ng-if="posts.length > 0" ng-repeat="post in posts" post="post" on-remove="posts.splice($index, 1)"></div>

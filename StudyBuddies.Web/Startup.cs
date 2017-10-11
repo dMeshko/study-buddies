@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens;
 using System.Web.Http;
-using IdentityServer3.AccessTokenValidation;
 using MB.Owin.Logging.Log4Net;
 using Microsoft.Owin;
-using Microsoft.Owin.Cors;
 using Microsoft.Owin.Logging;
 using Owin;
 using StudyBuddies.Business.Infrastructure;
@@ -54,6 +51,9 @@ namespace StudyBuddies.Web
 
             WebApiConfig.Register(config);
             app.UseWebApi(config);
+
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR();
         }
     }
 }
