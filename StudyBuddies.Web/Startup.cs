@@ -28,22 +28,12 @@ namespace StudyBuddies.Web
             //// Allow all origins
             //app.UseCors(CorsOptions.AllowAll);
 
-            //// claims transformation, used to map received claims with their equivalents in asp.net
-            //JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
-
             //// Wire token validation
             //app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             //{
             //    Authority = "https://sts.studybuddies.com",
-
-            //    // For access to the introspection endpoint
-            //    ClientId = "webapp_client",
-            //    ClientSecret = "B451713C-4E34-4D9A-9B4B-5A40EF7F5D40",
-                
             //    RequiredScopes = new[] { "sbapi" }
             //});
-            
-            //ConfigureAuth(app);
 
             //config.Filters.Add(new AuthorizeAttribute());
 

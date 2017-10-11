@@ -375,7 +375,6 @@
     <None Include=".bin\npm.cmd" />
     <Content Include="Gruntfile.js" />
     <Content Include="package.json" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Content Include="packages.config" />
     <Content Include="Scripts\dist\app.js" />
     <Content Include="Scripts\dist\templates.js" />

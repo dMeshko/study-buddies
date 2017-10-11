@@ -36,7 +36,7 @@ namespace StudyBuddies.IdentityServer
         private static X509Certificate2 LoadCertificate()
         {
             return new X509Certificate2(
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Config\studybuddies.pfx"), "administrator");
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Certificates\studybuddies.pfx"), "administrator");
         }
     }
 }

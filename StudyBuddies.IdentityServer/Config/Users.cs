@@ -5,7 +5,7 @@ using System.Web;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Services.InMemory;
 
-namespace StudyBuddies.IdentityServer
+namespace StudyBuddies.IdentityServer.Config
 {
     public static class Users
     {

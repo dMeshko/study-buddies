@@ -4,7 +4,7 @@ using System.Web;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Models;
 
-namespace StudyBuddies.IdentityServer
+namespace StudyBuddies.IdentityServer.Config
 {
     public static class Scopes
     {

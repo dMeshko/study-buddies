@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web;
 using IdentityServer3.Core.Models;
 
-namespace StudyBuddies.IdentityServer
+namespace StudyBuddies.IdentityServer.Config
 {
     public static class Clients
     {
