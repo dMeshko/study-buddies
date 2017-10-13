@@ -375,7 +375,9 @@
     <None Include=".bin\npm.cmd" />
     <Content Include="Gruntfile.js" />
     <Content Include="package.json" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\dist\app.js" />
     <Content Include="Scripts\dist\templates.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -476,6 +478,7 @@
     <TypeScriptCompile Include="app\components\home\right-sidebar\right-sidebar-controller.ts" />
     <TypeScriptCompile Include="app\components\home\states.ts" />
     <TypeScriptCompile Include="app\config\config.ts" />
+    <TypeScriptCompile Include="app\config\interceptors.ts" />
     <TypeScriptCompile Include="app\config\providers.ts" />
     <TypeScriptCompile Include="app\config\states.ts" />
   </ItemGroup>
