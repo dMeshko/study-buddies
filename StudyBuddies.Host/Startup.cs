@@ -9,6 +9,8 @@ namespace StudyBuddies.Host
         {
             HttpConfiguration config = new HttpConfiguration();
 
+            AutofacConfig.Configure(app, config);
+
             #region Identity Server
 
             
