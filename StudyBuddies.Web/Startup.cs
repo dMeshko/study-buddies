@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens;
 using System.Web.Http;
-using IdentityServer3.AccessTokenValidation;
 using MB.Owin.Logging.Log4Net;
 using Microsoft.Owin;
-using Microsoft.Owin.Cors;
 using Microsoft.Owin.Logging;
 using Owin;
 using StudyBuddies.Business.Infrastructure;
@@ -28,25 +25,15 @@ namespace StudyBuddies.Web
 
             #region Identity Server
 
-            // Allow all origins
-            app.UseCors(CorsOptions.AllowAll);
+            //// Allow all origins
+            //app.UseCors(CorsOptions.AllowAll);
 
-            // claims transformation, used to map received claims with their equivalents in asp.net
-            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
-
-            // Wire token validation
-            app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
-            {
-                Authority = "https://sts.studybuddies.com",
-
-                // For access to the introspection endpoint
-                ClientId = "webapp_client",
-                ClientSecret = "B451713C-4E34-4D9A-9B4B-5A40EF7F5D40",
-                
-                RequiredScopes = new[] { "sbapi" }
-            });
-            
-            //ConfigureAuth(app);
+            //// Wire token validation
+            //app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
+            //{
+            //    Authority = "https://sts.studybuddies.com",
+            //    RequiredScopes = new[] { "sbapi" }
+            //});
 
             //config.Filters.Add(new AuthorizeAttribute());
 
@@ -54,6 +41,9 @@ namespace StudyBuddies.Web
 
             WebApiConfig.Register(config);
             app.UseWebApi(config);
+
+            // Any connection or hub wire up and configuration should go here
+            app.MapSignalR();
         }
     }
 }

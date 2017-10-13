@@ -51,16 +51,16 @@ namespace StudyBuddies.Data.Infrastructure
             return Session.Query<T>().Where(where).FirstOrDefault();
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-           return Session.Query<T>().ToList();
+           return Session.Query<T>();
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+        public virtual IQueryable<T> GetMany(Expression<Func<T, bool>> where)
         {
-           return Session.Query<T>().Where(where).ToList();
+           return Session.Query<T>().Where(where);
         }
 
-        public virtual bool IsUnique(T entity) => !Session.Query<T>().ToList().Any();
+        public virtual bool IsUnique(T entity) => !Session.Query<T>().Any();
     }
 }

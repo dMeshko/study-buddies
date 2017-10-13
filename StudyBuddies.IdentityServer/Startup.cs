@@ -2,11 +2,10 @@
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using IdentityServer3.Core.Configuration;
-using IdentityServer3.Core.Services;
 using Microsoft.Owin;
 using Owin;
 using StudyBuddies.IdentityServer;
-using StudyBuddies.IdentityServer.Factories;
+using StudyBuddies.IdentityServer.Config;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace StudyBuddies.IdentityServer
@@ -36,7 +35,7 @@ namespace StudyBuddies.IdentityServer
         private static X509Certificate2 LoadCertificate()
         {
             return new X509Certificate2(
-                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Config\studybuddies.pfx"), "administrator");
+                Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\Certificates\studybuddies.pfx"), "administrator");
         }
     }
 }

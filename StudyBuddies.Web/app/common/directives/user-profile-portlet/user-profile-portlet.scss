@@ -1,0 +1,36 @@
+﻿@import "../../variables.scss";
+
+.user-profile-portlet {
+    border: 1px solid $primarySiteColor;
+
+    .cover{
+        img{
+            height: 160px;
+        }
+    }
+
+    .profile > div {
+        margin-top: -10%;
+
+        img {
+            border: 1px solid $primarySiteColor;
+            height: 60px;
+        }
+    }
+
+    .category {
+        padding: 10px;
+        border-radius: 50%;
+        border: 1px solid $primarySiteColor;
+
+        &:hover {
+            border: 1px solid $secondarySiteColor;
+            color: $secondarySiteColor;
+            background-color: $primarySiteColor;
+            cursor: pointer;
+            -webkit-transition: background-color 250ms linear;
+            -ms-transition: background-color 250ms linear;
+            transition: background-color 250ms linear;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace StudyBuddies.Data.Infrastructure
@@ -23,10 +23,10 @@ namespace StudyBuddies.Data.Infrastructure
         T Get(Expression<Func<T, bool>> where);
 
         // Gets all entities of type T
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
 
         // Gets entities using delegate
-        IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+        IQueryable<T> GetMany(Expression<Func<T, bool>> where);
 
         // Checks whether an entity is unique
         bool IsUnique(T entity);
