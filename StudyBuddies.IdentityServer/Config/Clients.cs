@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using IdentityServer3.Core.Models;
+using StudyBuddies.Core;
 
 namespace StudyBuddies.IdentityServer.Config
 {
@@ -11,6 +12,21 @@ namespace StudyBuddies.IdentityServer.Config
         {
             return new[]
             {
+                new Client
+                {
+                    Enabled = true,
+                    ClientName = "StudyBuddies Hybrid Client",
+                    ClientId = "sb_hybrid",
+                    Flow = Flows.Hybrid,
+                    AllowAccessToAllScopes = true,
+
+                    // redirect uri of the app
+                    RedirectUris = new List<string>
+                    {
+                        Constants.StudyBuddiesWebUrl
+                    }
+                },
+
                 new Client
                 {
                     Enabled = true,

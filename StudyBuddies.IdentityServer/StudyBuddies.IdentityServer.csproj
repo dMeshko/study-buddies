@@ -123,13 +123,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StudyBuddies.Data\StudyBuddies.Data.csproj">
-      <Project>{B1B59478-AD10-4DBE-AED6-CC383316D355}</Project>
-      <Name>StudyBuddies.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StudyBuddies.Model\StudyBuddies.Domain.csproj">
-      <Project>{B4A19554-6CC8-44C1-A50C-24DA53433609}</Project>
-      <Name>StudyBuddies.Domain</Name>
+    <ProjectReference Include="..\StudyBuddies.Core\StudyBuddies.Core.csproj">
+      <Project>{9af9c0ce-94a7-4d7e-afc9-4304407db8c4}</Project>
+      <Name>StudyBuddies.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

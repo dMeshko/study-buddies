@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security.Claims;
-using System.Web;
 using IdentityServer3.Core;
 using IdentityServer3.Core.Services.InMemory;
 
@@ -23,7 +21,8 @@ namespace StudyBuddies.IdentityServer.Config
                 {
                     new Claim(Constants.ClaimTypes.GivenName, "Bob"),
                     new Claim(Constants.ClaimTypes.FamilyName, "Smith"),
-                    new Claim(Constants.ClaimTypes.Email, "bob.smith@email.com")
+                    new Claim(Constants.ClaimTypes.Email, "bob.smith@email.com"),
+                    new Claim("role", "admin"), 
                 }
             }
         };
