@@ -2,14 +2,14 @@
 
 namespace StudyBuddies.Domain.Users
 {
-    public class Claim : BaseEntity
+    public class UserClaim : BaseEntity
     {
-        private string _claimType;
-        private string _claimValue;
+        private readonly string _claimType;
+        private readonly string _claimValue;
 
-        protected Claim() { }
+        protected UserClaim() { }
 
-        public Claim(string claimType, string claimValue)
+        public UserClaim(string claimType, string claimValue)
         {
             if (string.IsNullOrEmpty(claimType))
                 throw new InvalidDataException(nameof(claimType));

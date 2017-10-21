@@ -65,7 +65,7 @@
     <Compile Include="Mappings\Subjects\EnrolledSubjectMap.cs" />
     <Compile Include="Mappings\Subjects\SubjectMap.cs" />
     <Compile Include="Mappings\Users\BuddyRequestMap.cs" />
-    <Compile Include="Mappings\Users\ClaimMap.cs" />
+    <Compile Include="Mappings\Users\UserClaimMap.cs" />
     <Compile Include="Mappings\Users\MessageMap.cs" />
     <Compile Include="Mappings\Users\NotificationDetailsMap.cs" />
     <Compile Include="Mappings\Users\NotificationMap.cs" />

@@ -50,7 +50,7 @@
     <Compile Include="Subjects\EnrolledSubject.cs" />
     <Compile Include="Subjects\Subject.cs" />
     <Compile Include="Users\BuddyRequest.cs" />
-    <Compile Include="Users\Claim.cs" />
+    <Compile Include="Users\UserClaim.cs" />
     <Compile Include="Users\Message.cs" />
     <Compile Include="Groups\Post.cs" />
     <Compile Include="Users\Notification.cs" />

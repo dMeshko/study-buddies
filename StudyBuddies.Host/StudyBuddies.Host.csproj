@@ -128,11 +128,24 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="App_Start\WebApiExceptionFilter.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\AcademyController.cs" />
+    <Compile Include="Controllers\AreaOfStudyController.cs" />
+    <Compile Include="Controllers\FacultyController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\InstitutionController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\UniversityController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StudyBuddies.Business\StudyBuddies.Business.csproj">
+      <Project>{2ebd1125-158c-4721-a25e-896a7097a938}</Project>
+      <Name>StudyBuddies.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StudyBuddies.Core\StudyBuddies.Core.csproj">
       <Project>{9af9c0ce-94a7-4d7e-afc9-4304407db8c4}</Project>
       <Name>StudyBuddies.Core</Name>

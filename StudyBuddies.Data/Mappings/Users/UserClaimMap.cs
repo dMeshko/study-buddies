@@ -3,9 +3,9 @@ using StudyBuddies.Domain.Users;
 
 namespace StudyBuddies.Data.Mappings.Users
 {
-    public class ClaimMap : SubclassMap<Claim>
+    public class UserClaimMap : SubclassMap<UserClaim>
     {
-        public ClaimMap()
+        public UserClaimMap()
         {
             Abstract();
 

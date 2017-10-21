@@ -28,7 +28,7 @@ namespace StudyBuddies.Domain.Users
         private IList<EnrolledSubject> _enrolledSubjects;
         private IList<EnrolledInstitution> _enrolledInstitutions;
         private IList<Notification> _notifications;
-        private IList<Claim> _claims;
+        private IList<UserClaim> _claims;
 
         protected User() { }
 
@@ -64,7 +64,7 @@ namespace StudyBuddies.Domain.Users
             _enrolledSubjects = new List<EnrolledSubject>();
             _enrolledInstitutions = new List<EnrolledInstitution>();
             _notifications = new List<Notification>();
-            _claims = new List<Claim>();
+            _claims = new List<UserClaim>();
         }
 
         #region Properties
@@ -128,7 +128,7 @@ namespace StudyBuddies.Domain.Users
         public virtual IList<EnrolledSubject> EnrolledSubjects => _enrolledSubjects;
         public virtual IList<EnrolledInstitution> EnrolledInstitutions => _enrolledInstitutions;
         public virtual IList<Notification> Notifications => _notifications;
-        public virtual IList<Claim> Claims => _claims;
+        public virtual IList<UserClaim> Claims => _claims;
 
         #endregion
 
@@ -277,7 +277,7 @@ namespace StudyBuddies.Domain.Users
             _notifications.Add(notification);
         }
 
-        public virtual void AddClaim(Claim claim)
+        public virtual void AddClaim(UserClaim claim)
         {
             if (claim == null)
                 throw new InvalidDataException(nameof(claim));
@@ -286,7 +286,7 @@ namespace StudyBuddies.Domain.Users
                 _claims.Add(claim);
         }
 
-        public virtual void RemoveRole(Claim claim)
+        public virtual void RemoveRole(UserClaim claim)
         {
             if (claim == null)
                 throw new InvalidDataException(nameof(claim));
