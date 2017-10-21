@@ -54,6 +54,11 @@ namespace StudyBuddies.Data.Mappings.Users
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Column("Image");
 
+            Map(x => x.IsActive)
+                .Access.CamelCaseField(Prefix.Underscore)
+                .Column("IsActive")
+                .Not.Nullable();
+
             HasMany(x => x.CreatedGroups)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .KeyColumn("AdminId")
@@ -106,11 +111,11 @@ namespace StudyBuddies.Data.Mappings.Users
                 .Inverse()
                 .Cascade.AllDeleteOrphan();
 
-            HasManyToMany(x => x.Roles)
+            HasManyToMany(x => x.Claims)
                 .Access.CamelCaseField(Prefix.Underscore)
                 .Cascade.All()
                 .ParentKeyColumn("UserId")
-                .ChildKeyColumn("RoleId");
+                .ChildKeyColumn("ClaimId");
         }
     }
 }

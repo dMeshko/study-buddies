@@ -13,10 +13,12 @@ namespace StudyBuddies.Domain.Users
         private string _name;
         private string _surname;
         private string _email;
+        // this needs to be encrypted with algorithm that can't be decrypted
         private string _password;
         private string _username;
         private byte[] _coverImage;
         private byte[] _image;
+        private bool _isActive;
         private IList<Group> _createdGroups;
         private IList<GroupRequest> _memberInGroups;
         private IList<BuddyRequest> _sentBuddyRequests;
@@ -26,7 +28,7 @@ namespace StudyBuddies.Domain.Users
         private IList<EnrolledSubject> _enrolledSubjects;
         private IList<EnrolledInstitution> _enrolledInstitutions;
         private IList<Notification> _notifications;
-        private IList<Role> _roles;
+        private IList<Claim> _claims;
 
         protected User() { }
 
@@ -52,6 +54,7 @@ namespace StudyBuddies.Domain.Users
             _username = null;
             _coverImage = new byte[0];
             _image = new byte[0];
+            _isActive = true;
             _createdGroups = new List<Group>();
             _memberInGroups = new List<GroupRequest>();
             _sentBuddyRequests = new List<BuddyRequest>();
@@ -61,7 +64,7 @@ namespace StudyBuddies.Domain.Users
             _enrolledSubjects = new List<EnrolledSubject>();
             _enrolledInstitutions = new List<EnrolledInstitution>();
             _notifications = new List<Notification>();
-            _roles = new List<Role>();
+            _claims = new List<Claim>();
         }
 
         #region Properties
@@ -81,6 +84,12 @@ namespace StudyBuddies.Domain.Users
             get { return _image; }
             set { _image = value; }
         }
+        public virtual bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
+        }
+
         public virtual IList<Group> CreatedGroups => _createdGroups;
         public virtual IList<GroupRequest> MemberInGroups => _memberInGroups;
         public virtual IList<BuddyRequest> SentBuddyRequests => _sentBuddyRequests;
@@ -119,7 +128,7 @@ namespace StudyBuddies.Domain.Users
         public virtual IList<EnrolledSubject> EnrolledSubjects => _enrolledSubjects;
         public virtual IList<EnrolledInstitution> EnrolledInstitutions => _enrolledInstitutions;
         public virtual IList<Notification> Notifications => _notifications;
-        public virtual IList<Role> Roles => _roles;
+        public virtual IList<Claim> Claims => _claims;
 
         #endregion
 
@@ -268,22 +277,22 @@ namespace StudyBuddies.Domain.Users
             _notifications.Add(notification);
         }
 
-        public virtual void AddRole(Role role)
+        public virtual void AddClaim(Claim claim)
         {
-            if (role == null)
-                throw new InvalidDataException(nameof(role));
+            if (claim == null)
+                throw new InvalidDataException(nameof(claim));
 
-            if (!_roles.Contains(role))
-                _roles.Add(role);
+            if (!_claims.Contains(claim))
+                _claims.Add(claim);
         }
 
-        public virtual void RemoveRole(Role role)
+        public virtual void RemoveRole(Claim claim)
         {
-            if (role == null)
-                throw new InvalidDataException(nameof(role));
+            if (claim == null)
+                throw new InvalidDataException(nameof(claim));
 
-            if (!_roles.Contains(role))
-                _roles.Remove(role);
+            if (!_claims.Contains(claim))
+                _claims.Remove(claim);
         }
 
         #endregion
