@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Domain", "StudyBuddies.Model\StudyBuddies.Domain.csproj", "{B4A19554-6CC8-44C1-A50C-24DA53433609}"
 EndProject
@@ -18,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Host", "StudyBuddies.Host\StudyBuddies.Host.csproj", "{CCFEA3EA-491D-4FE1-90F2-4D0A3AA13937}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Core", "StudyBuddies.Core\StudyBuddies.Core.csproj", "{9AF9C0CE-94A7-4D7E-AFC9-4304407DB8C4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudyBuddies.Web", "StudyBuddies.Web\StudyBuddies.Web.csproj", "{1325012C-20F9-4CEE-B926-4B59635FD127}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,6 @@ Global
 		{9AF9C0CE-94A7-4D7E-AFC9-4304407DB8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AF9C0CE-94A7-4D7E-AFC9-4304407DB8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AF9C0CE-94A7-4D7E-AFC9-4304407DB8C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1325012C-20F9-4CEE-B926-4B59635FD127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1325012C-20F9-4CEE-B926-4B59635FD127}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1325012C-20F9-4CEE-B926-4B59635FD127}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1325012C-20F9-4CEE-B926-4B59635FD127}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
