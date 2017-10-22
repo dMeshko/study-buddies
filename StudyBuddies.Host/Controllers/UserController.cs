@@ -5,7 +5,7 @@ using StudyBuddies.Business.ViewModels.Users;
 
 namespace StudyBuddies.Host.Controllers
 {
-    [RoutePrefix("api/user")]
+    [RoutePrefix("user")]
     public class UserController : ApiController
     {
         private readonly IUserService _userService;

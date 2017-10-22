@@ -10,7 +10,7 @@ using StudyBuddies.Business.ViewModels.Groups;
 
 namespace StudyBuddies.Host.Controllers
 {
-    [RoutePrefix("api/post")]
+    [RoutePrefix("post")]
     public class PostController : ApiController
     {
         private readonly IPostService _postService;

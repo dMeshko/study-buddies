@@ -5,7 +5,7 @@ using StudyBuddies.Business.ViewModels.Subjects;
 
 namespace StudyBuddies.Host.Controllers
 {
-    //[RoutePrefix("api/subject")]
+    [RoutePrefix("subject")]
     public class SubjectController : ApiController
     {
         private readonly ISubjectService _subjectService;

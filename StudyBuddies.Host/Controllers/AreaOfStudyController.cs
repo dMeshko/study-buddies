@@ -3,7 +3,7 @@ using StudyBuddies.Business.Services;
 
 namespace StudyBuddies.Host.Controllers
 {
-    [RoutePrefix("api/area")]
+    [RoutePrefix("area")]
     public class AreaOfStudyController : ApiController
     {
         private readonly IAreaOfStudyService _areaOfStudyService;

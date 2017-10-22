@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="StudyBuddies.Web.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="StudyBuddies.Web.MvcApplication" Language="C#" %>

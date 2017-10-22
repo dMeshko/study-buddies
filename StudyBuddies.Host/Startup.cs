@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Web.Http;
 using IdentityServer3.AccessTokenValidation;
 using Owin;
+using StudyBuddies.Business.Infrastructure;
 using StudyBuddies.Core;
 
 namespace StudyBuddies.Host
@@ -14,11 +15,13 @@ namespace StudyBuddies.Host
             HttpConfiguration config = new HttpConfiguration();
 
             AutofacConfig.Configure(app, config);
+            AutoMapperConfig.Configure();
+            FluentValidatoinConfig.Configure(config);
 
             #region Identity Server
 
             // override the config to ignore microsoft claim types remapping and use identity server rules instead
-            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap = new Dictionary<string, string>();
 
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {

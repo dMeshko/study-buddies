@@ -5,7 +5,7 @@ using StudyBuddies.Business.ViewModels.Groups;
 
 namespace StudyBuddies.Host.Controllers
 {
-    [RoutePrefix("api/group")]
+    [RoutePrefix("group")]
     public class GroupController : ApiController
     {
         private readonly IGroupService _groupService;
