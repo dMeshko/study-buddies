@@ -1,0 +1,23 @@
+﻿{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "rootDir": "app",
+    "outDir": "Scripts/src",
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.iterable"
+    ],
+    "target": "es5",
+    "sourceMap": true,
+    "listFiles": false,
+    "pretty": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "name": "studybuddies.web",
+  "version": "1.0.0",
+  "description": "The web application for the project.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dMeshko/study-buddies.git"
+  },
+  "author": "Darko Meshkovski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dMeshko/study-buddies/issues"
+  },
+  "homepage": "https://github.com/dMeshko/study-buddies#readme",
+  "devDependencies": {
+    "@types/angular": "^1.6.32",
+    "@types/angular-mocks": "^1.5.11",
+    "@types/angular-sanitize": "^1.3.6",
+    "@types/angular-signalr-hub": "^1.5.32",
+    "@types/angular-ui-bootstrap": "^0.13.46",
+    "@types/angular-ui-router": "^1.1.39",
+    "@types/jasmine": "^2.6.0",
+    "@types/protractor": "^4.0.0",
+    "@uirouter/angularjs": "^1.0.6",
+    "angular": "^1.6.6",
+    "angular-mocks": "^1.6.6",
+    "angular-sanitize": "^1.6.6",
+    "angular-signalr-hub": "^1.6.3",
+    "angular-ui-bootstrap": "^2.5.0",
+    "bootswatch": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "grunt": "^1.0.1",
+    "grunt-angular-templates": "^1.1.0",
+    "grunt-concat-css": "^0.3.2",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-karma": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.16",
+    "jasmine": "^2.8.0",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.0",
+    "protractor": "^5.1.2",
+    "typescript": "^2.5.2",
+    "webdriver-manager": "^12.0.6"
+  }
+}
