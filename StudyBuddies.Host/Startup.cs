@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens;
 using System.Web.Http;
 using IdentityServer3.AccessTokenValidation;
 using Owin;
@@ -21,7 +21,7 @@ namespace StudyBuddies.Host
             #region Identity Server
 
             // override the config to ignore microsoft claim types remapping and use identity server rules instead
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap = new Dictionary<string, string>();
+            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
 
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
