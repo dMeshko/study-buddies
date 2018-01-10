@@ -182,6 +182,7 @@
     <TypeScriptCompile Include="app\components\home\right-sidebar\right-sidebar-controller.ts" />
     <TypeScriptCompile Include="app\components\home\states.ts" />
     <TypeScriptCompile Include="app\config\config.ts" />
+    <TypeScriptCompile Include="app\config\constants.ts" />
     <TypeScriptCompile Include="app\config\interceptors.ts" />
     <TypeScriptCompile Include="app\config\providers.ts" />
     <TypeScriptCompile Include="app\config\states.ts" />

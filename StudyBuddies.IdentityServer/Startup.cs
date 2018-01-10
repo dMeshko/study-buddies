@@ -1,9 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Web.Http;
 using IdentityServer3.Core.Configuration;
+using IdentityServer3.Core.Logging;
 using Microsoft.Owin;
 using Owin;
+using Serilog;
 using StudyBuddies.IdentityServer;
 using StudyBuddies.IdentityServer.Config;
 
@@ -14,6 +17,13 @@ namespace StudyBuddies.IdentityServer
     {
         public void Configuration(IAppBuilder app)
         {
+            HttpConfiguration config = new HttpConfiguration();
+            AutofacConfig.Configure(app, config);
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Trace(outputTemplate: "{Timestamp} [{Level}] ({Name}){NewLine} {Message}{NewLine}{Exception}")
+                .CreateLogger();
+
             var factory = new IdentityServerServiceFactory()
                 .UseInMemoryClients(Clients.Get())
                 .UseInMemoryScopes(Scopes.Get())

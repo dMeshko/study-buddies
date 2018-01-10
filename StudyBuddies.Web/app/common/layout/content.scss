@@ -1,4 +1,6 @@
-﻿$marginTop: 70px;
+﻿@import "../variables.scss";
+
+$marginTop: 70px;
 
 [ui-view="content"] {
     margin-top: $marginTop;
@@ -93,4 +95,8 @@ $step: 5;
     }
 
     $i: $i + $step;
+}
+
+.label-sb{
+    background-color: $ternarySiteColor;
 }

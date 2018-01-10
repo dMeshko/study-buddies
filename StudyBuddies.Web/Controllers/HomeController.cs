@@ -2,7 +2,7 @@
 
 namespace StudyBuddies.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
